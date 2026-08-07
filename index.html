@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CONTROL — Giáo án chuyển lối chơi kiểm soát</title>
+<meta name="description" content="Giáo án cầu lông 8 tuần chuyển sang lối chơi kiểm soát kiểu Kento Momota. 25 bài tập, sơ đồ sân chuẩn BWF, thiết kế cho người 32 tuổi, 1m64, tập solo.">
+<meta name="theme-color" content="#12403C">
+<meta name="color-scheme" content="light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Control">
+<meta property="og:title" content="CONTROL — Giáo án lối chơi kiểm soát">
+<meta property="og:description" content="25 bài tập cầu lông theo lối Kento Momota, kèm sơ đồ sân chuẩn BWF và bộ đếm hiệp.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+  --teal:#12403C;      /* teal đậm hero */
+  --teal2:#1E5E58;
+  --teal3:#2E7D74;
+  --mint:#4FBFAE;      /* mặt sân */
+  --mint2:#A9E0D5;
+  --bg:#F1F1EE;
+  --white:#FFFFFF;
+  --ink:#161616;
+  --gray:#6E6E6E;
+  --gray2:#9B9B9B;
+  --line:#E2E2DE;
+  --line2:#D2D2CC;
+  --shu:#C9483A;       /* đỏ nhấn / cảnh báo */
+  --lime:#D9E64F;
+  --f:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --jp:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;
+  --r:16px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f);
+  font-size:15.5px;line-height:1.65;padding-bottom:80px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+h1,h2,h3,h4{font-weight:800;letter-spacing:-.028em;margin:0}
+.mono{font-variant-numeric:tabular-nums}
+
+/* ---------- HERO ---------- */
+.hero{background:var(--teal);border-radius:var(--r);margin:16px 0 0;padding:26px 22px 22px;
+  color:#fff;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-90px;bottom:-110px;width:340px;height:340px;
+  border-radius:50%;background:radial-gradient(circle,rgba(79,191,174,.22),transparent 65%)}
+.hcols{position:relative;z-index:2;display:flex;gap:26px;align-items:flex-start}
+.hleft{flex:1;min-width:0}
+.eye{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--mint2);border:1px solid rgba(169,224,213,.35);
+  padding:5px 11px;border-radius:100px;margin-bottom:18px}
+.eye i{font-style:normal;font-family:var(--jp);letter-spacing:.1em}
+h1.big{font-size:clamp(34px,9vw,62px);line-height:.94;color:#fff;margin-bottom:14px}
+h1.big span{color:var(--mint)}
+.hdeck{font-size:14.5px;color:rgba(255,255,255,.74);max-width:44ch;margin:0 0 20px}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--teal);
+  border:none;font-family:inherit;font-size:13.5px;font-weight:700;padding:12px 20px;
+  border-radius:100px;cursor:pointer;text-decoration:none}
+.pill.gh{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.32)}
+.hright{flex:0 0 232px;display:none}
+@media(min-width:760px){.hright{display:block}}
+.hright svg{width:100%;height:auto;border-radius:12px;display:block}
+
+.hfacts{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:0;
+  border-top:1px solid rgba(255,255,255,.16);margin-top:22px;padding-top:16px}
+.hf{flex:1 1 44%;padding:5px 12px 5px 0}
+.hf span{display:block;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(169,224,213,.7)}
+.hf b{font-size:14px;font-weight:700;color:#fff;letter-spacing:-.01em}
+
+/* ---------- STATS ---------- */
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 0}
+.st{flex:1 1 120px;background:var(--white);border-radius:12px;padding:15px 16px}
+.st b{display:block;font-size:26px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.st span{display:block;font-size:11.5px;color:var(--gray);margin-top:4px}
+.st.fill{background:var(--teal2);color:#fff}
+.st.fill span{color:rgba(255,255,255,.7)}
+
+/* ---------- PROGRESS ---------- */
+.prog{background:var(--white);border-radius:12px;padding:15px 16px;margin-top:10px}
+.progh{display:flex;justify-content:space-between;align-items:baseline;font-size:11.5px;color:var(--gray)}
+.progh b{font-size:15px;color:var(--ink);font-weight:800;letter-spacing:-.02em}
+.dots{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}
+.dot{width:100%;max-width:26px;flex:1;height:5px;border-radius:100px;background:var(--line)}
+.dot.on{background:var(--teal2)}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:40;background:var(--bg);margin-top:14px;
+  border-bottom:1px solid var(--line2)}
+.navin{max-width:1080px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;padding:0 16px}
+.navin::-webkit-scrollbar{display:none}
+.nb{flex:0 0 auto;background:none;border:none;font-family:inherit;cursor:pointer;
+  padding:13px 0;margin-right:22px;color:var(--gray);font-size:13.5px;font-weight:600;
+  letter-spacing:-.01em;white-space:nowrap;position:relative}
+.nb.on{color:var(--ink);font-weight:800}
+.nb.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2.5px;background:var(--teal2)}
+
+section{display:none;padding-bottom:8px}
+section.on{display:block;animation:fi .2s ease}
+@keyframes fi{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* ---------- SECTION HEAD ---------- */
+.sh{display:flex;flex-wrap:wrap;gap:18px;padding:32px 0 22px;align-items:flex-start}
+.sh h2{flex:1 1 300px;font-size:clamp(26px,6.2vw,40px);line-height:1.03}
+.sh .shp{flex:1 1 260px;font-size:14px;color:var(--gray);max-width:44ch;padding-top:5px}
+.sh .shp b{color:var(--ink);font-weight:700}
+.shjp{font-family:var(--jp);font-size:11px;letter-spacing:.22em;color:var(--teal3);
+  text-transform:none;margin-bottom:9px;display:block}
+
+/* ---------- EXERCISE ROWS ---------- */
+.ex{border-top:1px solid var(--line2);background:transparent;transition:background .2s}
+.ex:last-of-type{border-bottom:1px solid var(--line2)}
+.ex.open{background:var(--white);border-radius:14px;border-color:transparent;margin:8px 0;
+  border-top:none;padding:0 16px}
+.ex.open + .ex{border-top:1px solid var(--line2)}
+.exh{display:flex;gap:14px;align-items:center;padding:19px 0;cursor:pointer}
+.num{flex:0 0 auto;font-size:14px;color:var(--gray2);font-weight:600;letter-spacing:-.01em;
+  min-width:38px;font-variant-numeric:tabular-nums}
+.ex.done .num{color:var(--teal3)}
+.ext{flex:1;min-width:0}
+.ext h3{font-size:17.5px;line-height:1.25}
+.ext .sub{font-size:12px;color:var(--gray2);margin-top:3px;letter-spacing:.01em}
+.ext .sub i{font-style:normal;font-family:var(--jp);letter-spacing:.1em}
+.tick{flex:0 0 auto;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent}
+.ex.done .tick{background:var(--teal2);border-color:var(--teal2);color:#fff}
+.arw{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--line2);
+  display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:13px;
+  transition:.2s}
+.ex.open .arw{background:var(--teal);border-color:var(--teal);color:#fff;transform:rotate(90deg)}
+.exb{display:none;padding:0 0 22px}
+.ex.open .exb{display:block}
+
+.blk{margin-top:22px}
+.blab{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--teal3);
+  font-weight:800;margin-bottom:10px}
+.blk > p{margin:0 0 10px;font-size:14.8px;color:#3A3A3A}
+
+ol.st2{margin:0;padding:0;list-style:none;counter-reset:c}
+ol.st2 li{counter-increment:c;display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--line);
+  font-size:14.6px;color:#3A3A3A}
+ol.st2 li:first-child{border-top:none}
+ol.st2 li::before{content:"(" counter(c,decimal-leading-zero) ")";flex:0 0 auto;font-size:12px;
+  color:var(--gray2);font-weight:600;padding-top:2px;font-variant-numeric:tabular-nums}
+
+.callout{border-radius:12px;padding:13px 15px;margin-top:13px;font-size:14.2px;color:#3A3A3A;
+  background:rgba(79,191,174,.13)}
+.callout b{color:var(--teal);font-weight:800}
+.callout.warn{background:rgba(201,72,58,.09)}
+.callout.warn b{color:var(--shu)}
+
+.vol{display:flex;flex-wrap:wrap;gap:8px}
+.vc{flex:1 1 44%;background:var(--bg);border-radius:11px;padding:12px 13px}
+.ex.open .vc{background:#F5F5F2}
+.vc span{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray2)}
+.vc b{font-size:16px;font-weight:800;letter-spacing:-.025em}
+.vnote{font-size:13.2px;color:var(--gray);margin-top:10px}
+
+.dia{margin-top:13px;background:var(--teal);border-radius:12px;padding:14px}
+.dia svg{display:block;width:100%;height:auto}
+.diacap{font-size:11.5px;color:rgba(169,224,213,.85);margin-top:9px;text-align:center;letter-spacing:.02em}
+
+.kwl{margin-top:2px}
+.kwi{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid var(--line);
+  color:var(--ink);text-decoration:none;font-size:14px}
+.kwi:first-child{border-top:none}
+.kwi:hover{color:var(--teal3)}
+.kwi .tg{flex:0 0 auto;font-size:9px;font-weight:800;letter-spacing:.06em;padding:3px 6px;
+  border-radius:5px;background:var(--bg);color:var(--gray)}
+.ex.open .kwi .tg{background:#F0F0EC}
+.kwi .tg.e{background:rgba(79,191,174,.18);color:var(--teal2)}
+.kwi .go{margin-left:auto;color:var(--gray2);font-size:13px}
+.kwact{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.mb{font-family:inherit;font-size:12.5px;font-weight:600;padding:9px 15px;border-radius:100px;
+  border:1px solid var(--line2);background:none;color:var(--ink);cursor:pointer;text-decoration:none}
+.mb:hover{border-color:var(--teal2);color:var(--teal2)}
+.mb.solid{background:var(--teal);border-color:var(--teal);color:#fff}
+
+/* ---------- VIDEO ---------- */
+.vidrow{display:flex;gap:8px;flex-wrap:wrap}
+.vbtn{flex:1 1 190px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:13px 15px;border-radius:12px;text-decoration:none;font-size:13.5px;font-weight:700;
+  background:var(--teal);color:#fff;line-height:1.3}
+.vbtn.alt{background:var(--bg);color:var(--ink);border:1px solid var(--line2)}
+.ex.open .vbtn.alt{background:#F5F5F2}
+.vbtn small{display:block;font-size:10.5px;font-weight:500;opacity:.72;margin-top:3px}
+.vbtn .ic{flex:0 0 auto;font-size:15px;opacity:.8}
+.vsave{margin-top:12px;border:1px dashed var(--line2);border-radius:12px;padding:13px}
+.vsave .vt{font-size:12.2px;color:var(--gray);margin-bottom:10px;line-height:1.55}
+.vform{display:flex;gap:7px}
+.vform input{flex:1;min-width:0;font-family:inherit;font-size:13px;padding:10px 11px;
+  border:1px solid var(--line2);border-radius:9px;background:#fff;color:var(--ink)}
+.vform input:focus{outline:none;border-color:var(--teal2)}
+.vform button{flex:0 0 auto;font-family:inherit;font-size:12.5px;font-weight:700;padding:10px 16px;
+  border-radius:9px;border:none;background:var(--teal);color:#fff;cursor:pointer}
+.verr{font-size:12px;color:var(--shu);margin-top:8px;display:none}
+.verr.on{display:block}
+.vfac{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;
+  background:var(--teal) center/cover no-repeat;cursor:pointer;margin-bottom:9px}
+.vfac::after{content:"\\25B6";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--teal);
+  display:flex;align-items:center;justify-content:center;font-size:16px;padding-left:4px}
+.vfac.playing::after{display:none}
+.vfac iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vmeta{display:flex;gap:9px;align-items:center;font-size:12px;color:var(--gray);margin-bottom:13px;flex-wrap:wrap}
+.vmeta a{color:var(--teal2);text-decoration:none;font-weight:600}
+.vmeta button{margin-left:auto;font-family:inherit;font-size:11.5px;background:none;border:none;
+  color:var(--gray2);cursor:pointer;text-decoration:underline;padding:0}
+details.kwd{margin-top:14px}
+details.kwd summary{font-size:12.5px;color:var(--gray);cursor:pointer;list-style:none;
+  padding:10px 0 4px;border-top:1px solid var(--line)}
+details.kwd summary::-webkit-details-marker{display:none}
+details.kwd summary::before{content:"+  ";font-weight:800;color:var(--teal3)}
+details.kwd[open] summary::before{content:"\\2212  "}
+
+.mark{display:flex;align-items:center;gap:11px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.mark input{width:17px;height:17px;accent-color:var(--teal2);cursor:pointer}
+.mark label{font-size:13px;color:var(--gray);cursor:pointer}
+
+/* ---------- SCHEDULE ---------- */
+.wk{display:flex;gap:14px;align-items:flex-start;padding:17px 0;border-top:1px solid var(--line2)}
+.wk:last-of-type{border-bottom:1px solid var(--line2)}
+.wkd{flex:0 0 54px}
+.wkd b{display:block;font-size:17px;font-weight:800;letter-spacing:-.03em}
+.wkd span{display:block;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--gray2);margin-top:2px}
+.wkb{flex:1;min-width:0}
+.wkb h4{font-size:15px;margin-bottom:4px}
+.wkb p{margin:0;font-size:13.8px;color:var(--gray)}
+.wk.court{background:var(--white);border-radius:14px;padding:17px 16px;border-color:transparent;margin:8px 0}
+.wk.court .wkd b{color:var(--teal2)}
+.wk.rest{opacity:.55}
+.chips{margin-top:9px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:10.5px;font-weight:600;letter-spacing:.02em;padding:3px 9px;border-radius:100px;
+  background:var(--bg);color:var(--gray)}
+.wk.court .chip{background:#F1F1EE}
+.chip.a{background:rgba(79,191,174,.2);color:var(--teal2)}
+.chip.b{background:rgba(201,72,58,.1);color:var(--shu)}
+
+/* ---------- RULES ---------- */
+.rl{background:var(--white);border-radius:14px;padding:19px 18px;margin-bottom:10px}
+.rl .wl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal3);font-weight:800}
+.rl h4{margin:7px 0 9px;font-size:18px}
+.rl p{margin:0;font-size:14.5px;color:#3A3A3A}
+.rl .why{margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:13.6px;color:var(--gray)}
+.rl .why b{color:var(--ink);font-weight:700}
+
+/* ---------- KPI ---------- */
+.kp{display:flex;gap:14px;padding:19px 0;border-top:1px solid var(--line2)}
+.kp:last-of-type{border-bottom:1px solid var(--line2)}
+.kpn{flex:0 0 38px;font-size:14px;color:var(--gray2);font-weight:600;font-variant-numeric:tabular-nums}
+.kpb{flex:1;min-width:0}
+.kpb h4{font-size:16px;margin-bottom:6px}
+.kpb p{margin:0;font-size:13.8px;color:var(--gray)}
+.goal{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;background:rgba(79,191,174,.18);
+  color:var(--teal2);padding:5px 12px;border-radius:100px}
+
+/* ---------- ROADMAP ---------- */
+.ph{display:flex;gap:16px;padding:19px 0;border-top:1px solid var(--line2)}
+.ph:last-of-type{border-bottom:1px solid var(--line2)}
+.phn{flex:0 0 38px;font-size:14px;color:var(--gray2);font-weight:600}
+.phb{flex:1;min-width:0}
+.phb .wl{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray2);font-weight:700}
+.phb h4{margin:6px 0 7px;font-size:17px}
+.phb p{margin:0;font-size:14px;color:var(--gray)}
+.ph.now{background:var(--white);border-radius:14px;padding:19px 16px;border-color:transparent;margin:8px 0}
+.ph.now .phn,.ph.now .phb .wl{color:var(--teal2)}
+.ph:not(.now){opacity:.6}
+.sh1{display:inline-block;margin-top:9px;font-family:var(--jp);font-size:11px;letter-spacing:.2em;
+  color:var(--teal3)}
+
+footer{border-top:1px solid var(--line2);margin-top:32px;padding:22px 0 28px;font-size:11.8px;
+  color:var(--gray2);line-height:1.8}
+footer b{color:var(--gray);font-weight:600}
+
+/* ---------- TIMER ---------- */
+.tbar{position:fixed;bottom:0;left:0;right:0;z-index:50;padding:0 16px calc(10px + env(safe-area-inset-bottom))}
+.tin{max-width:1080px;margin:0 auto;background:var(--teal);color:#fff;border-radius:100px;
+  padding:8px 8px 8px 20px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 6px 22px rgba(18,64,60,.28)}
+.tclock{font-size:23px;font-weight:800;letter-spacing:-.04em;min-width:74px;font-variant-numeric:tabular-nums}
+.tclock.rest{color:var(--lime)}
+.tmeta{flex:1;min-width:0}
+.tmeta b{display:block;font-size:12px;font-weight:700;letter-spacing:-.01em}
+.tmeta span{display:block;font-size:10px;color:rgba(169,224,213,.75);letter-spacing:.05em}
+select.tsel{font-family:inherit;font-size:11.5px;background:rgba(255,255,255,.1);color:#fff;
+  border:none;padding:8px 6px;border-radius:8px;display:none}
+@media(min-width:560px){select.tsel{display:block}}
+select.tsel option{color:#161616}
+.tb{font-family:inherit;font-size:12px;font-weight:700;padding:10px 16px;border-radius:100px;
+  border:1px solid rgba(255,255,255,.3);background:none;color:#fff;cursor:pointer}
+.tb.go{background:#fff;color:var(--teal);border-color:#fff}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hcols">
+      <div class="hleft">
+        <div class="eye"><i>制球</i> Giai đoạn 1 · Tuần 1–2</div>
+        <h1 class="big">LỐI CHƠI<br><span>KIỂM SOÁT</span></h1>
+        <p class="hdeck">Chuẩn hoá phom tay kín để giấu hướng đánh, và bộ chân lướt tiết kiệm sức. Học từ Kento Momota, thiết kế riêng cho 32 tuổi · 1m64 · 60kg · tập một mình.</p>
+        <button class="pill" id="startBtn">Vào bài đầu tiên ↗</button>
+      </div>
+      <div class="hright" id="heroArt"></div>
+    </div>
+    <div class="hfacts">
+      <div class="hf"><span>Trọng tâm</span><b>Thấp — lợi thế</b></div>
+      <div class="hf"><span>Ưu tiên</span><b>An toàn gối, cổ chân</b></div>
+      <div class="hf"><span>Loại bỏ</span><b>Bật nhảy đập</b></div>
+      <div class="hf"><span>Loại bỏ</span><b>Bào thể lực</b></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="st fill"><b id="stEx">25</b><span>Bài tập chi tiết</span></div>
+    <div class="st"><b id="stKw">—</b><span>Từ khoá tìm video</span></div>
+    <div class="st"><b id="stDia">—</b><span>Sơ đồ sân BWF</span></div>
+    <div class="st"><b>2+3</b><span>Buổi sân + buổi khô</span></div>
+  </div>
+
+  <div class="prog">
+    <div class="progh"><span>Tiến độ Giai đoạn 1</span><b id="pcount">0 / 15</b></div>
+    <div class="dots" id="dots"></div>
+  </div>
+</div>
+
+<nav><div class="navin" id="nav"></div></nav>
+
+<div class="wrap">
+  <section class="on" id="s-a"></section>
+  <section id="s-b"></section>
+  <section id="s-d"></section>
+  <section id="s-e"></section>
+  <section id="s-c"></section>
+  <section id="s-sch"></section>
+  <section id="s-rule"></section>
+  <section id="s-kpi"></section>
+  <section id="s-road"></section>
+  <footer>
+    <b>Giáo án cá nhân hoá</b> — hồ sơ 32 tuổi · 1m64 · 60kg · tập solo, 2 buổi sân/tuần.<br>
+    Sơ đồ sân theo chuẩn BWF: 13,40 × 6,10 m · lưới cao 1,55 m ở cột và 1,524 m ở giữa · vạch giao cầu ngắn cách lưới 1,98 m · vạch đơn lùi vào 0,46 m mỗi bên.<br>
+    Đây là hướng dẫn tập luyện, không thay thế tư vấn y tế. Có tiền sử chấn thương gối, cổ chân hoặc vai thì hỏi bác sĩ thể thao trước khi bắt đầu.
+  </footer>
+</div>
+
+<div class="tbar">
+  <div class="tin">
+    <div class="tclock" id="clock">00:40</div>
+    <div class="tmeta"><b id="tlab">Bộ đếm hiệp</b><span id="tsub">Bấm bắt đầu</span></div>
+    <select class="tsel" id="tmode">
+      <option value="40,45">40s / nghỉ 45s</option>
+      <option value="30,60">30s / nghỉ 60s</option>
+      <option value="45,90">45s / nghỉ 90s</option>
+      <option value="60,75">60s / nghỉ 75s</option>
+      <option value="20,40">20s / nghỉ 40s</option>
+    </select>
+    <button class="tb go" id="tgo">Bắt đầu</button>
+    <button class="tb" id="trs">Reset</button>
+  </div>
+</div>
+
+<script>
+const A=[
+{id:'A1',jp:'握り直し',t:'Chuyển grip trung tính 3 nhịp',en:'Neutral Grip Reset',dia:'grip',
+ goal:'Momota có một thói quen gần như vô thức: sau MỌI cú đánh, vợt lập tức về grip trung tính (chữ V giữa ngón cái và ngón trỏ nằm trên cạnh vát số 2). Từ vị trí này anh đánh được thuận tay hay trái tay mà không cần xoay vai — nên đối thủ không đọc được ý đồ qua tư thế tay. Với người sải tay ngắn như bạn, việc không phải xoay vai để đổi grip tiết kiệm khoảng 0,15–0,2 giây mỗi pha, đủ để bù khoảng cách với người cao hơn.',
+ steps:['Đứng chân rộng bằng vai, gối chùng 15–20°, trọng tâm đổ đều lên giữa lòng bàn chân. Không đứng thẳng gối — với 1m64, trọng tâm thấp là lợi thế tự nhiên của bạn, đừng phá nó.',
+ 'Cầm grip thuận tay: chữ V giữa ngón cái và trỏ đặt trên cạnh vát số 2 của cán vợt. Nắm LỎNG, chỉ siết ở khoảnh khắc chạm cầu.',
+ 'Đưa vợt lên tư thế thủ: đầu vợt cao ngang cằm, cùi chỏ cách sườn đúng một nắm tay, cẳng tay tạo góc 90–100° với cánh tay.',
+ 'Nhịp 1 — thả lỏng ba ngón út, áp út, giữa. Chỉ giữ vợt bằng ngón trỏ và ngón cái. Cán vợt lúc này gần như treo tự do trong lòng bàn tay.',
+ 'Nhịp 2 — dùng gờ ngón cái đẩy cán vợt xoay khoảng 45° sang thumb grip. Bàn tay và cổ tay KHÔNG di chuyển, chỉ có cán vợt xoay trong lòng bàn tay.',
+ 'Nhịp 3 — kéo ngược về trung tính, siết nhẹ ba ngón lại. Đó là một chu kỳ.',
+ 'Làm chậm trong 2 tuần đầu, mỗi chu kỳ khoảng 2 giây. Tuyệt đối không đua tốc độ — tốc độ tự đến khi đường dẫn thần kinh ổn định.'],
+ note:'Giữ đầu vợt cao hơn cổ tay ít nhất 30cm ở tư thế thủ. Người thấp buộc phải đón cầu SỚM hơn để bù sải tay — để vợt thấp là bạn đã mất nửa nhịp trước khi cầu bay tới.',
+ warn:'Mỏi rát ở gốc ngón cái sau 2–3 buổi nghĩa là bạn đang nắm quá chặt. Grip phải lỏng đến mức người khác rút được vợt khỏi tay bạn giữa chừng.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','40 chu kỳ'],['Nghỉ','45 giây'],['Tần suất','4–5 buổi/tuần']],
+ vnote:'Tập được ở nhà lúc xem TV. Không tốn sức, chỉ tốn sự đều đặn.',
+ kw:{vi:['cách cầm vợt cầu lông trung tính','đổi grip thuận trái cầu lông','kỹ thuật cầm vợt cầu lông cơ bản đến nâng cao','xoay cán vợt trong lòng bàn tay cầu lông'],
+     en:['badminton neutral grip reset','badminton grip change forehand to backhand drill','badminton thumb grip technique','badminton grip rotation in fingers']}},
+
+{id:'A2',jp:'一構え三球',t:'Một phom — Ba đường cầu',en:'One Preparation, Three Shots',dia:'side',
+ goal:'Đây là bài quan trọng nhất của toàn Giai đoạn 1. Momota không giấu cầu bằng động tác giả loè loẹt — anh giấu bằng cách làm cho cầu cao, bỏ nhỏ và đập trông giống hệt nhau cho đến 20cm cuối cùng. Đối thủ buộc phải chờ; chờ nghĩa là mất split-step; mất split-step nghĩa là mất góc sân. Đây chính là cách anh kiểm soát mà không cần đánh mạnh.',
+ steps:['Xác định ĐIỂM CHUẨN BỊ chuẩn và ghi nhớ bằng cảm giác cơ thể: vợt gập sau lưng, cùi chỏ chỉ chéo 45° lên trần, đầu vợt chúc xuống chạm khoảng giữa hai bả vai, vai không cầm vợt hướng thẳng về lưới.',
+ 'CẦU CAO — xoay cẳng tay hết biên độ, mặt vợt mở, điểm tiếp xúc phía trước trán khoảng 20cm và cao hết tầm. Kết thúc vợt đi chéo xuống hông trái.',
+ 'BỎ NHỎ — quãng đường vung y hệt cầu cao, nhưng 20cm cuối giảm tốc cẳng tay còn khoảng 40%, mặt vợt cắt nhẹ vào thân cầu. Mấu chốt: cánh tay vẫn duỗi đầy đủ, chỉ cẳng tay chậm lại. Giảm tốc từ vai là đối thủ đọc được ngay.',
+ 'ĐẬP CHÂN CHẠM ĐẤT — giữ nguyên phom, xoay hông và vai theo, mặt vợt úp xuống 30°, điểm tiếp xúc chếch trước 30cm. Lực đến từ xoay thân, không phải từ đè vai xuống.',
+ 'Kiểm chứng: quay video 3 cú liên tiếp, tua đến khung hình vợt ở sau lưng. Nếu bạn không phân biệt được đó là cú nào thì bài đã đạt.',
+ 'Tập shadow không cầu trong suốt 2 tuần đầu. Có cầu vào sớm sẽ làm mất chuẩn phom.'],
+ note:'Nhịp thở: hít vào khi đưa vợt lên, thở ra dứt khoát khi vung. Đây là chi tiết Momota làm rất rõ và là lý do anh đánh 90 phút không hụt hơi — thở ra chủ động giữ nhịp tim thấp hơn 8–12 nhịp so với nín thở.',
+ warn:'Không tập bài này khi vai đã mỏi. Lặp lại swing sai lúc mệt sẽ ghi đè đường dẫn thần kinh xấu và mất 3–4 tuần để sửa.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','15 × 3 kiểu'],['Nghỉ','60–90 giây'],['Tần suất','3 buổi/tuần']],
+ vnote:'Mỗi hiệp 45 swing. Quay video hiệp cuối mỗi buổi để so sánh theo tuần.',
+ kw:{vi:['kỹ thuật giấu cầu cầu lông deception','cùng một phom tay ba đường cầu','kỹ thuật đánh cầu cao bỏ nhỏ giống nhau','phom tay cầu lông chuẩn slow motion','Kento Momota giấu cầu phân tích'],
+     en:['badminton deception same preparation','badminton disguise clear drop smash same action','Kento Momota deception slow motion analysis','badminton overhead shot preparation consistency','badminton hold and deceive technique']}},
+
+{id:'A3',jp:'前腕回内',t:'Xoay cẳng tay cô lập',en:'Isolated Forearm Pronation',dia:'pron',
+ goal:'Người mới thường nghĩ lực đến từ cổ tay hoặc vai. Thực tế phần lớn tốc độ đầu vợt đến từ XOAY CẲNG TAY. Momota đánh nhẹ nhàng mà cầu vẫn sâu tận cuối sân chính vì anh sinh lực bằng cẳng tay chứ không gồng vai. Với bạn đây là chìa khoá kép: vừa tiết kiệm sức để đánh bền 90 phút, vừa bảo vệ khớp vai ở tuổi 32.',
+ steps:['Ngồi hoặc đứng, kẹp cùi chỏ tay thuận sát sườn, hoặc tì cẳng tay lên mặt bàn với cổ tay thò ra ngoài mép.',
+ 'Cầm vợt bình thường. Để tăng tải, quấn một chiếc khăn nhỏ quanh đầu vợt (khoảng 30–50g) hoặc dùng chai nước 500ml cầm ở cổ chai.',
+ 'Xoay từ ngửa (lòng bàn tay hướng lên) sang sấp (lòng bàn tay hướng xuống), biên độ đầy đủ gần 180°.',
+ 'CỰC KỲ QUAN TRỌNG: cổ tay giữ THẲNG suốt bài, không bẻ cổ tay lên xuống. Lỗi vẩy cổ tay là nguyên nhân số một gây đau cổ tay và viêm mỏm trên lồi cầu ở người chơi phong trào tuổi 30+.',
+ 'Pha xoay sang sấp làm NHANH — đây là pha sinh lực khi đánh cầu. Pha xoay ngược về ngửa làm CHẬM có kiểm soát trong 2 giây — đây là pha xây gân.',
+ 'Tập cả tay không thuận với khối lượng bằng khoảng 60%, giữ cân bằng cơ hai vai và giảm nguy cơ lệch vai mạn tính.'],
+ note:'Sau khi thành thục, thử bài kiểm tra âm thanh: vẫy vợt trong không khí, nghe tiếng "vút" sắc gọn ở cuối đường vung là bạn đã tăng tốc đúng chỗ. Tiếng vút đều từ đầu đến cuối nghĩa là bạn đang dùng vai kéo cả cánh tay.',
+ warn:'Đau mặt ngoài khuỷu tay là dấu hiệu sớm của tennis elbow. Dừng ngay, giảm tải, tăng nghỉ lên 72 giờ và giảm còn 2 hiệp. Đừng tập cho qua.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','20 lần mỗi tay'],['Nghỉ','40 giây'],['Tần suất','3–4 buổi/tuần']],
+ vnote:'Tay không thuận 3 × 12. Ngày sau buổi sân nên bỏ bài này để gân nghỉ.',
+ kw:{vi:['xoay cẳng tay cầu lông pronation','kỹ thuật lắc cổ tay cầu lông đúng cách','lực cổ tay hay lực cẳng tay cầu lông','bài tập tăng tốc độ đầu vợt cầu lông'],
+     en:['badminton forearm pronation drill','badminton wrist vs forearm rotation explained','badminton racket head speed forearm exercise','badminton supination pronation technique']}},
+
+{id:'A4',jp:'網際',t:'Ôm lưới — đẩy ngón, không vẩy cổ tay',en:'Net Shot: Push, Not Flick',dia:'net',
+ goal:'Cú ôm lưới của Momota gần như không có backswing. Anh đưa vợt ra, mặt vợt mở sẵn, và chỉ đẩy một lực rất nhỏ bằng ngón trỏ và ngón cái. Vì không có động tác vung, đối thủ không phân biệt được anh sẽ ôm lưới, móc cầu hay tạt ngang — cùng một tư thế cho ra ba đường cầu. Đây là bài cho phép bạn ăn điểm mà không cần tốc độ, hoàn hảo cho hồ sơ của bạn.',
+ steps:['Bước lunge NÔNG lên góc lưới: chân thuận trước, mũi chân hướng chéo ra góc, gối trước gập tối đa 90–100° và không vượt quá mũi chân.',
+ 'Tay cầm vợt duỗi gần thẳng về phía cầu. Mặt vợt mở 45°, cạnh trên của vợt cao hơn bàn tay — bạn đón cầu bằng mặt vợt ngửa, không phải chọc vợt tới.',
+ 'Tay không cầm vợt duỗi thẳng ra sau làm đối trọng. Với 1m64 chi tiết này quan trọng gấp đôi: nó cho phép bạn với xa thêm 10–15cm mà vẫn giữ thăng bằng để bật về.',
+ 'KHÔNG backswing, không kéo vợt về sau. Chỉ đưa vợt ra đón và đẩy nhẹ bằng ngón trỏ — cảm giác giống đỡ quả trứng chứ không phải đánh.',
+ 'Từ đúng tư thế đó tập ba biến thể: đẩy nhẹ cho ra ôm lưới xoáy; nhấc mặt vợt lên nhanh cho ra móc cầu sau; xoay mặt vợt úp và tạt cho ra tạt lưới. Ba cú, một tư thế.',
+ 'Tập solo không cần người đút cầu: buộc quả cầu vào sợi dây, treo từ khung cửa ở độ cao ngang mép lưới 1m55. Tiếp cận, lunge, đẩy — cầu sẽ đung đưa và bạn lặp lại theo nhịp.',
+ 'Cách thứ hai: đứng cách tường 2m, tự tâng cầu lên rồi ôm nhẹ vào tường ở độ cao 1m5. Cầu bật lại, ôm tiếp.'],
+ note:'Mẹo với sải tay ngắn: thay vì cố với xa hơn, hãy đi SỚM hơn nửa bước. Momota luôn đến sớm và đứng chờ cầu — anh đổi tốc độ di chuyển lấy chất lượng cú đánh. Đó là lối chơi tiết kiệm sức thật sự.',
+ warn:'Lunge sâu quá 100° gối lặp lại hàng trăm lần mỗi buổi là nguyên nhân chính gây viêm gân bánh chè ở người chơi 30+. Nông và nhiều bước còn hơn sâu và ít bước.',
+ vol:[['Hiệp','4 hiệp'],['Số lần','20 lần mỗi bên'],['Nghỉ','45 giây'],['Tần suất','2–3 buổi/tuần']],
+ vnote:'Thuận tay và trái tay chia đều. Trái tay dùng thumb grip, xem bài 05.',
+ kw:{vi:['kỹ thuật ôm lưới cầu lông chuẩn','cách bỏ nhỏ sát lưới xoáy cầu lông','ôm lưới không vẩy cổ tay','tư thế lunge ôm lưới cầu lông','Momota net shot phân tích'],
+     en:['badminton net shot technique push not flick','badminton tumbling net shot tutorial','badminton net play deception three options','Kento Momota net shot analysis','badminton net lunge technique']}},
+
+{id:'A5',jp:'親指握り',t:'Trái tay ngón cái — mở khoá nửa sân còn lại',en:'Thumb-Grip Backhand',dia:'court4',
+ goal:'Điểm yếu chí mạng của người thấp là góc sau trái tay — bạn không đủ sải tay để chạy vòng đánh thuận tay mọi lúc như người 1m80. Momota có cú trái tay cuối sân rất chắc, không mạnh nhưng luôn đủ sâu, và quan trọng hơn là anh giấu được nó. Học được cú này, bạn giảm khoảng 30% quãng đường di chuyển mỗi set.',
+ steps:['Grip: xoay cán vợt sao cho MẶT PHẲNG ngón cái áp trọn lên cạnh rộng của cán, không phải mép cạnh. Ngón cái là piston đẩy, ba ngón còn lại chỉ giữ.',
+ 'Trái tay tại lưới: cùi chỏ dẫn trước, cẳng tay gần song song mặt sàn, mặt vợt mở. Đẩy bằng ngón cái, biên độ chỉ 10–15cm.',
+ 'Trái tay cuối sân: xoay người quay lưng lại lưới, chân thuận bước chéo về góc sau trái. Cùi chỏ nâng cao ngang vai và chỉ về hướng cầu bay tới.',
+ 'Duỗi cẳng tay bung ra như búng dây thun, đồng thời ngón cái đẩy mạnh vào cán. Điểm tiếp xúc phải CAO và hơi chếch ra sau đầu — không để cầu rơi thấp quá vai.',
+ 'Yếu tố giấu cầu: từ cùng tư thế cùi chỏ cao đó, giảm lực ngón cái 50% sẽ cho ra cú bỏ nhỏ trái tay. Đối thủ không đọc được vì tư thế chuẩn bị giống hệt.',
+ 'Tập khô trước gương: mô phỏng 10 cú đẩy sâu và 10 cú bỏ nhỏ xen kẽ, kiểm tra tư thế cùi chỏ có giống nhau không.'],
+ note:'Với 60kg và cẳng tay không quá to, đừng cố đánh trái tay cuối sân về tận cuối sân đối phương bằng mọi giá. Mục tiêu thực tế: đưa cầu qua được vạch giao cầu dài của đối thủ và cao qua tầm với, đủ để bạn về giữa sân kịp. Momota cũng thường chỉ đánh trái tay ở mức đủ an toàn.',
+ warn:'Cú trái tay cuối sân tạo tải xoắn lớn lên vai. Không tập quá 3 hiệp mỗi buổi trong 2 tuần đầu, và luôn làm bài 24 (xoay ngoài vai) trong cùng tuần.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','12 lưới + 12 cuối sân'],['Nghỉ','60 giây'],['Tần suất','2 buổi/tuần']],
+ vnote:'Shadow hoàn toàn ở Giai đoạn 1. Có cầu từ Giai đoạn 2.',
+ kw:{vi:['kỹ thuật trái tay cầu lông cuối sân','cầm vợt ngón cái trái tay cầu lông','cách đánh trái tay sâu cầu lông','bỏ nhỏ trái tay cầu lông kỹ thuật'],
+     en:['badminton backhand clear technique tutorial','badminton thumb grip backhand drill','badminton backhand rear court footwork','badminton backhand drop shot deception']}}
+];
+const B=[
+{id:'B1',jp:'割足',t:'Split-step nhẹ — hai nhịp, không nhảy cao',en:'Low-Impact Split Step',dia:'split',
+ goal:'Split-step của Momota nhỏ đến mức nhìn qua tưởng anh không làm gì — hai chân chỉ rời sàn 2–3cm. Nhưng đó là thứ cho phép anh xuất phát về mọi hướng với cùng một độ trễ. Với người 32 tuổi, split-step nhỏ còn có ý nghĩa thứ hai: mỗi buổi đánh bạn làm động tác này 300–500 lần, nhảy cao 15cm và nhảy 3cm chênh nhau hàng tấn lực tích luỹ lên gối.',
+ steps:['Tư thế nền: chân rộng hơn vai một bàn chân, gối chùng, thân hơi đổ về trước, trọng tâm dồn lên ức bàn chân.',
+ 'Thời điểm: nhún đúng khoảnh khắc vợt đối thủ SẮP chạm cầu, không phải sau khi cầu đã bay. Đây là chi tiết phần lớn người chơi phong trào làm sai.',
+ 'Nhún nhẹ, hai chân rời sàn 2–3cm. Tưởng tượng bạn đang làm rơi cơ thể xuống chứ không phải bật lên.',
+ 'Tiếp đất bằng ỨC BÀN CHÂN, gót gần chạm nhưng không đè, gối chùng thêm khoảng 5° để hấp thụ lực.',
+ 'Ngay khoảnh khắc tiếp đất, đẩy chân NGƯỢC hướng cần di chuyển — muốn sang phải thì đạp chân trái. Bước đầu tiên phải rơi vào khoảnh khắc này.',
+ 'Tập nhịp: nhún, tiếp đất, đẩy về một hướng ngẫu nhiên, về giữa, lặp lại. Có thể mở video trận đấu trên điện thoại và nhún theo mỗi lần vận động viên chạm cầu.'],
+ note:'Cách kiểm tra: split-step đúng thì gần như KHÔNG có tiếng động khi tiếp đất. Nghe tiếng "bịch" nghĩa là bạn đang tiếp đất bằng cả bàn chân hoặc gót, dồn thẳng lực lên gối và cột sống thắt lưng.',
+ warn:'Giày mòn đế giữa là kẻ thù trực tiếp của bài này. Ở tuổi 32 nên đổi giày cầu lông mỗi 250–300 giờ chơi, sớm hơn mức người trẻ.',
+ vol:[['Hiệp','5 hiệp'],['Số lần','12 nhịp'],['Nghỉ','30 giây'],['Tần suất','3–4 buổi/tuần']],
+ vnote:'Đưa vào phần khởi động của cả hai buổi sân, không chỉ tập ở nhà.',
+ kw:{vi:['split step cầu lông đúng thời điểm','bước nhún chuẩn bị cầu lông','kỹ thuật tiếp đất ức bàn chân cầu lông','bộ chân cầu lông giảm chấn thương gối'],
+     en:['badminton split step timing tutorial','badminton split step common mistakes','badminton forefoot landing technique','low impact badminton footwork knee friendly']}},
+
+{id:'B2',jp:'足捌き',t:'Chassé lướt 4 góc — không nhảy, không chạy',en:'Chassé Gliding Footwork',dia:'court6',
+ goal:'Đây là bộ chân đặc trưng của lối kiểm soát. Chassé — bước trượt hai chân không đổi chỗ nhau — tốn ít năng lượng hơn chạy bước chéo khoảng 20–25%, giữ trọng tâm THẤP và ổn định suốt quá trình di chuyển, nghĩa là bạn có thể đánh ở bất kỳ điểm nào trên đường di chuyển. Với người 1m64 trọng tâm sẵn thấp, đây là bộ chân sinh ra dành cho bạn; với người 1m85 nó lại chậm và gò bó.',
+ steps:['Điểm xuất phát là vị trí base — không phải giữa sân, mà lệch về sau vạch giao cầu ngắn khoảng một bước, vì cầu sau nguy hiểm hơn cầu trước.',
+ 'GÓC TRƯỚC THUẬN: bước chân trái nhỏ mở hướng, 2 nhịp chassé (chân phải trượt tới, chân trái đuổi theo, hai chân không bao giờ vượt nhau), kết thúc bằng 1 lunge nông chân phải.',
+ 'VỀ BASE: đẩy mạnh bằng gót và mông chân trước, 2 nhịp chassé lùi. Không xoay lưng lại lưới.',
+ 'GÓC SAU TRÁI, khó nhất với người thấp: xoay bàn chân phải 90° ra ngoài làm trụ, vai trái mở về sau, chassé chéo lùi 2 nhịp, đánh với chân trái chạm đất phía sau. Kết thúc bằng bước chân phải qua để lấy đà về base.',
+ 'GÓC SAU THUẬN: xoay hông phải, chassé chéo lùi, giữ vai trái chỉ về lưới. KHÔNG bật nhảy.',
+ 'Chạy trọn 6 điểm — 4 góc và 2 bên — theo thứ tự ngẫu nhiên. Có vợt trong tay và mô phỏng cú đánh ở mỗi điểm; bộ chân không có cú đánh là bộ chân vô nghĩa.'],
+ note:'Tỷ lệ nghỉ 1:2 là cố ý. Bạn KHÔNG muốn biến bài này thành cardio kiểu Naraoka. Mục tiêu Giai đoạn 1 là chất lượng từng bước chân — mệt là bước chân xấu đi, và bạn đang dạy cơ thể một thói quen xấu.',
+ warn:'Đau nhói mặt trong gối khi chassé ngang thì kiểm tra mũi chân: mũi chân và gối phải cùng hướng. Gối vẹo vào trong khi bàn chân hướng ngoài là cơ chế chấn thương dây chằng phổ biến nhất.',
+ vol:[['Hiệp','4 hiệp'],['Thời gian','30–40 giây'],['Nghỉ','60–75 giây'],['Tần suất','2 buổi/tuần']],
+ vnote:'Chạy trong 20 phút đầu buổi sân khi cơ thể còn tươi. Không chạy cuối buổi.',
+ kw:{vi:['bộ chân cầu lông chassé bước trượt','di chuyển 6 điểm cầu lông shadow','bộ chân cầu lông tiết kiệm sức','footwork cầu lông người thấp','di chuyển góc sau trái tay cầu lông'],
+     en:['badminton chasse footwork drill','badminton shadow footwork six corners','badminton gliding footwork efficient','badminton footwork for shorter players','badminton rear backhand corner movement']}},
+
+{id:'B3',jp:'腰回転',t:'Xoay hông thay bật nhảy — đánh cuối sân chân chạm đất',en:'Rotational Rear-Court Attack',dia:'rot',
+ goal:'Bạn không muốn bật nhảy đập kiểu Lee Zii Jia — đúng, và với 1m64 ở tuổi 32 thì đó là quyết định kỹ thuật khôn ngoan chứ không phải hạn chế. Momota đánh phần lớn cú cuối sân với chân chạm đất, sinh lực bằng chuỗi động học từ chân lên hông, thân, vai rồi cẳng tay. Cú đập của anh không nhanh nhất thế giới nhưng đủ nặng, và quan trọng hơn: nó không có pha tiếp đất một chân từ trên cao.',
+ steps:['Lùi về góc sau bằng chassé (bài 07), đến sớm để có thời gian đặt chân.',
+ 'Đặt chân: bàn chân phải xoay 90° ra ngoài, trọng lượng dồn 70% lên chân sau. Vai trái chỉ thẳng về lưới. Thân hơi ngả sau như cây cung.',
+ 'Bắt đầu chuỗi lực TỪ DƯỚI LÊN: đạp chân phải xuống sàn, hông phải xoay ra trước, thân xoay, vai phải theo sau, cuối cùng mới đến cẳng tay xoay. Thứ tự này không được đảo.',
+ 'Trọng tâm chuyển từ chân sau sang chân trước trong lúc đánh. Đây chính là nguồn lực thay thế cho việc bật nhảy.',
+ 'Kết thúc bằng STEP-THROUGH: chân phải bước qua chân trái về phía lưới, biến quán tính đánh cầu thành bước đầu tiên quay về base. Không tốn thêm một nhịp nào.',
+ 'Biến thể tiết kiệm sức hơn, dùng cho khoảng 70% số lần trong trận: half-smash hoặc smash cắt — cùng chuỗi động tác nhưng chỉ dùng 70% lực, mặt vợt cắt chéo. Cầu chậm hơn nhưng cắm hơn và bạn giữ được thế trận.'],
+ note:'Đây là khác biệt lớn nhất giữa lối Momota và lối Ginting hay Lee Zii Jia: họ dùng smash để KẾT THÚC pha cầu, Momota dùng half-smash để MỞ RA pha cầu tiếp theo. Bạn ghi điểm ở cú thứ ba sau cú đập, không phải ở cú đập.',
+ warn:'Nếu vẫn muốn thỉnh thoảng bật nhảy, giới hạn dưới 5 lần mỗi set và chỉ khi cầu ở tầm cao thoải mái. Tiếp đất hai chân, không tiếp đất chân trụ đơn.',
+ vol:[['Hiệp','4 hiệp'],['Số lần','10 lần'],['Nghỉ','75 giây'],['Tần suất','2–3 buổi/tuần']],
+ vnote:'Shadow ở nhà, áp dụng thật trong buổi giao lưu cuối tuần.',
+ kw:{vi:['đập cầu không bật nhảy kỹ thuật','xoay hông đánh cầu cuối sân','chuỗi động học đập cầu lông','smash cắt half smash cầu lông','bước chân step through cầu lông'],
+     en:['badminton standing smash technique no jump','badminton hip rotation kinetic chain smash','badminton half smash stick smash tutorial','badminton scissor kick alternative','badminton rear court step through recovery']}},
+
+{id:'B4',jp:'踏込み',t:'Lunge nông có kiểm soát + đẩy gót về',en:'Controlled Shallow Lunge',dia:'lunge',
+ goal:'Mỗi set bạn lunge 40–60 lần. Ở tuổi 32, kỹ thuật lunge quyết định bạn chơi được thêm 10 năm hay phải nghỉ vì gối. Momota có kỹ thuật lunge rất sạch: gót chạm trước, lăn ra ức bàn chân, gối không bao giờ vượt quá mũi chân, và pha bật về đến từ mông chứ không từ đùi trước.',
+ steps:['Bước ra: chân thuận bước dài vừa phải, GÓT CHÂN tiếp đất trước tiên, sau đó lăn dần ra ức bàn chân. Cơ chế phanh này phân tán lực dọc bàn chân thay vì dồn hết vào gân bánh chè.',
+ 'Độ sâu: gối trước gập 90–100°, không sâu hơn. Xương bánh chè không được nhô quá đầu mũi chân.',
+ 'Hướng: mũi chân, gối và hông phải cùng nằm trên một mặt phẳng. Gối đổ vào trong là lỗi nguy hiểm nhất.',
+ 'Thân giữ thẳng, ngực hướng lên, không gập người về trước. Tay không cầm vợt duỗi ra sau đối trọng.',
+ 'Bật về: đẩy mạnh bằng GÓT chân trước và siết mông, không đẩy bằng mũi chân. Cảm giác giống như bạn đang đá sàn ra xa chứ không phải kéo mình lên.',
+ 'Tăng dần: tuần 1 tập lunge tĩnh không cầu, tuần 2 thêm bước tiếp cận 2 nhịp chassé trước khi lunge.'],
+ note:'Bài kiểm tra chất lượng: đứng dừng lại ở đáy lunge 2 giây mà không rung, không đổ gối vào trong. Nếu rung nghĩa là cơ mông nhỡ yếu, hãy tăng bài 23.',
+ warn:'Không tập lunge sâu vào ngày liền sau buổi sân. Gân bánh chè cần khoảng 48 giờ hồi phục ở tuổi 32, so với 24 giờ ở tuổi 20.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','8 lần mỗi chân'],['Nghỉ','60 giây'],['Tần suất','2 buổi/tuần']],
+ vnote:'Chất lượng tuyệt đối. 8 lunge sạch tốt hơn 20 lunge cẩu thả.',
+ kw:{vi:['kỹ thuật lunge cầu lông đúng cách','bảo vệ gối khi lunge cầu lông','cách bật về sau lunge cầu lông','lỗi lunge cầu lông thường gặp'],
+     en:['badminton lunge technique tutorial','badminton lunge knee safety heel first','badminton lunge recovery push back','badminton lunge common mistakes injury']}},
+
+{id:'B5',jp:'影稽古',t:'Shadow 6 điểm theo nhịp thở',en:'Six-Corner Shadow with Breathing',dia:'court6',
+ goal:'Bài tổng hợp cuối tuần. Ghép split-step, chassé, lunge và phom tay thành một chuỗi liền mạch, và quan trọng nhất là gắn nhịp thở vào. Momota duy trì nhịp thở đều suốt trận là lý do anh chơi được rally 60 lượt mà không sập — không phải vì thể lực trâu hơn, mà vì anh không nợ oxy.',
+ steps:['Đánh dấu 6 điểm trên sân — 4 góc và 2 bên — bằng vỏ cầu hoặc chai nước.',
+ 'Từ base: split-step, di chuyển đến điểm bất kỳ, mô phỏng cú đánh đầy đủ với phom tay chuẩn bài 02, về base bằng chassé, split-step tiếp.',
+ 'NHỊP THỞ: hít vào bằng mũi trong lúc di chuyển ra, THỞ RA DỨT KHOÁT bằng miệng đúng khoảnh khắc vung vợt. Mỗi pha cầu là một chu kỳ thở.',
+ 'Duy trì tốc độ khoảng 70% tối đa. Đây không phải bài đua tốc độ — bạn phải kết thúc mỗi hiệp mà vẫn nói được nguyên câu.',
+ 'Nếu hết hiệp mà thở hổn hển không nói được, giảm tốc độ 10% ở hiệp sau.'],
+ note:'Chỉ số tự đo hữu ích: sau mỗi hiệp, bấm giờ xem bao lâu nhịp thở trở lại bình thường. Đầu tuần 1 thường 40–50 giây; mục tiêu cuối tuần 2 là dưới 25 giây với cùng khối lượng.',
+ warn:'Đây là bài dễ trôi thành bài thể lực nhất. Nếu bạn thấy mình đang cố chạy nhanh hơn thay vì di chuyển đẹp hơn, dừng lại và đọc lại mục tiêu.',
+ vol:[['Hiệp','3 hiệp'],['Thời gian','45 giây'],['Nghỉ','90 giây'],['Tần suất','1–2 buổi/tuần']],
+ vnote:'Chạy ở cuối phần khởi động buổi sân, trước khi vào đánh giao lưu.',
+ kw:{vi:['shadow cầu lông 6 điểm','tập di chuyển không cầu cầu lông','nhịp thở khi đánh cầu lông','bài tập shadow badminton tại nhà'],
+     en:['badminton shadow footwork six corners drill','badminton breathing technique during rally','badminton shadow training at home','badminton movement pattern training']}},
+
+{id:'B6',jp:'戻り',t:'Hồi vị — về base bằng quán tính cú đánh',en:'Recovery Step to Base',dia:'recover',
+ goal:'Phân tích số liệu chỉ ra điểm mạnh nhất của Momota không phải tốc độ lao ra mà là tốc độ QUAY VỀ. Anh gần như luôn về đến base trước khi đối thủ chạm cầu, nên anh luôn được split-step đúng nhịp. Người chơi phong trào thường đánh xong rồi mới nghĩ đến việc về; Momota thì pha hồi vị đã bắt đầu từ trong lúc đánh.',
+ steps:['Nguyên tắc gốc: pha hồi vị bắt đầu TỪ TRONG cú đánh chứ không phải sau cú đánh. Động tác kết thúc vợt phải kéo trọng tâm về hướng base.',
+ 'Ở lưới: ngay khi vợt chạm cầu, đẩy gót chân trước và dùng chính lực đó bật lùi một nhịp chassé. Không đứng nhìn cầu bay.',
+ 'Ở cuối sân: dùng step-through của bài 08 — chân sau bước qua chân trước, biến quán tính xoay thành bước đầu tiên về base.',
+ 'Base KHÔNG cố định: base dịch theo cú bạn vừa đánh. Vừa bỏ nhỏ thì base tiến lên trước khoảng 0,5m; vừa đánh cầu cao sâu thì base lùi lại 0,5m. Đây là chi tiết Momota làm rất kỷ luật và gần như không ai ở trình phong trào để ý.',
+ 'Đích đến: về base TRƯỚC khi đối thủ chạm cầu, đủ sớm để kịp split-step. Nếu bạn vẫn đang chạy lúc họ đánh thì bạn đã mất pha cầu đó rồi.',
+ 'Tập đo: shadow 10 pha, mỗi pha bấm giờ từ lúc mô phỏng chạm cầu đến khi hai chân ổn định ở base. Mục tiêu dưới 1,0 giây với góc lưới và dưới 1,3 giây với góc sau.'],
+ note:'Đây là bài trả lời trực tiếp cho hồ sơ của bạn. Sải chân ngắn nghĩa là bạn khó thắng ở pha lao ra — nhưng hồi vị là kỹ năng thuần kỹ thuật và nhịp điệu, gần như không phụ thuộc chiều cao. Đây là chỗ bạn có thể ngang bằng hoặc vượt người cao hơn.',
+ warn:'Đừng đổi hồi vị nhanh lấy tư thế đánh xấu. Nếu bạn thấy mình đang đánh cầu trong lúc thân đã ngả về base, tức là bạn vội — cú đánh sẽ nông và bạn lại phải chạy tiếp.',
+ vol:[['Hiệp','4 hiệp'],['Số lần','10 pha'],['Nghỉ','60 giây'],['Tần suất','2–3 buổi/tuần']],
+ vnote:'Ghép trực tiếp vào bài 07: mỗi lần ra góc phải có pha về hoàn chỉnh, không dừng giữa chừng.',
+ kw:{vi:['kỹ thuật hồi vị cầu lông về base','bước chân quay về giữa sân cầu lông','recovery footwork cầu lông','vị trí base cầu lông đơn'],
+     en:['badminton recovery footwork to base','badminton return to base position drill','badminton recovery speed training','badminton base position adjustment']}}
+];
+const C=[
+{id:'C1',jp:'腓腹筋',t:'Bắp chân & gân Achilles',en:'Calf & Achilles Loading',dia:'',
+ goal:'Gân Achilles chịu tải cao nhất trong cầu lông và là chấn thương phổ biến nhất ở người chơi 30+. Ở tuổi 32, collagen gân bắt đầu giảm khả năng đàn hồi — cách duy nhất để chống lại là tải trọng có kiểm soát, đặc biệt là pha hạ chậm.',
+ steps:['Đứng ức bàn chân trên bậc thang, gót thả tự do xuống dưới mép.',
+ 'Nhón lên hết tầm bằng cả hai chân trong 1 giây.',
+ 'Chuyển toàn bộ trọng lượng sang MỘT chân, hạ gót xuống thật chậm trong 3 giây, xuống thấp hơn mặt bậc. Đây là pha quan trọng nhất.',
+ 'Đổi chân. Làm hai biến thể: gối thẳng nhắm cơ bụng chân, và gối chùng 20° nhắm cơ dép — cơ dép chịu tải chính khi lunge.',
+ 'Khi thấy nhẹ, đeo ba lô 5–8kg.'],
+ note:'',warn:'',
+ vol:[['Hiệp','3 hiệp'],['Số lần','12 lần mỗi chân'],['Nghỉ','60 giây'],['Tần suất','3 buổi/tuần']],
+ vnote:'Hai biến thể gối thẳng và gối chùng, mỗi loại 3 hiệp — tổng khoảng 8 phút.',
+ kw:{vi:['bài tập gân achilles phòng chấn thương','nhón bắp chân eccentric','bài tập bắp chân cho người chơi cầu lông'],
+     en:['eccentric calf raise achilles tendon','badminton calf training injury prevention','soleus vs gastrocnemius calf raise']}},
+
+{id:'C2',jp:'足首',t:'Cổ chân — thăng bằng và chống lật',en:'Ankle Stability & Proprioception',dia:'',
+ goal:'Lật cổ chân là chấn thương ngắt quãng tập luyện phổ biến nhất trong cầu lông, thường xảy ra khi tiếp đất lệch sau lunge hoặc dẫm lên chân đối thủ. Cảm thụ bản thể là hệ thống phản xạ giúp cổ chân tự chỉnh trong khoảng 40 mili giây — hệ thống này suy giảm theo tuổi nhưng tập được rất nhanh.',
+ steps:['Đứng một chân, mắt mở, giữ 30 giây. Khi vững, chuyển sang nhắm mắt — độ khó tăng gấp nhiều lần.',
+ 'Nâng cấp: đứng một chân nhắm mắt trên gối hoặc đệm mềm, tay cầm vợt mô phỏng cú đánh nhẹ.',
+ 'Tibialis raise: tựa lưng vào tường, gót cách tường 20cm, nhấc mũi chân lên hết tầm rồi hạ chậm. Cơ chày trước bảo vệ trực tiếp khỏi lật cổ chân.',
+ 'Xoay cổ chân với dây kháng lực: buộc dây vào chân bàn, vòng qua bàn chân, xoay bàn chân ra ngoài chống lại lực kéo.'],
+ note:'',warn:'',
+ vol:[['Hiệp','3 hiệp'],['Số lần','30s thăng bằng / 20 tibialis'],['Nghỉ','30 giây'],['Tần suất','3–4 buổi/tuần']],
+ vnote:'Tập được lúc đánh răng, nấu ăn. Không cần dụng cụ.',
+ kw:{vi:['bài tập cổ chân chống lật','tập thăng bằng một chân proprioception','tibialis raise bài tập'],
+     en:['ankle proprioception exercises badminton','single leg balance ankle stability drill','tibialis raise tutorial']}},
+
+{id:'C3',jp:'膝と股',t:'Gối & háng — chống viêm gân bánh chè',en:'Knee & Adductor Resilience',dia:'',
+ goal:'Hai vị trí đau phổ biến nhất khi tăng số lượng lunge là gân bánh chè ở mặt trước gối và cơ khép háng ở bẹn. Bài này phòng cả hai, và tăng luôn khả năng đẩy về sau lunge.',
+ steps:['SPANISH SQUAT: vòng dây kháng lực quanh chân bàn, mắc phía sau đầu gối. Ngả người ra sau tựa vào dây, hạ mông xuống giữ thân THẲNG ĐỨNG, gối gập 60–70°. Giữ 30–45 giây. Đây là bài tốt nhất cho gân bánh chè.',
+ 'Nếu không có dây: wall sit — tựa lưng tường, đùi song song sàn — giữ 30–45 giây.',
+ 'COPENHAGEN PLANK: nằm nghiêng, gác chân trên lên ghế ở đầu gối, chống khuỷu tay dưới, nâng hông lên thành đường thẳng. Giữ 15–20 giây mỗi bên. Đây là bài phòng đau bẹn hiệu quả nhất trong nghiên cứu thể thao.',
+ 'CẦU MÔNG MỘT CHÂN: nằm ngửa, một chân co, nâng hông lên siết mông 2 giây. Bổ trợ trực tiếp cho pha đẩy về sau lunge.'],
+ note:'',warn:'Không tập vào ngày trước buổi sân — chân cần tươi để giữ chất lượng kỹ thuật.',
+ vol:[['Hiệp','3 hiệp'],['Thời gian','30–45s / 15–20s / 12 lần'],['Nghỉ','60 giây'],['Tần suất','2 buổi/tuần']],
+ vnote:'',
+ kw:{vi:['spanish squat bài tập gân bánh chè','copenhagen plank phòng đau bẹn','bài tập tăng sức mạnh gối cầu lông'],
+     en:['spanish squat patellar tendinopathy','copenhagen plank adductor injury prevention','single leg glute bridge tutorial']}},
+
+{id:'C4',jp:'肩',t:'Vai — bảo hiểm cho phom tay mới',en:'Shoulder External Rotation',dia:'',
+ goal:'Bạn sắp tăng mạnh số lần vung vợt trên đầu và học cú trái tay cuối sân — cả hai đều tạo tải xoắn lên chóp xoay vai. Ở tuổi 32, nhóm cơ xoay ngoài thường yếu hơn nhóm xoay trong đáng kể ở người chơi vợt, và đó chính là công thức dẫn tới hội chứng chèn ép vai.',
+ steps:['XOAY NGOÀI VỚI DÂY: cùi chỏ kẹp sát sườn gập 90°, kéo dây kháng lực từ trong ra ngoài. Chậm, kiểm soát, không dùng thân đẩy.',
+ 'Y-T-W: nằm sấp trên sàn hoặc cúi người, đưa hai tay tạo hình chữ Y, chữ T, chữ W, mỗi tư thế siết bả vai 2 giây.',
+ 'XOAY NGOÀI 90/90: nâng cùi chỏ ngang vai, cẳng tay dựng đứng, xoay ra sau bằng dây kháng lực nhẹ. Đây chính là tư thế bạn đánh cầu trên đầu.',
+ 'Luôn ưu tiên dây nhẹ và nhiều lần — chóp xoay là cơ bền, không phải cơ khoẻ.'],
+ note:'',warn:'',
+ vol:[['Hiệp','3 hiệp'],['Số lần','15 lần'],['Nghỉ','45 giây'],['Tần suất','3 buổi/tuần']],
+ vnote:'Làm sau buổi sân hoặc buổi khô, không làm trước khi đánh vì sẽ làm mỏi cơ ổn định.',
+ kw:{vi:['bài tập chóp xoay vai phòng chấn thương','xoay ngoài vai dây kháng lực','bài tập vai cho người chơi cầu lông'],
+     en:['rotator cuff external rotation band exercise','shoulder prehab badminton overhead athletes','YTW scapular exercise tutorial']}},
+
+{id:'C5',jp:'準備運動',t:'Mobility trước tập — mở hông và cột sống ngực',en:'Pre-Session Mobility',dia:'',
+ goal:'Bài giấu cầu 02 và cú xoay hông 08 đều cần biên độ xoay của cột sống ngực và xoay trong khớp háng. Nếu hai vùng này cứng, cơ thể sẽ mượn biên độ từ thắt lưng và vai — đó là cách bạn bị đau lưng dưới sau 3 tuần tập kỹ thuật mới.',
+ steps:['90/90 HIP: ngồi sàn, một chân gập 90° trước, một chân 90° bên, xoay người đổi bên chậm rãi, 8 lần mỗi bên.',
+ 'OPEN BOOK: nằm nghiêng, gối trên co 90° kê lên gối, hai tay duỗi trước mặt, mở tay trên ra sau như lật trang sách, mắt nhìn theo tay, 10 lần mỗi bên.',
+ 'ANKLE DORSIFLEXION: quỳ một chân, mũi chân trước cách tường 10cm, đẩy gối chạm tường mà không nhấc gót, 10 lần mỗi bên. Biên độ gập mu bàn chân quyết định độ sâu lunge an toàn.',
+ 'WORLD’S GREATEST STRETCH: lunge sâu, chống tay trong, xoay thân mở tay lên trần, 6 lần mỗi bên. Bài này gộp cả ba vùng.'],
+ note:'',warn:'',
+ vol:[['Hiệp','1 vòng'],['Số lần','6–10 mỗi bên'],['Nghỉ','Không nghỉ'],['Tần suất','Mọi buổi']],
+ vnote:'6–8 phút, làm TRƯỚC mọi buổi tập và buổi sân. Không bỏ.',
+ kw:{vi:['khởi động mở hông trước khi chơi cầu lông','bài tập xoay cột sống ngực','giãn cơ động trước khi đánh cầu lông'],
+     en:['90/90 hip mobility drill','thoracic spine open book exercise','dynamic warm up badminton before playing','ankle dorsiflexion mobility test wall']}}
+];
+
+const D=[
+{id:'D1',jp:'守り',t:'Tư thế thủ thấp và ba lựa chọn đỡ đập',en:'Low Defensive Stance & Three Options',dia:'defense',
+ goal:'Đây là trụ cột số một của Momota — mọi phân tích đều gọi hàng thủ của anh là "iron-clad". Không phải vì phản xạ nhanh bất thường, mà vì tư thế thủ của anh cho phép xử lý cả ba hướng bằng cùng một tư thế, và vì anh luôn đỡ trả về đúng chỗ khiến đối thủ không đập được cú thứ hai. Với 1m64 và trọng tâm thấp sẵn, đây là bài bạn có lợi thế bẩm sinh so với người 1m85.',
+ steps:['Tư thế: chân rộng hơn vai khoảng 1,5 bàn chân, gối chùng sâu hơn tư thế thủ thường (khoảng 30°), thân đổ về trước, trọng tâm dồn lên ức bàn chân.',
+ 'Vợt: đầu vợt cao ngang NGỰC, không cao ngang mặt. Cầm grip trung tính hơi ngả về thumb grip, vì phần lớn cầu đập sẽ về phía trái tay.',
+ 'Cùi chỏ tách khỏi sườn khoảng 15cm để có không gian vung ngắn. Cùi chỏ dính sườn là lỗi khiến bạn không đỡ nổi cầu vào người.',
+ 'Mắt nhìn VAI và cẳng tay đối thủ, không nhìn quả cầu. Hướng đập lộ ra ở vai trước khi cầu rời vợt khoảng hai phần mười giây.',
+ 'Ba lựa chọn từ cùng một tư thế — (a) CHẶN NGẮN: mặt vợt mở, không vung, chỉ để cầu dội vào và rơi sát lưới; (b) ĐẨY SÂU: nâng mặt vợt và đẩy bằng cẳng tay đưa cầu về góc sau; (c) ĐÔI CÔNG: mặt vợt dựng, đẩy phẳng qua hông đối thủ.',
+ 'Mặc định của Momota là CHẶN NGẮN khi đối thủ đập mạnh, vì nó buộc họ phải lao lên lưới ngay sau khi vừa bật nhảy — đúng thời điểm họ mất thăng bằng nhất.',
+ 'Tập solo: đứng cách tường 3m, tự đập nhẹ vào tường theo góc chếch rồi đỡ cầu bật lại bằng động tác chặn ngắn. Hoặc shadow: mô phỏng ba lựa chọn từ cùng tư thế, tự hô ngẫu nhiên để đổi.'],
+ note:'Với người thấp, đừng cố đỡ cầu đập bằng cách với tay ra xa. Hãy chùng gối thấp hơn và để cầu đi vào vùng trước thân. Trọng tâm thấp là lợi thế thật sự của bạn ở pha thủ — người cao phải gập rất nhiều khớp mới xuống được tư thế này và tốn năng lượng gấp bội để đứng lên.',
+ warn:'Không đỡ cầu đập bằng cách vung tay lớn. Vung lớn khi cầu đến ở tốc độ cao là cách chấn thương cổ tay và vai. Biên độ đỡ đập chỉ 15–20cm.',
+ vol:[['Hiệp','4 hiệp'],['Số lần','21 lần (7 mỗi lựa chọn)'],['Nghỉ','60 giây'],['Tần suất','3 buổi/tuần']],
+ vnote:'Shadow trước gương ở nhà. Trên sân, nhờ bạn tập đập ở 60% lực trong 5 phút khởi động.',
+ kw:{vi:['tư thế phòng thủ cầu lông đúng cách','kỹ thuật đỡ cầu đập cầu lông','chặn cầu sát lưới khi phòng thủ','cách đỡ smash cầu lông hiệu quả'],
+     en:['badminton defensive stance tutorial','badminton smash defense block drive lift','badminton defence three options same position','Kento Momota defense analysis']}},
+
+{id:'D2',jp:'体狙い',t:'Đỡ cầu đập vào người — xoay vai, không lùi',en:'Body Smash Defense',dia:'body',
+ goal:'Đối thủ cao hơn sẽ đập thẳng vào người bạn — đây là chiến thuật tiêu chuẩn để chống người thấp, vì bạn không có chỗ để vung tay. Momota xử lý bằng cách xoay vai chứ không lùi, và luôn dùng trái tay ngón cái. Nếu thiếu bài này, mỗi trận gặp người cao bạn sẽ mất 5–8 điểm chỉ vì bị đập vào người.',
+ steps:['Nguyên tắc: KHÔNG lùi. Lùi làm cầu vào sâu hơn vào thân và bạn mất thăng bằng. Thay vào đó xoay hông và vai để tạo không gian.',
+ 'Cầu vào vai hoặc hông trái (với người thuận tay phải): xoay vai phải ra trước, đưa vợt qua trước ngực bằng thumb grip, mặt vợt chặn. Đây là tình huống phổ biến nhất.',
+ 'Cầu vào vai phải: hạ cùi chỏ xuống và đưa vợt ra ngoài hông phải, dùng thuận tay với biên độ rất ngắn.',
+ 'Cầu vào giữa bụng — khó nhất: xoay hông sang trái khoảng 30°, đưa vợt xuống thấp bằng thumb grip, mặt vợt ngửa để chặn ngắn.',
+ 'Điểm tiếp xúc phải ở PHÍA TRƯỚC thân, không bao giờ ngang thân hoặc sau thân. Nếu cầu đã ngang thân thì bạn đã phản ứng muộn.',
+ 'Tập khô: đứng trước gương, tự hô hoặc nhờ người hô ngẫu nhiên "trái — phải — giữa", phản ứng bằng đúng tư thế trong dưới 0,5 giây.'],
+ note:'Vì trọng tâm bạn thấp, cú đập mà đối thủ nhắm vào "người" bạn thực tế lại đi cao hơn dự tính của họ — họ căn theo tầm vóc trung bình. Chùng gối thêm một chút và cú đó thành cầu ngang ngực, rất dễ chặn.',
+ warn:'Đừng quay mặt đi hoặc nhắm mắt khi cầu bay vào người. Nếu bạn có phản xạ né, hãy tập với cầu cũ và người đập ở 50% lực cho đến khi phản xạ né biến mất hoàn toàn.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','15 lần mỗi hướng'],['Nghỉ','60 giây'],['Tần suất','2–3 buổi/tuần']],
+ vnote:'Ưu tiên tuyệt đối nếu nhóm giao lưu của bạn có người cao trên 1m75.',
+ kw:{vi:['đỡ cầu đập vào người cầu lông','kỹ thuật xoay vai đỡ smash','phòng thủ trái tay ngón cái cầu lông'],
+     en:['badminton body smash defense technique','badminton defending smash at the body','badminton backhand defense thumb grip drill']}},
+
+{id:'D3',jp:'平打ち',t:'Đôi công tầm ngang — bản lề giữa thủ và công',en:'Flat Drive Exchange',dia:'drive',
+ goal:'Drive là khu vực Momota thắng phần lớn các pha chuyển tiếp. Người cao có sải tay dài nhưng chậm ở tầm ngang vì phải thu tay vào sát thân; người thấp trọng tâm sẵn thấp và cẳng tay ngắn nên vung nhanh hơn. Đây là một trong số ít khu vực bạn có lợi thế vật lý thật sự trước đối thủ 1m80.',
+ steps:['Tư thế: giống tư thế thủ nhưng vợt cao ngang vai, chân trước là chân không thuận, trọng tâm sẵn sàng đổ về trước.',
+ 'Điểm tiếp xúc: ngang vai hoặc cao hơn một chút, LUÔN ở phía trước thân. Drive đánh thấp hơn vai nghĩa là bạn đang bị ép — hãy chuyển sang chặn ngắn.',
+ 'Biên độ vung cực ngắn, chỉ 20–30cm. Lực đến hoàn toàn từ xoay cẳng tay của bài 03, không từ vai.',
+ 'Quỹ đạo mục tiêu: cầu đi phẳng, sượt qua mép lưới 10–20cm, rơi vào khoảng giữa sân đối thủ hoặc bay qua hông họ.',
+ 'Trái tay: dùng thumb grip, cùi chỏ dẫn trước, bung cẳng tay ra. Trong pha drive, trái tay dùng nhiều ngang với thuận tay.',
+ 'Nguyên tắc chiến thuật: ai đánh được cầu SỚM hơn và PHẲNG hơn sẽ thắng pha drive. Nếu bạn buộc phải đánh cầu đi lên thì bạn đã thua pha đó — chuyển ngay sang chặn ngắn.',
+ 'Tập solo: đứng cách tường 3m, đánh drive liên tục vào tường ở độ cao 1m6–1m8, cố giữ 20 nhịp không rơi.'],
+ note:'Bài đánh tường là bài tập solo giá trị nhất trong toàn giáo án — nó rèn đồng thời điểm tiếp xúc sớm, biên độ ngắn và xoay cẳng tay, ba thứ bạn cần nhất. Mỗi buổi khô nên có 5 phút đánh tường.',
+ warn:'Cẩn thận cổ tay khi đánh tường liên tục. Bắt đầu 3 hiệp 20 nhịp và không đánh liên tục quá 45 giây mỗi lượt.',
+ vol:[['Hiệp','4 hiệp'],['Số lần','20–30 nhịp'],['Nghỉ','60 giây'],['Tần suất','3 buổi/tuần']],
+ vnote:'Cần tường phẳng và khoảng trống 3m. Dùng cầu nhựa cho đỡ tốn.',
+ kw:{vi:['kỹ thuật đôi công cầu lông drive','đánh cầu tầm ngang cầu lông','tập đánh cầu vào tường cầu lông','drive trái tay cầu lông'],
+     en:['badminton drive technique tutorial','badminton flat drive exchange drill','badminton wall practice drill','badminton backhand drive thumb grip']}},
+
+{id:'D4',jp:'攻守転換',t:'Chuyển thủ thành công — đọc thời điểm',en:'Defense-to-Attack Transition',dia:'trans',
+ goal:'Momota không phòng thủ để sống sót — anh phòng thủ để tạo ra khoảnh khắc đối thủ buộc phải nâng cầu. Cả trận đấu của anh là một vòng lặp: chặn ngắn, ép đối thủ chạy lên lưới, buộc họ nâng cầu, rồi mới tấn công. Đây chính là "cú thứ ba" đã nhắc ở bài 08.',
+ steps:['Nhận biết tín hiệu đối thủ sắp phải nâng cầu: họ chạm cầu ở điểm thấp hơn mép lưới, hoặc họ vừa phải lunge sâu, hoặc thân họ đang ngả về sau.',
+ 'Vòng lặp chuẩn: bạn CHẶN NGẮN cú đập, đối thủ buộc phải lao lên lưới, và khi đến nơi họ chỉ còn hai lựa chọn là ôm lưới hoặc nâng cầu.',
+ 'Nếu họ ÔM LƯỚI: bạn ôm lưới lại, chặt hơn và thấp hơn. Ai ôm lưới kém hơn sẽ phải nâng trước.',
+ 'Nếu họ NÂNG CẦU: đây là khoảnh khắc của bạn, nhưng KHÔNG đập ngay. Đánh một cú half-smash cắt hoặc drop về góc xa nhất so với chỗ họ đang đứng, rồi mới ăn điểm ở cú tiếp theo.',
+ 'Nguyên tắc đếm ba: từ lúc đối thủ nâng cầu, bạn có khoảng ba cú để kết thúc. Cú một đặt vị trí, cú hai kéo giãn, cú ba ăn điểm. Đập ngay ở cú một là cách nhanh nhất trả lại thế chủ động cho họ.',
+ 'Cách tập trong trận: mỗi lần chặn ngắn thành công, đếm thầm "một — hai — ba" cho ba cú tiếp theo và chỉ cho phép mình dứt điểm ở cú ba.'],
+ note:'Đây chính là điểm khác biệt giữa bạn và lối Ginting. Ginting kết thúc ở cú một bằng tốc độ; bạn kết thúc ở cú ba bằng vị trí. Cả hai đều ăn điểm, nhưng cách của bạn tốn ít hơn khoảng 40% năng lượng cho mỗi pha cầu.',
+ warn:'Đừng biến "chờ cú thứ ba" thành thụ động. Nếu đối thủ nâng cầu quá nông và bạn có cầu ngon ở tầm cao thoải mái, cứ dứt điểm. Đây là nguyên tắc mặc định, không phải luật cứng.',
+ vol:[['Hình thức','Áp dụng trong trận'],['Thời lượng','60 phút giao lưu'],['Nhịp','Đếm 3 cú'],['Tần suất','2 buổi sân/tuần']],
+ vnote:'Không tập khô được. Đây là bài đọc tình huống, chỉ hình thành trong trận đấu thật.',
+ kw:{vi:['chuyển từ phòng thủ sang tấn công cầu lông','khi nào nên đập cầu lông','chiến thuật ba cú ăn điểm cầu lông','xây dựng pha cầu cầu lông đơn'],
+     en:['badminton defence to attack transition','badminton when to attack after block','badminton three shot pattern to win point','badminton rally construction tactics']}}
+];
+
+const E=[
+{id:'E1',jp:'攻撃的ロブ',t:'Lift tấn công — đẩy đối thủ ra sau vạch cuối',en:'Attacking Lift to Deep Corners',dia:'lift4',
+ goal:'Đây là chiến thuật chữ ký của Momota mà bản giáo án đầu đã bỏ sót. Anh nâng cầu rất cao và rất sâu, sát vạch cuối sân, buộc đối thủ phải lùi ra SAU vạch mới đánh được. Cú đập từ sau vạch cuối mất đáng kể lực và góc cắm, nên khi cầu tới chỗ Momota nó đã thành cú đập vô hại — và anh chặn ngắn để khởi động vòng lặp ở bài 15. Với người không đập mạnh như bạn, đây chính là cách tấn công thật sự.',
+ steps:['Khác biệt cốt lõi: lift phòng thủ đi cao và vào GIỮA sân; lift tấn công đi cao và vào ĐÚNG GÓC, rơi trong vòng 50cm quanh vạch cuối.',
+ 'Điểm tiếp xúc càng cao càng tốt, lý tưởng là ngang mép lưới hoặc cao hơn. Lift từ điểm thấp sẽ nông và bạn tự đưa mình vào thế thủ.',
+ 'Phom tay giống hệt bài 04 ôm lưới — cùng tư thế lunge, cùng mặt vợt mở. Chỉ khác ở khoảnh khắc cuối: bạn nâng mặt vợt và đẩy mạnh bằng cẳng tay. Đây là cặp giấu cầu quan trọng nhất ở khu vực lưới.',
+ 'Độ cao mục tiêu: đỉnh quỹ đạo cao hơn tầm với vợt của đối thủ ít nhất 1,5m. Cao hơn nữa càng tốt — bạn có thêm thời gian về base.',
+ 'Chọn góc: mặc định lift vào góc TRÁI TAY của đối thủ, tức góc sau bên trái với người thuận tay phải. Đây là góc yếu nhất của gần như mọi người chơi.',
+ 'Nâng cấp: xen kẽ lift cao sâu với flick lift phẳng nhanh từ CÙNG một tư thế. Đối thủ không đọc được thì buộc phải đứng chờ, mà chờ nghĩa là luôn muộn nửa nhịp.',
+ 'Tập solo: căng dây hoặc đánh dấu độ cao mục tiêu trên tường, tự tâng cầu rồi lift và kiểm tra bằng mắt xem cầu có vượt mốc không.'],
+ note:'Với 1m64, bạn KHÔNG nên sợ nâng cầu. Nhiều người thấp bị dạy rằng "đừng lift vì sẽ bị đập" — sai. Vấn đề không nằm ở việc lift mà ở việc lift NÔNG. Lift đủ cao và đủ sâu thì cú đập trả về là món quà chứ không phải mối đe doạ. Xem bài 19 để biết khi nào thì KHÔNG nên lift.',
+ warn:'Lift nông hoặc lift vào giữa sân là cách nhanh nhất để bị đập cắm. Nếu không chắc đủ lực đưa cầu tới vạch cuối, hãy chọn ôm lưới thay vì lift nửa vời.',
+ vol:[['Hiệp','4 hiệp'],['Số lần','15 lần mỗi góc'],['Nghỉ','60 giây'],['Tần suất','2–3 buổi/tuần']],
+ vnote:'Tập chung buổi với bài 04 — hai cú này bắt buộc phải xuất phát từ cùng một tư thế.',
+ kw:{vi:['kỹ thuật nâng cầu cao sâu cầu lông','lift tấn công cầu lông vào góc','phân biệt lift phòng thủ và lift tấn công','flick lift cầu lông kỹ thuật'],
+     en:['badminton attacking lift technique','badminton lob deep to corners tactic','Momota lift tactic analysis','badminton flick lift deception net']}},
+
+{id:'E2',jp:'突きクリア',t:'Punch clear — cầu cao tấn công quỹ đạo phẳng',en:'Punch / Attacking Clear',dia:'punch',
+ goal:'Cầu cao ở bài 02 là cầu cao phòng thủ: cao và sâu để mua thời gian. Punch clear thì ngược lại — quỹ đạo phẳng, đi nhanh, chỉ vừa đủ vượt tầm vợt đối thủ rồi cắm xuống cuối sân. Momota dùng cú này để bắt đối thủ đang dâng lên và ép họ lùi gấp. Đây là cú tấn công không cần đập quan trọng nhất trong kho vũ khí của bạn.',
+ steps:['Nhận biết thời điểm: đối thủ vừa dâng lên sau khi bạn bỏ nhỏ, hoặc trọng tâm họ đang đổ về trước. Punch clear vào lúc họ đứng yên ở base là lãng phí.',
+ 'Phom tay giống hệt bài 02 cho đến 20cm cuối — đây chính là lý do cú này giấu được.',
+ 'Điểm tiếp xúc CAO và chếch về TRƯỚC hơn cầu cao phòng thủ khoảng 15cm. Đón cầu sớm là điều kiện bắt buộc, không phải tuỳ chọn.',
+ 'Ở 20cm cuối: thay vì mở mặt vợt hất lên, bạn xoay cẳng tay thật nhanh và đánh xuyên qua cầu theo hướng gần nằm ngang, mặt vợt chỉ ngửa khoảng 10–15°.',
+ 'Quỹ đạo mục tiêu: đỉnh cầu chỉ cao hơn tầm với vợt của đối thủ khoảng 30–50cm và rơi vào 1m cuối sân. Cao hơn thì thành cầu cao thường, thấp hơn thì bị chặn.',
+ 'Chọn hướng: punch clear thẳng dọc biên hiệu quả hơn chéo, vì quãng đường ngắn hơn nên cầu tới nhanh hơn và bạn hồi vị dễ hơn. Xem bài 18.',
+ 'Tập solo: shadow tập trung vào tốc độ cẳng tay ở pha cuối. Trên sân, tự tâng cầu cao rồi punch clear và đánh dấu điểm rơi bằng vỏ cầu.'],
+ note:'Với 60kg, bạn sẽ không punch clear được từ tư thế xấu. Cú này đòi hỏi bạn đến sớm và đứng vững, nên nó gắn chặt với bài 07 chassé và bài 11 hồi vị. Nếu punch clear của bạn hay bị nông, vấn đề nằm ở bộ chân chứ không phải ở tay.',
+ warn:'Đây là cú tốn sức nhất trong nhóm điều cầu. Dùng 3–5 lần mỗi set đúng thời điểm, không biến nó thành cú đánh mặc định.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','12 lần'],['Nghỉ','75 giây'],['Tần suất','2 buổi/tuần']],
+ vnote:'Tập ngay sau bài 02 trong cùng buổi để so sánh cảm giác hai quỹ đạo phát ra từ cùng một phom tay.',
+ kw:{vi:['punch clear cầu lông kỹ thuật','cầu cao tấn công cầu lông','phân biệt clear phòng thủ và clear tấn công'],
+     en:['badminton punch clear technique','badminton attacking clear vs defensive clear','badminton flat clear tutorial']}},
+
+{id:'E3',jp:'直線優先',t:'Follow the line — mặc định đánh thẳng',en:'Follow the Line Principle',dia:'line',
+ goal:'Phân tích lối chơi Momota chỉ ra anh chơi một thứ cầu lông rất đơn giản: chọn quỹ đạo tối ưu, lặp lại nó, và bào mòn đối thủ bằng vài quy tắc đơn giản chứ không phải bằng cú đánh đẹp. Quy tắc gốc là đánh THẲNG theo đường biên trừ khi có lý do rõ ràng để đánh chéo. Đây có lẽ là bài có tỷ lệ hiệu quả trên công sức cao nhất trong toàn giáo án — bạn không cần tập gì mới, chỉ cần đổi lựa chọn.',
+ steps:['Ba lý do vật lý khiến đánh thẳng tốt hơn: quãng đường ngắn hơn nên cầu tới nhanh hơn; bạn hồi vị ngắn hơn; và cầu ít có nguy cơ bị chặn ngang.',
+ 'Con số cụ thể: đường chéo dài hơn đường thẳng khoảng 15%. Với người sải chân ngắn, 15% quãng đường mỗi pha cộng dồn lại thành cả một set.',
+ 'Quy tắc mặc định: cầu đến bên nào thì trả về bên đó. Đối thủ phải di chuyển ít hơn, nhưng BẠN cũng di chuyển ít hơn — và bạn mới là người cần thời gian để giữ phom tay đẹp.',
+ 'Ba lý do chính đáng để đánh chéo: đối thủ đã lệch hẳn về một bên; bạn đang ở tư thế tốt và có thừa thời gian; hoặc bạn cần đổi nhịp vì đối thủ đã đọc được mẫu của bạn.',
+ 'Ngoại lệ quan trọng: bỏ nhỏ chéo và ôm lưới chéo vẫn rất giá trị vì chúng buộc đối thủ chạy chéo — quãng đường dài nhất trên sân. Quy tắc thẳng áp dụng chủ yếu cho cầu cao, drive và đỡ đập.',
+ 'Cách tập: trong hai set đầu mỗi buổi giao lưu, tự cấm mình đánh chéo hoàn toàn ở khu vực cuối sân và đếm số lần vi phạm.'],
+ note:'Đây là quy tắc giúp bạn tiết kiệm sức nhiều nhất mà không cần thể lực tốt hơn một chút nào. Nếu chỉ được chọn MỘT thay đổi duy nhất từ toàn bộ giáo án này để áp dụng ngay tuần sau, hãy chọn bài này.',
+ warn:'Đánh thẳng 100% sẽ bị đọc bài. Tỷ lệ tham chiếu hợp lý là khoảng 70% thẳng và 30% chéo, trong đó cú chéo phải đi kèm lý do chứ không phải theo cảm hứng.',
+ vol:[['Hình thức','Áp dụng trong trận'],['Thời lượng','2 set đầu mỗi buổi'],['Đo lường','Đếm số lần vi phạm'],['Tần suất','2 buổi sân/tuần']],
+ vnote:'Không tốn thêm thời gian tập. Đây là thay đổi trong quyết định, không phải trong kỹ thuật.',
+ kw:{vi:['nguyên tắc đánh thẳng cầu lông chiến thuật','khi nào đánh chéo sân cầu lông','chiến thuật cầu lông đơn giản hiệu quả','lựa chọn cú đánh cầu lông đơn'],
+     en:['badminton straight vs cross court shot selection','badminton follow the line principle','badminton simple tactics singles','badminton shot selection decision making']}},
+
+{id:'E4',jp:'長身対策',t:'Đấu với người cao — drop, ôm lưới, và đừng lift sớm',en:'Tactics Against Taller Opponents',dia:'tall',
+ goal:'Momota cao 1m75 và thường xuyên phải đấu Axelsen 1m94 hay Chen Long 1m88. Cách anh xử lý được ghi nhận rõ: ưu tiên drop và ôm lưới, và KHÔNG nâng cầu cho tới khi đối thủ đã bị kéo áp sát lưới. Lý do đơn giản — người cao có tầm với và góc đập vượt trội khi đứng ở giữa hoặc cuối sân, nhưng lại vụng về khi phải cúi thấp ở lưới. Với 1m64, bài này gần như là bản hướng dẫn viết riêng cho bạn.',
+ steps:['Nguyên tắc số một: KHÔNG lift khi đối thủ cao đang ở vị trí trung tâm hoặc cuối sân. Đó là dâng cầu cho họ đập.',
+ 'Vũ khí mặc định là drop và ôm lưới. Ép họ liên tục lunge xuống thấp — vùng khó chịu nhất của người cao, vì họ phải gập nhiều khớp hơn bạn và tốn nhiều năng lượng hơn cho mỗi lần đứng lên.',
+ 'Chỉ lift khi một trong hai điều kiện xảy ra: họ đã áp sát lưới, hoặc bạn lift được thật cao và thật sâu đúng chuẩn bài 16. Lift nửa vời với người cao là mất điểm ngay lập tức.',
+ 'Khai thác chiều cao ngược lại: cầu đi PHẲNG ngang hông và drive là điểm yếu của người cao vì họ phải thu tay vào sát thân. Bài 14 là vũ khí trực tiếp ở đây.',
+ 'Khi buộc phải đỡ đập, chọn chặn ngắn theo bài 12. Người cao vừa bật nhảy đập xong cần nhiều thời gian hơn để lấy lại thăng bằng và lao lên lưới — đó là khoảng trống lớn nhất của họ.',
+ 'Về nhịp độ: giữ nhịp CHẬM và cầu THẤP. Trận đấu càng nhiều cầu cao và càng nhanh thì lợi thế càng nghiêng về người cao.',
+ 'Chuẩn bị tinh thần: chấp nhận rally dài. Bạn không thắng người cao bằng một cú đánh — bạn thắng bằng cách buộc họ đứng lên ngồi xuống ba mươi lần.'],
+ note:'Bạn 1m64 nghĩa là trọng tâm bạn thấp hơn người 1m85 khoảng 12–14cm. Ở mọi pha cầu dưới tầm hông, bạn có lợi thế cơ học thật sự chứ không phải lời an ủi. Toàn bộ chiến thuật này chỉ là đưa trận đấu về vùng đó.',
+ warn:'Chiến thuật này đòi hỏi ôm lưới phải chắc. Nếu cú ôm lưới của bạn còn bồng và cao, đối thủ cao sẽ tạt chết ngay. Hoàn thành bài 04 trước khi áp dụng.',
+ vol:[['Hình thức','Áp dụng trong trận'],['Thời lượng','Cả trận'],['Mặc định','Drop + ôm lưới'],['Khi nào','Đối thủ trên 1m75']],
+ vnote:'Đọc lại bài này ngay trước buổi giao lưu nếu bạn biết sẽ gặp người cao.',
+ kw:{vi:['chiến thuật đánh với người cao cầu lông','người thấp chơi cầu lông thế nào','Momota đấu Axelsen phân tích chiến thuật','cách hạn chế đối thủ đập cầu'],
+     en:['badminton tactics against taller players','badminton short player strategy singles','Momota vs Axelsen tactical analysis','badminton how to beat a tall opponent']}},
+
+{id:'E5',jp:'発球',t:'Giao cầu thấp và trả giao cầu',en:'Low Serve & Return of Serve',dia:'serve',
+ goal:'Mỗi set có hơn hai mươi pha giao cầu — nhiều hơn bất kỳ cú đánh nào khác. Momota có cú giao cầu thấp cực chuẩn: cầu đi sát băng lưới và rơi ngay sau vạch giao cầu ngắn, không cho đối thủ một milimét nào để tạt. Đây là cú đánh duy nhất trong cầu lông bạn kiểm soát hoàn toàn, và cũng là cú dễ tập solo nhất.',
+ steps:['Tư thế: chân thuận sau, chân không thuận trước, trọng lượng 70% ở chân trước, thân hơi nghiêng. Đứng sát vạch giao cầu ngắn và gần đường giữa để rút ngắn quãng đường cầu bay.',
+ 'Grip: cầm rất ngắn, gần đầu cán, và cầm bằng đầu ngón tay như cầm bút. Càng ít cơ tham gia thì càng ổn định.',
+ 'Thả cầu: giữ ở phần vỏ chứ không cầm lông, thả từ độ cao ngang eo và để cầu rơi tự do. Không tung cầu.',
+ 'Động tác đẩy: chỉ cẳng tay chuyển động với cổ tay khoá cứng, biên độ dưới 20cm. Đẩy cầu chứ không đánh cầu.',
+ 'Quỹ đạo mục tiêu: đỉnh cầu nằm ngay trên băng lưới, cầu bắt đầu rơi NGAY khi vừa qua lưới, chạm sàn trong vòng 15cm sau vạch giao cầu ngắn.',
+ 'TRẢ GIAO CẦU: đứng chân thuận trước, vợt cao ngang mặt, người đổ về trước. Ba lựa chọn từ cùng tư thế — tạt xuống nếu cầu bồng, ôm lưới ngược nếu cầu chuẩn, đẩy sâu ra góc sau nếu đối thủ dâng quá cao.',
+ 'Tập solo: căng một sợi dây ngang ở độ cao 1m55 làm mốc lưới, đặt một chiếc khăn ngay sau vạch giao cầu ngắn làm đích, giao 50 quả mỗi buổi và đếm số quả vào khăn.'],
+ note:'Đây là bài tập solo có tỷ lệ hoàn vốn cao nhất trong giáo án: không cần đối thủ, không cần thể lực, không có rủi ro chấn thương, và tiến bộ thấy được chỉ sau hai tuần. Buổi khô nào bạn mệt không muốn tập chân thì hãy giao cầu.',
+ warn:'Luật BWF hiện hành quy định điểm tiếp xúc khi giao cầu phải nằm dưới 1,15m tính từ mặt sân. Tập đúng chiều cao này ngay từ đầu để không phải sửa lại sau.',
+ vol:[['Hiệp','3 hiệp'],['Số lần','50 quả giao'],['Nghỉ','60 giây'],['Tần suất','3–4 buổi/tuần']],
+ vnote:'Dành 10 phút cuối mỗi buổi khô. Ghi lại tỷ lệ vào đích để thấy tiến bộ theo tuần.',
+ kw:{vi:['kỹ thuật giao cầu thấp cầu lông chuẩn','cách trả giao cầu cầu lông đơn','giao cầu trái tay cầu lông kỹ thuật','luật giao cầu 1m15 cầu lông'],
+     en:['badminton low serve technique singles','badminton backhand serve tutorial','badminton return of serve options','badminton service rule 1.15m height']}}
+];
+
+const SCHEDULE=[
+{d:'T2',k:'Nhà',type:'home',h:'Buổi khô — Tay & Nền tảng · 30 phút',
+ p:'25 khởi động (6′) → 01 chuyển grip → 03 xoay cẳng tay → 20 giao cầu thấp 50 quả → 21 bắp chân → 22 cổ chân.',
+ tags:[['25 Mobility',''],['01 Grip','a'],['03 Pronation','a'],['20 Giao cầu','a'],['21·22 Prehab','']]},
+{d:'T3',k:'Nghỉ',type:'rest',h:'Nghỉ chủ động',
+ p:'Đi bộ 20–30 phút hoặc đạp xe nhẹ. Không tập cầu lông. Đây là ngày gân hồi phục.',tags:[]},
+{d:'T4',k:'Nhà',type:'home',h:'Buổi khô — Giấu cầu & Thủ · 30 phút',
+ p:'25 → 02 một phom ba đường cầu, quay video hiệp cuối → 06 split-step → 12 tư thế thủ shadow → 23 gối và háng.',
+ tags:[['25 Mobility',''],['02 Deception','a'],['06 Split-step','a'],['12 Tư thế thủ','a'],['23 Gối/háng','']]},
+{d:'T5',k:'Nghỉ',type:'rest',h:'Nghỉ hoàn toàn',
+ p:'Giãn cơ nhẹ nếu muốn. Ngủ đủ 7–8 tiếng — ở tuổi 32 giấc ngủ là yếu tố hồi phục quan trọng hơn cả dinh dưỡng.',tags:[]},
+{d:'T6',k:'Nhà',type:'home',h:'Buổi khô — Lưới, Trái tay & Drive · 30 phút',
+ p:'25 → 04 ôm lưới → 05 trái tay ngón cái → 14 drive vào tường 5′ → 09 lunge → 24 vai.',
+ tags:[['04 Ôm lưới','a'],['05 Trái tay','a'],['14 Drive','a'],['09 Lunge',''],['24 Vai','']]},
+{d:'T7',k:'Sân',type:'court',h:'BUỔI SÂN 1 · 90 phút',
+ p:'20′ khởi động kỹ thuật: 25 → 06 → 07 chassé 4 góc → 10 shadow. 60′ giao lưu áp dụng luật tuần 1. 10′ thả lỏng và bài 24.',
+ tags:[['07 Chassé','a'],['10 Shadow','a'],['Luật tuần 1','b']]},
+{d:'CN',k:'Sân',type:'court',h:'BUỔI SÂN 2 · 90 phút',
+ p:'15′ khởi động: 25 → 06 → 02 với cầu thật, tự tâng. 65′ giao lưu, quay video 1 set để nghiệm thu. 10′ thả lỏng.',
+ tags:[['02 Deception','a'],['Quay video','b']]}
+];
+
+const SCHEDULE2=[
+{d:'T2',k:'Nhà',type:'home',h:'Buổi khô — Tay & Nền tảng · 30 phút',
+ p:'25 khởi động → 01 grip → 03 xoay cẳng tay → 20 giao cầu thấp 50 quả → 21 bắp chân → 22 cổ chân. Giữ nguyên như tuần 1, đây là nhóm bài cần lặp lại đều.',
+ tags:[['01 Grip','a'],['03 Pronation','a'],['20 Giao cầu','a'],['21·22 Prehab','']]},
+{d:'T3',k:'Nghỉ',type:'rest',h:'Nghỉ chủ động',p:'Như tuần 1.',tags:[]},
+{d:'T4',k:'Nhà',type:'home',h:'Buổi khô — Tấn công không đập · 30 phút',
+ p:'25 → 02 → 17 punch clear → 11 hồi vị đo giờ → 13 đỡ cầu vào người shadow → 23 gối và háng.',
+ tags:[['17 Punch clear','a'],['11 Hồi vị','a'],['13 Đỡ vào người','a'],['23 Gối/háng','']]},
+{d:'T5',k:'Nghỉ',type:'rest',h:'Nghỉ hoàn toàn',p:'Như tuần 1.',tags:[]},
+{d:'T6',k:'Nhà',type:'home',h:'Buổi khô — Cặp lưới & Drive · 30 phút',
+ p:'25 → 04 ôm lưới và 16 lift tấn công tập xen kẽ từ CÙNG tư thế → 14 drive tường → 09 lunge → 24 vai.',
+ tags:[['04 + 16 cặp đôi','a'],['14 Drive','a'],['09 Lunge',''],['24 Vai','']]},
+{d:'T7',k:'Sân',type:'court',h:'BUỔI SÂN 3 · 90 phút',
+ p:'20′ khởi động: 25 → 06 → 07 → 11 hồi vị. 60′ giao lưu áp dụng luật 18 follow the line và vòng lặp 15 chuyển thủ thành công. 10′ thả lỏng.',
+ tags:[['11 Hồi vị','a'],['18 Follow the line','b'],['15 Chuyển thủ-công','b']]},
+{d:'CN',k:'Sân',type:'court',h:'BUỔI SÂN 4 · 90 phút',
+ p:'15′ khởi động và 12 đỡ đập với bạn tập ở 60% lực. 65′ giao lưu — nếu gặp đối thủ trên 1m75 thì áp dụng bài 19. Quay video 1 set để nghiệm thu. 10′ thả lỏng.',
+ tags:[['12 Đỡ đập','a'],['19 Đấu người cao','b'],['Nghiệm thu','b']]}
+];
+
+const RULES=[
+{w:'Tuần 1 · Luật cấm',t:'Cấm bật nhảy đập hoàn toàn',
+ d:'Không một cú bật nhảy nào trong cả buổi. Mọi cú cuối sân chỉ được là cầu cao sâu, bỏ nhỏ, hoặc half-smash chân chạm đất theo bài 08. Bạn sẽ thấy mình phải tính toán vị trí nhiều hơn, và đó chính là điểm.',
+ why:'Loại bỏ lối thoát dễ dàng. Khi không thể kết thúc bằng lực, não buộc phải tìm cách kết thúc bằng vị trí.'},
+{w:'Tuần 1 · Luật thêm',t:'Reset grip sau mọi cú đánh',
+ d:'Sau mỗi lần chạm cầu, vợt phải về grip trung tính và tư thế thủ TRƯỚC khi đối thủ chạm cầu. Tự đếm số lần quên trong mỗi set, mục tiêu giảm xuống dưới 5 lần vào cuối tuần.',
+ why:'Biến bài 01 từ bài tập khô thành phản xạ trong trận đấu.'},
+{w:'Tuần 2 · Luật điều cầu',t:'Mỗi pha cầu phải chạm ít nhất 2 góc khác nhau',
+ d:'Trong mỗi rally, bạn phải đưa cầu về ít nhất một góc SAU và một góc TRƯỚC của đối thủ trước khi được phép ăn điểm. Nếu ăn điểm mà chưa làm được, tự trừ điểm đó.',
+ why:'Đây là bản chất lối chơi Momota: không tấn công vào người, mà kéo giãn đối thủ theo trục dọc cho đến khi họ tự mất vị trí.'},
+{w:'Tuần 2 · Luật thêm',t:'Cấm đánh cầu khi đang lùi',
+ d:'Bạn chỉ được chạm cầu khi trọng tâm đã dừng hoặc đang chuyển về trước. Nếu bị ép phải đánh trong lúc còn đang lùi, tự tính là mất điểm dù pha cầu chưa kết thúc.',
+ why:'Ép bạn di chuyển SỚM hơn. Momota gần như luôn đến trước cầu và chờ — đó là cách anh giữ được phom tay đẹp suốt trận.'},
+{w:'Tuần 2 · Luật phòng thủ',t:'Cú đỡ đập đầu tiên luôn là chặn ngắn',
+ d:'Mỗi khi đối thủ đập, cú đỡ đầu tiên của bạn bắt buộc là chặn ngắn sát lưới theo bài 12 — không được đẩy sâu, không được đôi công. Chỉ từ cú đỡ thứ hai trở đi bạn mới được chọn tự do.',
+ why:'Ép bạn hình thành vòng lặp Momota ở bài 15: chặn ngắn buộc đối thủ lao lên lưới ngay sau khi vừa bật nhảy, đúng lúc họ mất thăng bằng nhất.'},
+{w:'Tuần 2 · Luật điều cầu',t:'Không lift nếu không lift được tới vạch cuối',
+ d:'Trước mỗi cú nâng cầu, tự hỏi trong nửa giây: mình có đủ tư thế để đưa cầu tới sát vạch cuối không? Nếu không, chọn ôm lưới hoặc drop thay thế. Tự đếm số lần lift nông trong mỗi set.',
+ why:'Lift nông là cách mất điểm nhanh nhất của người thấp. Bài 16 chỉ có giá trị khi cầu đủ sâu — lift nửa vời còn tệ hơn không lift.'},
+{w:'Cả 2 tuần',t:'Đếm nhịp thở — không nín thở',
+ d:'Thở ra dứt khoát mỗi lần vung vợt. Nếu nhận ra mình đang nín thở trong một rally dài, chủ động thở ra và chấp nhận đánh một cú an toàn để lấy lại nhịp.',
+ why:'Đây là nền tảng của bền vững và tiết kiệm sức — bạn sập ở phút 60 vì nợ oxy chứ không phải vì cơ yếu.'}
+];
+
+const KPIS=[
+{t:'Tính đồng nhất của phom tay',m:'Quay 30 swing gồm 10 cầu cao, 10 bỏ nhỏ, 10 half-smash trộn ngẫu nhiên. Nhờ người khác xem và đoán bạn đang đánh gì, chỉ được xem đến khung hình vợt ở sau lưng.',g:'Người xem đoán đúng dưới 50%'},
+{t:'Độ sâu cầu cuối sân',m:'Đánh 20 cú cầu cao, đếm số cú rơi vào 1 mét cuối sân đối phương.',g:'Từ 10/20 cú trở lên'},
+{t:'Chất lượng split-step',m:'Quay 1 set, đếm số pha cầu bạn có split-step đúng thời điểm — nhún khi đối thủ SẮP chạm cầu.',g:'Từ 70% số pha cầu trở lên'},
+{t:'Tốc độ hồi phục nhịp thở',m:'Sau một rally dài trên 15 lượt, bấm giờ đến khi nói được nguyên câu bình thường.',g:'Dưới 25 giây'},
+{t:'Kỷ luật không bật nhảy',m:'Đếm số lần bật nhảy đập trong một buổi giao lưu 60 phút.',g:'0 lần ở tuần 1, dưới 3 lần ở tuần 2'},
+{t:'Tỷ lệ đỡ đập thành công',m:'Quay 1 set, đếm số cú đập của đối thủ mà bạn đưa được cầu qua lưới, và trong đó bao nhiêu cú rơi vào nửa trước sân đối phương (tức chặn ngắn đạt).',g:'Đỡ qua lưới trên 70%, trong đó chặn ngắn đạt trên một nửa'},
+{t:'Độ sâu của lift',m:'Đếm 20 cú nâng cầu trong 1 set, xem bao nhiêu cú rơi vào 1 mét cuối sân đối phương.',g:'Từ 12/20 trở lên, và 0 cú rơi vào giữa sân'},
+{t:'Tỷ lệ giao cầu vào đích',m:'Giao 50 quả vào chiếc khăn đặt sau vạch giao cầu ngắn theo bài 20.',g:'Từ 30/50 trở lên vào cuối tuần 2'},
+{t:'Kỷ luật follow the line',m:'Trong 2 set đầu mỗi buổi, đếm số lần bạn đánh chéo ở khu vực cuối sân mà không có lý do rõ ràng.',g:'Dưới 5 lần mỗi set vào cuối tuần 2'},
+{t:'Không đau khớp',m:'Tự chấm điểm đau gối, cổ chân, vai theo thang 0–10 vào sáng hôm sau mỗi buổi sân.',g:'Luôn dưới 3/10 và không tăng dần'}
+];
+
+const ROAD=[
+{w:'Tuần 1–2',t:'Chuẩn hoá phom tay kín & Bộ chân lướt',jp:'守 — giữ đúng khuôn mẫu',
+ d:'Xây nền: grip trung tính, một phom ba đường cầu, chassé 4 góc, split-step nhẹ. Toàn bộ shadow, không áp lực thắng thua.',now:true},
+{w:'Tuần 3–4',t:'Điều cầu 4 góc sâu & Kiểm soát độ sâu',jp:'守 — giữ đúng khuôn mẫu',
+ d:'Chuyển từ shadow sang cầu thật. Tập độ sâu cầu cao và độ ngắn của bỏ nhỏ, xây bản đồ sân trong đầu. Bắt đầu chơi theo mẫu 2 góc.'},
+{w:'Tuần 5–6',t:'Trận lưới & Chuyển đổi công thủ',jp:'破 — phá khuôn, biến hoá',
+ d:'Ôm lưới, tạt lưới, móc cầu từ cùng một tư thế. Học đọc tình huống để chuyển từ thủ sang công đúng nhịp — đây là nơi lối Momota ăn điểm.'},
+{w:'Tuần 7–8',t:'Kiểm soát nhịp độ & Chiến thuật trận đấu',jp:'離 — thành lối của riêng mình',
+ d:'Chủ động đổi tempo trong rally, xây pattern 3 cú ăn điểm, quản lý thể lực theo set. Nghiệm thu bằng trận đấu quay video đầy đủ.'}
+];
+
+const SECTIONS=[
+{id:'a',nav:'Phom tay kín',jp:'構え・秘手',h2:'Phom tay kín và nghệ thuật giấu hướng đánh',
+ p:'Triết lý Momota: <b>80% quãng đường vung vợt của mọi cú đánh phải giống hệt nhau</b>. Đối thủ chỉ biết bạn đánh gì ở 20cm cuối — lúc đó họ đã muộn nửa nhịp. Với sải tay ngắn, đây chính là vũ khí thay cho sức mạnh.',list:'A'},
+{id:'b',nav:'Bộ chân lướt',jp:'足捌き',h2:'Bộ chân lướt, tiết kiệm sức, an toàn khớp',
+ p:'Nguyên tắc tuổi 32: <b>trượt thay vì nhảy, xoay thay vì bật</b>. Mỗi lần tiếp đất một chân từ trên cao dồn 4–6 lần trọng lượng cơ thể lên gân bánh chè. Momota gần như không bật nhảy đập — anh dùng xoay hông và điểm tiếp xúc sớm.',list:'B'},
+{id:'d',nav:'Phòng thủ & Đôi công',jp:'守り・平打ち',h2:'Phòng thủ — trụ cột số một của Momota',
+ p:'Mọi phân tích kỹ thuật đều xếp <b>hàng thủ là điểm mạnh nhất</b> của Momota, không phải cú giấu cầu. Anh không thủ để sống sót mà thủ để buộc đối thủ phải nâng cầu. Với 1m64, trọng tâm thấp cho bạn lợi thế bẩm sinh ở đúng nhóm bài này.',list:'D'},
+{id:'e',nav:'Điều cầu & Chiến thuật',jp:'配球・戦術',h2:'Điều cầu và chiến thuật trận đấu',
+ p:'Momota chơi thứ cầu lông rất đơn giản: <b>chọn quỹ đạo tối ưu rồi lặp lại nó</b> cho đến khi đối thủ tự sụp. Nhóm này không đòi hỏi kỹ thuật mới — chỉ đòi hỏi bạn đổi lựa chọn. Đây là nhóm cho hiệu quả nhanh nhất trên mỗi giờ tập.',list:'E'},
+{id:'c',nav:'Phòng chấn thương',jp:'故障予防',h2:'Nền tảng và phòng chấn thương',
+ p:'Không phải tập thể lực để đánh bền, mà tập để <b>khớp chịu được 8 tuần thay đổi kỹ thuật</b>. Ở tuổi 32 gân phục hồi chậm hơn cơ, nên nhóm này là bắt buộc chứ không phải tuỳ chọn.',list:'C'},
+{id:'sch',nav:'Lịch tuần',jp:'週課',h2:'Lịch tuần — Giai đoạn 1',
+ p:'2 buổi sân giao lưu và 3 buổi khô tại nhà 30 phút. Tuần 1 xây nền kỹ thuật, tuần 2 mới thêm chiến thuật và phòng thủ. Tổng tải nhẹ là <b>chủ đích</b> — giai đoạn này bạn đang xây lại đường dẫn thần kinh cơ, mệt là hỏng kỹ thuật.',list:'SCH'},
+{id:'rule',nav:'Luật tự áp',jp:'掟',h2:'Luật tự áp khi đánh giao lưu',
+ p:'Bạn chủ yếu đánh giao lưu và không có người đút cầu, nên <b>đây là bài tập quan trọng nhất của bạn</b>. Phương pháp constraint-led: tự đặt luật cấm để ép cơ thể tìm giải pháp mới. Hiệu quả hơn drill lặp lại rất nhiều với người trưởng thành.',list:'RULE'},
+{id:'kpi',nav:'Nghiệm thu',jp:'検定',h2:'Nghiệm thu cuối tuần 2',
+ p:'Đo được thì mới sửa được. Quay một clip điện thoại đặt ngang ngực, cách 3m, góc chéo 45° từ phía trước bên tay thuận, vào cuối tuần 2.',list:'KPI'},
+{id:'road',nav:'Lộ trình 8 tuần',jp:'全行程',h2:'Lộ trình 8 tuần',
+ p:'Theo trình tự học nghề của Nhật: <b>守 → 破 → 離</b>. Giữ đúng khuôn mẫu trước, phá khuôn sau, rồi mới thành lối riêng. Giai đoạn 1 đang mở; các giai đoạn sau mở khoá tuần tự.',list:'ROAD'}
+];
+/* ===== SƠ ĐỒ SVG (kích thước thật BWF, đơn vị = decimet) ===== */
+const L='#A9E0D5',W='#FFFFFF',LM='#D9E64F',SH='#FF8A7A';
+function courtBase(){ /* landscape: 134 x 61 */
+  return `<rect x="0" y="0" width="134" height="61" fill="#0E3633" stroke="${L}" stroke-width="1"/>
+  <line x1="4.6" y1="0" x2="4.6" y2="0" stroke="none"/>
+  <line x1="0" y1="4.6" x2="134" y2="4.6" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="0" y1="56.4" x2="134" y2="56.4" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="7.6" y1="0" x2="7.6" y2="61" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="126.4" y1="0" x2="126.4" y2="61" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="47.2" y1="0" x2="47.2" y2="61" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="86.8" y1="0" x2="86.8" y2="61" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="0" y1="30.5" x2="47.2" y2="30.5" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="86.8" y1="30.5" x2="134" y2="30.5" stroke="${L}" stroke-width=".6" opacity=".65"/>
+  <line x1="67" y1="-2" x2="67" y2="63" stroke="${W}" stroke-width="1.4" stroke-dasharray="2.5 2"/>
+  <text x="67" y="-3.5" fill="${L}" font-size="4" text-anchor="middle" font-family="sans-serif">LƯỚI 1,55m</text>`;
+}
+const P6={base:[97,30.5],na:[75,13],nb:[75,48],ma:[97,7],mb:[97,54],ra:[122,13],rb:[122,48]};
+function dot(p,c,r){return `<circle cx="${p[0]}" cy="${p[1]}" r="${r||2.6}" fill="${c||LM}"/>`}
+function lab(p,t,dx,dy){return `<text x="${p[0]+(dx||0)}" y="${p[1]+(dy||-4.5)}" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">${t}</text>`}
+
+const DIA={
+court6:()=>({vb:'-2 -8 138 74',cap:'Sáu điểm di chuyển trên nửa sân của bạn · đường nét đứt là chassé về base',
+ svg:courtBase()+
+  ['na','nb','ma','mb','ra','rb'].map(k=>`<path d="M${P6.base[0]},${P6.base[1]} L${P6[k][0]},${P6[k][1]}" stroke="${L}" stroke-width=".7" stroke-dasharray="2 1.6" opacity=".8"/>`).join('')+
+  ['na','nb','ma','mb','ra','rb'].map(k=>dot(P6[k])).join('')+
+  dot(P6.base,W,3.4)+lab(P6.base,'BASE',0,-5.5)+
+  lab(P6.na,'1',0,-4)+lab(P6.nb,'2',0,7)+lab(P6.ma,'3',0,-3.5)+lab(P6.mb,'4',0,7.5)+lab(P6.ra,'5',0,-4)+lab(P6.rb,'6',0,7)}),
+
+court4:()=>({vb:'-2 -8 138 74',cap:'Bốn góc sâu cần điều tới — mục tiêu kéo giãn đối thủ theo trục dọc',
+ svg:courtBase()+
+  `<rect x="7.6" y="4.6" width="18" height="24" fill="${LM}" opacity=".22"/>
+   <rect x="7.6" y="32.4" width="18" height="24" fill="${LM}" opacity=".22"/>
+   <rect x="47.2" y="4.6" width="14" height="24" fill="${LM}" opacity=".13"/>
+   <rect x="47.2" y="32.4" width="14" height="24" fill="${LM}" opacity=".13"/>`+
+  `<path d="M100,30.5 Q70,4 18,14" stroke="${W}" stroke-width=".9" fill="none" marker-end=""/>
+   <path d="M100,30.5 Q70,57 18,46" stroke="${W}" stroke-width=".9" fill="none"/>
+   <path d="M100,30.5 Q78,20 55,14" stroke="${LM}" stroke-width=".9" fill="none" stroke-dasharray="2 1.5"/>
+   <path d="M100,30.5 Q78,41 55,46" stroke="${LM}" stroke-width=".9" fill="none" stroke-dasharray="2 1.5"/>`+
+  dot([100,30.5],W,3)+
+  `<text x="17" y="34" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">GÓC SÂU</text>
+   <text x="54" y="34" fill="${L}" font-size="4" text-anchor="middle" font-family="sans-serif">GÓC LƯỚI</text>`}),
+
+side:()=>({vb:'-4 -6 142 62',cap:'Ba đường cầu từ CÙNG một điểm chuẩn bị — khác nhau chỉ ở 20cm cuối',
+ svg:`<line x1="0" y1="50" x2="134" y2="50" stroke="${L}" stroke-width="1"/>
+  <line x1="67" y1="50" x2="67" y2="34.5" stroke="${W}" stroke-width="1.4"/>
+  <text x="67" y="55.5" fill="${L}" font-size="4" text-anchor="middle" font-family="sans-serif">lưới 1,55m</text>
+  <path d="M110,24 Q62,-1 12,50" stroke="${W}" stroke-width="1.1" fill="none"/>
+  <path d="M110,24 Q90,19 57,50" stroke="${LM}" stroke-width="1.1" fill="none"/>
+  <path d="M110,24 Q80,32 43,50" stroke="${SH}" stroke-width="1.1" fill="none"/>
+  <circle cx="110" cy="24" r="2.6" fill="${W}"/>
+  <text x="110" y="19" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">ĐIỂM TIẾP XÚC</text>
+  <line x1="110" y1="27" x2="110" y2="50" stroke="${L}" stroke-width=".5" stroke-dasharray="1.5 1.5"/>
+  <text x="26" y="46" fill="${W}" font-size="4.2" font-family="sans-serif">CẦU CAO</text>
+  <text x="52" y="42" fill="${LM}" font-size="4.2" font-family="sans-serif">BỎ NHỎ</text>
+  <text x="40" y="30" fill="${SH}" font-size="4.2" font-family="sans-serif">HALF-SMASH</text>`}),
+
+grip:()=>({vb:'0 0 134 74',cap:'Mặt cắt cán vợt · chữ V nằm trên cạnh vát 2 = grip thuận · xoay 45° sang thumb grip',
+ svg:(()=>{let s='';const cx=40,cy=37,r=20;
+  let pts=[];for(let i=0;i<8;i++){const a=(i*45-22.5)*Math.PI/180;pts.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]);}
+  s+=`<polygon points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="${L}" stroke-width="1"/>`;
+  for(let i=0;i<8;i++){const a=(i*45)*Math.PI/180;const x=cx+(r+6)*Math.cos(a),y=cy+(r+6)*Math.sin(a);
+    s+=`<text x="${x.toFixed(1)}" y="${(y+1.5).toFixed(1)}" fill="${L}" font-size="4.5" text-anchor="middle" font-family="sans-serif">${i+1}</text>`;}
+  const a2=45*Math.PI/180;
+  s+=`<line x1="${cx}" y1="${cy}" x2="${(cx+r*Math.cos(a2)).toFixed(1)}" y2="${(cy+r*Math.sin(a2)).toFixed(1)}" stroke="${LM}" stroke-width="1.6"/>`;
+  s+=`<circle cx="${(cx+r*Math.cos(a2)).toFixed(1)}" cy="${(cy+r*Math.sin(a2)).toFixed(1)}" r="2.4" fill="${LM}"/>`;
+  const a3=0;
+  s+=`<line x1="${cx}" y1="${cy}" x2="${cx+r}" y2="${cy}" stroke="${W}" stroke-width="1.2" stroke-dasharray="2 1.5"/>`;
+  s+=`<path d="M${(cx+13).toFixed(1)},${cy} A13,13 0 0 0 ${(cx+13*Math.cos(a2)).toFixed(1)},${(cy+13*Math.sin(a2)).toFixed(1)}" fill="none" stroke="${W}" stroke-width=".8"/>`;
+  s+=`<text x="${cx+17}" y="${cy+11}" fill="${W}" font-size="4.2" font-family="sans-serif">45°</text>`;
+  s+=`<circle cx="85" cy="20" r="2.4" fill="${LM}"/><text x="92" y="21.5" fill="${W}" font-size="5" font-family="sans-serif">Chữ V — grip thuận (cạnh 2)</text>`;
+  s+=`<line x1="82.6" y1="35" x2="87.4" y2="35" stroke="${W}" stroke-width="1.2" stroke-dasharray="2 1.5"/><text x="92" y="36.5" fill="${W}" font-size="5" font-family="sans-serif">Thumb grip — trái tay</text>`;
+  s+=`<text x="85" y="52" fill="${L}" font-size="4.6" font-family="sans-serif">Chỉ cán vợt xoay trong lòng bàn tay.</text>`;
+  s+=`<text x="85" y="60" fill="${L}" font-size="4.6" font-family="sans-serif">Cổ tay và cánh tay KHÔNG di chuyển.</text>`;
+  return s;})()}),
+
+pron:()=>({vb:'0 0 134 66',cap:'Xoay cẳng tay 180° · cổ tay giữ thẳng · pha sấp nhanh, pha ngửa chậm 2 giây',
+ svg:`<line x1="14" y1="52" x2="60" y2="52" stroke="${L}" stroke-width="1.6"/>
+  <text x="37" y="59" fill="${L}" font-size="4.4" text-anchor="middle" font-family="sans-serif">cẳng tay cố định</text>
+  <circle cx="60" cy="52" r="2.6" fill="${W}"/>
+  <line x1="60" y1="52" x2="60" y2="18" stroke="${W}" stroke-width="1.3"/>
+  <ellipse cx="60" cy="14" rx="3" ry="6" fill="none" stroke="${W}" stroke-width="1.1"/>
+  <text x="60" y="8" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">NGỬA</text>
+  <line x1="60" y1="52" x2="94" y2="34" stroke="${LM}" stroke-width="1.3"/>
+  <ellipse cx="97" cy="32" rx="6" ry="3" fill="none" stroke="${LM}" stroke-width="1.1"/>
+  <text x="103" y="26" fill="${LM}" font-size="4.2" font-family="sans-serif">SẤP</text>
+  <path d="M60,28 A24,24 0 0 1 79.5,39" fill="none" stroke="${W}" stroke-width=".8" stroke-dasharray="2 1.6"/>
+  <text x="82" y="22" fill="${W}" font-size="4.4" font-family="sans-serif">180°</text>
+  <text x="14" y="14" fill="${SH}" font-size="4.6" font-family="sans-serif">✕ KHÔNG bẻ cổ tay lên xuống</text>
+  <text x="14" y="22" fill="${L}" font-size="4.6" font-family="sans-serif">✓ Chỉ xoay quanh trục cẳng tay</text>`}),
+
+net:()=>({vb:'0 0 134 66',cap:'Điểm tiếp xúc CAO hơn mép lưới · mặt vợt mở 45° · không backswing',
+ svg:`<line x1="0" y1="56" x2="134" y2="56" stroke="${L}" stroke-width="1"/>
+  <line x1="52" y1="56" x2="52" y2="20" stroke="${W}" stroke-width="1.4"/>
+  <line x1="48" y1="20" x2="56" y2="20" stroke="${W}" stroke-width="2.2"/>
+  <text x="52" y="14" fill="${L}" font-size="4.2" text-anchor="middle" font-family="sans-serif">mép lưới</text>
+  <line x1="52" y1="20" x2="134" y2="20" stroke="${L}" stroke-width=".5" stroke-dasharray="2 2"/>
+  <line x1="88" y1="42" x2="68" y2="16" stroke="${W}" stroke-width="1.3"/>
+  <ellipse cx="65" cy="12" rx="6.5" ry="4" transform="rotate(-38 65 12)" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <circle cx="58" cy="15" r="2.4" fill="${LM}"/>
+  <text x="70" y="50" fill="${W}" font-size="4.4" font-family="sans-serif">tay duỗi gần thẳng</text>
+  <path d="M64,22 L58,17" stroke="${LM}" stroke-width="1" stroke-dasharray="1.5 1.2"/>
+  <path d="M88,42 L100,52" stroke="${L}" stroke-width="1.3"/>
+  <path d="M100,52 L118,56" stroke="${L}" stroke-width="1.3"/>
+  <path d="M100,52 L92,56" stroke="${L}" stroke-width="1.3"/>
+  <path d="M104,46 A9,9 0 0 1 96,56" fill="none" stroke="${LM}" stroke-width=".8"/>
+  <text x="108" y="46" fill="${LM}" font-size="4.2" font-family="sans-serif">90–100°</text>
+  <text x="4" y="30" fill="${SH}" font-size="4.4" font-family="sans-serif">✕ không kéo vợt</text>
+  <text x="4" y="37" fill="${SH}" font-size="4.4" font-family="sans-serif">   về sau</text>
+  <text x="4" y="48" fill="${L}" font-size="4.4" font-family="sans-serif">✓ chỉ đẩy bằng</text>
+  <text x="4" y="54" fill="${L}" font-size="4.4" font-family="sans-serif">   ngón trỏ</text>`}),
+
+split:()=>({vb:'0 0 134 60',cap:'Rời sàn 2–3cm · tiếp đất bằng ức bàn chân · gần như không có tiếng động',
+ svg:`<line x1="0" y1="46" x2="134" y2="46" stroke="${L}" stroke-width="1"/>
+  <ellipse cx="34" cy="42" rx="5" ry="9" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <ellipse cx="52" cy="42" rx="5" ry="9" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <ellipse cx="34" cy="37" rx="4.4" ry="4" fill="${LM}" opacity=".5"/>
+  <ellipse cx="52" cy="37" rx="4.4" ry="4" fill="${LM}" opacity=".5"/>
+  <text x="43" y="58" fill="${L}" font-size="4.4" text-anchor="middle" font-family="sans-serif">vùng vàng = ức bàn chân tiếp đất</text>
+  <path d="M76,42 Q80,32 84,42" fill="none" stroke="${LM}" stroke-width="1.2"/>
+  <line x1="72" y1="42" x2="88" y2="42" stroke="${L}" stroke-width=".6" stroke-dasharray="2 1.5"/>
+  <line x1="72" y1="36" x2="88" y2="36" stroke="${L}" stroke-width=".6" stroke-dasharray="2 1.5"/>
+  <line x1="92" y1="36" x2="92" y2="42" stroke="${W}" stroke-width="1"/>
+  <text x="96" y="41" fill="${W}" font-size="4.6" font-family="sans-serif">2–3 cm — không hơn</text>
+  <text x="76" y="24" fill="${W}" font-size="4.6" font-family="sans-serif">Nhún khi vợt đối thủ</text>
+  <text x="76" y="30" fill="${W}" font-size="4.6" font-family="sans-serif">SẮP chạm cầu</text>`}),
+
+rot:()=>({vb:'0 0 134 66',cap:'Nhìn từ trên · bàn chân sau xoay 90° · lực đi từ chân → hông → thân → vai → cẳng tay',
+ svg:`<ellipse cx="44" cy="44" rx="5" ry="9" transform="rotate(90 44 44)" fill="none" stroke="${LM}" stroke-width="1.3"/>
+  <text x="44" y="58" fill="${LM}" font-size="4.4" text-anchor="middle" font-family="sans-serif">chân sau xoay 90°</text>
+  <ellipse cx="72" cy="28" rx="5" ry="9" transform="rotate(-20 72 28)" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <text x="76" y="18" fill="${W}" font-size="4.4" font-family="sans-serif">chân trước</text>
+  <line x1="44" y1="44" x2="72" y2="28" stroke="${L}" stroke-width=".7" stroke-dasharray="2 1.5"/>
+  <path d="M52,40 A22,22 0 0 1 74,40" fill="none" stroke="${W}" stroke-width="1.1"/>
+  <path d="M74,40 l-3.5,-3 l4.5,-.6 z" fill="${W}"/>
+  <text x="60" y="34" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">xoay hông</text>
+  <text x="96" y="26" fill="${L}" font-size="4.6" font-family="sans-serif">1. đạp chân sau</text>
+  <text x="96" y="34" fill="${L}" font-size="4.6" font-family="sans-serif">2. hông xoay</text>
+  <text x="96" y="42" fill="${L}" font-size="4.6" font-family="sans-serif">3. thân &amp; vai</text>
+  <text x="96" y="50" fill="${LM}" font-size="4.6" font-family="sans-serif">4. cẳng tay xoay</text>
+  <text x="8" y="14" fill="${SH}" font-size="4.6" font-family="sans-serif">✕ Không bật nhảy — không có pha</text>
+  <text x="8" y="21" fill="${SH}" font-size="4.6" font-family="sans-serif">   tiếp đất một chân từ trên cao</text>`}),
+
+lunge:()=>({vb:'0 0 134 66',cap:'Gót chạm trước rồi lăn ra ức bàn chân · gối không vượt mũi chân · đẩy về bằng gót và mông',
+ svg:`<line x1="0" y1="54" x2="134" y2="54" stroke="${L}" stroke-width="1"/>
+  <line x1="46" y1="54" x2="46" y2="26" stroke="${W}" stroke-width="1.4"/>
+  <line x1="46" y1="26" x2="52" y2="16" stroke="${W}" stroke-width="1.4"/>
+  <circle cx="54" cy="12" r="4" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <line x1="46" y1="26" x2="30" y2="40" stroke="${W}" stroke-width="1.3"/>
+  <line x1="46" y1="54" x2="74" y2="42" stroke="${W}" stroke-width="1.6"/>
+  <line x1="74" y1="42" x2="82" y2="54" stroke="${W}" stroke-width="1.6"/>
+  <line x1="80" y1="54" x2="92" y2="54" stroke="${LM}" stroke-width="2.2"/>
+  <line x1="46" y1="54" x2="34" y2="54" stroke="${L}" stroke-width="2"/>
+  <path d="M74,50 A9,9 0 0 0 66,45" fill="none" stroke="${LM}" stroke-width=".9"/>
+  <text x="86" y="40" fill="${LM}" font-size="4.6" font-family="sans-serif">90–100°</text>
+  <line x1="82" y1="42" x2="82" y2="56" stroke="${SH}" stroke-width=".6" stroke-dasharray="1.5 1.5"/>
+  <text x="88" y="50" fill="${SH}" font-size="4.2" font-family="sans-serif">gối không</text>
+  <text x="88" y="56" fill="${SH}" font-size="4.2" font-family="sans-serif">vượt mũi chân</text>
+  <path d="M60,60 L40,60" stroke="${LM}" stroke-width="1.1"/>
+  <path d="M40,60 l4,-2.2 l0,4.4 z" fill="${LM}"/>
+  <text x="62" y="62" fill="${LM}" font-size="4.4" font-family="sans-serif">đẩy về bằng gót + mông</text>
+  <text x="8" y="20" fill="${L}" font-size="4.6" font-family="sans-serif">Thân thẳng,</text>
+  <text x="8" y="27" fill="${L}" font-size="4.6" font-family="sans-serif">ngực hướng lên</text>`})
+,
+recover:()=>({vb:'-2 -8 138 74',cap:'Hồi vị: về base TRƯỚC khi đối thủ chạm cầu · base dịch theo cú bạn vừa đánh',
+ svg:courtBase()+
+  ['na','nb','ra','rb'].map(k=>`<path d="M${P6[k][0]},${P6[k][1]} L${P6.base[0]},${P6.base[1]}" stroke="${LM}" stroke-width="1" fill="none"/>`).join('')+
+  ['na','nb','ra','rb'].map(k=>{const dx=P6.base[0]-P6[k][0],dy=P6.base[1]-P6[k][1],l=Math.hypot(dx,dy);
+    const mx=P6[k][0]+dx*.55,my=P6[k][1]+dy*.55,ux=dx/l,uy=dy/l;
+    return `<path d="M${mx.toFixed(1)},${my.toFixed(1)} l${(-ux*4+uy*2.2).toFixed(1)},${(-uy*4-ux*2.2).toFixed(1)} l${(ux*0+ -uy*0).toFixed(1)},0 l${(ux*4-uy*2.2+ux*0).toFixed(1)},${(uy*4+ux*2.2).toFixed(1)} z" fill="${LM}"/>`}).join('')+
+  ['na','nb','ra','rb'].map(k=>dot(P6[k],W,2.2)).join('')+
+  `<circle cx="${P6.base[0]}" cy="${P6.base[1]}" r="7" fill="none" stroke="${W}" stroke-width=".7" stroke-dasharray="2 1.6"/>`+
+  dot(P6.base,W,3.2)+lab(P6.base,'BASE',0,-9)+
+  `<text x="76" y="9" fill="${LM}" font-size="4.2" font-family="sans-serif">&lt; 1,0s</text>
+   <text x="118" y="9" fill="${LM}" font-size="4.2" font-family="sans-serif">&lt; 1,3s</text>
+   <line x1="97" y1="37.5" x2="97" y2="43" stroke="${W}" stroke-width=".6"/>
+   <text x="97" y="47" fill="${W}" font-size="3.9" text-anchor="middle" font-family="sans-serif">base dịch ±0,5m theo cú vừa đánh</text>`}),
+
+defense:()=>({vb:'-4 -6 142 62',cap:'Ba lựa chọn từ CÙNG một tư thế thủ · mặc định của Momota là chặn ngắn',
+ svg:`<line x1="0" y1="50" x2="134" y2="50" stroke="${L}" stroke-width="1"/>
+  <line x1="52" y1="50" x2="52" y2="34.5" stroke="${W}" stroke-width="1.4"/>
+  <path d="M14,4 L96,34" stroke="${SH}" stroke-width="1.2" stroke-dasharray="3 2"/>
+  <path d="M96,34 l-6,-.4 l3.4,-4.4 z" fill="${SH}"/>
+  <text x="24" y="12" fill="${SH}" font-size="4.4" font-family="sans-serif">cú đập tới</text>
+  <circle cx="103" cy="36" r="2.6" fill="${W}"/>
+  <line x1="103" y1="38" x2="101" y2="50" stroke="${W}" stroke-width="1.2"/>
+  <line x1="101" y1="50" x2="94" y2="50" stroke="${W}" stroke-width="1.6"/>
+  <line x1="101" y1="50" x2="110" y2="50" stroke="${W}" stroke-width="1.6"/>
+  <text x="112" y="30" fill="${L}" font-size="4.2" font-family="sans-serif">gối chùng 30°</text>
+  <path d="M99,34 Q76,30 44,47" stroke="${LM}" stroke-width="1.2" fill="none"/>
+  <text x="60" y="30" fill="${LM}" font-size="4.4" font-family="sans-serif">a. CHẶN NGẮN ← mặc định</text>
+  <path d="M99,34 Q58,-2 8,46" stroke="${W}" stroke-width="1.1" fill="none"/>
+  <text x="12" y="22" fill="${W}" font-size="4.4" font-family="sans-serif">b. ĐẨY SÂU</text>
+  <path d="M99,34 L30,41" stroke="${L}" stroke-width="1.1" fill="none"/>
+  <text x="30" y="46" fill="${L}" font-size="4.4" font-family="sans-serif">c. ĐÔI CÔNG</text>`}),
+
+body:()=>({vb:'0 0 134 68',cap:'Ba vùng cầu đập vào người · xoay hông tạo không gian, tuyệt đối không lùi',
+ svg:`<circle cx="52" cy="16" r="7" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <path d="M40,28 L64,28 L62,54 L42,54 z" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <line x1="40" y1="30" x2="26" y2="44" stroke="${W}" stroke-width="1.1"/>
+  <line x1="64" y1="30" x2="78" y2="40" stroke="${W}" stroke-width="1.1"/>
+  <circle cx="34" cy="32" r="6" fill="${LM}" opacity=".3"/>
+  <circle cx="70" cy="32" r="6" fill="${LM}" opacity=".3"/>
+  <circle cx="52" cy="42" r="7" fill="${SH}" opacity=".3"/>
+  <text x="34" y="33.5" fill="${W}" font-size="4.6" text-anchor="middle" font-family="sans-serif">1</text>
+  <text x="70" y="33.5" fill="${W}" font-size="4.6" text-anchor="middle" font-family="sans-serif">2</text>
+  <text x="52" y="43.5" fill="${W}" font-size="4.6" text-anchor="middle" font-family="sans-serif">3</text>
+  <text x="88" y="18" fill="${LM}" font-size="4.8" font-family="sans-serif">1. Vai trái — phổ biến nhất</text>
+  <text x="92" y="25" fill="${L}" font-size="4.4" font-family="sans-serif">xoay vai phải ra trước, thumb grip</text>
+  <text x="88" y="36" fill="${LM}" font-size="4.8" font-family="sans-serif">2. Vai phải</text>
+  <text x="92" y="43" fill="${L}" font-size="4.4" font-family="sans-serif">hạ cùi chỏ, vợt ra ngoài hông</text>
+  <text x="88" y="54" fill="${SH}" font-size="4.8" font-family="sans-serif">3. Giữa bụng — khó nhất</text>
+  <text x="92" y="61" fill="${L}" font-size="4.4" font-family="sans-serif">xoay hông trái 30°, vợt xuống thấp</text>
+  <text x="14" y="62" fill="${SH}" font-size="4.4" font-family="sans-serif">✕ KHÔNG lùi</text>`}),
+
+drive:()=>({vb:'-4 -6 142 58',cap:'Drive: điểm tiếp xúc ngang vai, phía trước thân · cầu sượt mép lưới 10–20cm',
+ svg:`<line x1="0" y1="48" x2="134" y2="48" stroke="${L}" stroke-width="1"/>
+  <line x1="67" y1="48" x2="67" y2="32.5" stroke="${W}" stroke-width="1.4"/>
+  <line x1="63" y1="32.5" x2="71" y2="32.5" stroke="${W}" stroke-width="2"/>
+  <path d="M100,26 L30,30" stroke="${LM}" stroke-width="1.4" fill="none"/>
+  <path d="M30,30 l5.5,-2.2 l-.3,4.4 z" fill="${LM}"/>
+  <circle cx="100" cy="26" r="2.6" fill="${W}"/>
+  <text x="100" y="20" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">ngang vai, TRƯỚC thân</text>
+  <line x1="67" y1="30" x2="67" y2="32.5" stroke="${LM}" stroke-width=".8"/>
+  <text x="46" y="24" fill="${LM}" font-size="4.2" font-family="sans-serif">sượt mép lưới 10–20cm</text>
+  <path d="M100,32 Q84,42 62,46" stroke="${SH}" stroke-width="1" fill="none" stroke-dasharray="2.5 2"/>
+  <text x="72" y="53" fill="${SH}" font-size="4.2" font-family="sans-serif">✕ đánh dưới vai = đã bị ép, chuyển sang chặn ngắn</text>
+  <text x="106" y="38" fill="${L}" font-size="4.2" font-family="sans-serif">vung</text>
+  <text x="106" y="44" fill="${L}" font-size="4.2" font-family="sans-serif">20–30cm</text>`}),
+
+trans:()=>({vb:'-2 -8 138 74',cap:'Vòng lặp Momota: chặn ngắn → họ lên lưới → họ buộc phải nâng → bạn tấn công ở cú 3',
+ svg:courtBase()+
+  `<path d="M100,30.5 Q80,22 54,20" stroke="${LM}" stroke-width="1.2" fill="none"/>
+   <circle cx="52" cy="20" r="3.6" fill="${LM}"/><text x="52" y="21.6" fill="#12403C" font-size="4.4" text-anchor="middle" font-family="sans-serif">1</text>
+   <text x="72" y="14" fill="${LM}" font-size="4.2" text-anchor="middle" font-family="sans-serif">chặn ngắn</text>
+   <path d="M20,44 L44,24" stroke="${W}" stroke-width="1" stroke-dasharray="2 1.6"/>
+   <path d="M44,24 l-4.6,.4 l2.2,-4 z" fill="${W}"/>
+   <circle cx="18" cy="46" r="3.6" fill="${W}"/><text x="18" y="47.6" fill="#12403C" font-size="4.4" text-anchor="middle" font-family="sans-serif">2</text>
+   <text x="20" y="56" fill="${W}" font-size="4.2" font-family="sans-serif">đối thủ buộc phải lao lên lưới</text>
+   <path d="M46,22 Q76,2 122,26" stroke="${W}" stroke-width="1.1" fill="none"/>
+   <text x="84" y="6" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">họ buộc phải nâng cầu</text>
+   <circle cx="122" cy="28" r="3.6" fill="${SH}"/><text x="122" y="29.6" fill="#12403C" font-size="4.4" text-anchor="middle" font-family="sans-serif">3</text>
+   <path d="M122,28 Q86,44 22,50" stroke="${SH}" stroke-width="1.2" fill="none"/>
+   <text x="76" y="52" fill="${SH}" font-size="4.4" text-anchor="middle" font-family="sans-serif">cú 3 mới ăn điểm — không đập ở cú 1</text>`}),
+
+lift4:()=>({vb:'-2 -12 138 78',cap:'Lift tấn công: cầu rơi trong 50cm quanh vạch cuối, buộc đối thủ lùi ra SAU vạch',
+ svg:courtBase()+
+  `<rect x="0" y="4.6" width="12" height="51.8" fill="${LM}" opacity=".26"/>
+   <path d="M56,20 Q34,-6 8,14" stroke="${LM}" stroke-width="1.3" fill="none"/>
+   <path d="M56,42 Q34,68 8,48" stroke="${LM}" stroke-width="1.3" fill="none" opacity=".6"/>
+   <circle cx="58" cy="21" r="2.6" fill="${W}"/>
+   <text x="66" y="18" fill="${W}" font-size="4.4" font-family="sans-serif">bạn ở lưới, tiếp xúc CAO</text>
+   <text x="6" y="34" fill="${LM}" font-size="4.2" font-family="sans-serif" transform="rotate(-90 6 34)">vùng đích 50cm</text>
+   <line x1="-2" y1="4.6" x2="-2" y2="56.4" stroke="${SH}" stroke-width="1.4" stroke-dasharray="3 2"/>
+   <text x="10" y="-4" fill="${SH}" font-size="4.4" font-family="sans-serif">đối thủ buộc phải lùi ra sau vạch → cú đập mất lực và mất góc cắm</text>
+   <text x="94" y="-4" fill="${W}" font-size="4.4" font-family="sans-serif">ưu tiên góc trái tay</text>`}),
+
+punch:()=>({vb:'-4 -8 142 62',cap:'Punch clear phẳng và nhanh, chỉ vừa vượt tầm vợt đối thủ · so với cầu cao phòng thủ',
+ svg:`<line x1="0" y1="50" x2="134" y2="50" stroke="${L}" stroke-width="1"/>
+  <line x1="67" y1="50" x2="67" y2="34.5" stroke="${W}" stroke-width="1.4"/>
+  <line x1="34" y1="50" x2="34" y2="26" stroke="${L}" stroke-width=".8" stroke-dasharray="2 2"/>
+  <line x1="30" y1="26" x2="38" y2="26" stroke="${L}" stroke-width="1.2"/>
+  <text x="34" y="22" fill="${L}" font-size="4" text-anchor="middle" font-family="sans-serif">tầm với vợt</text>
+  <path d="M108,24 Q62,-6 10,50" stroke="${L}" stroke-width="1" fill="none" stroke-dasharray="2.5 2"/>
+  <text x="60" y="-2" fill="${L}" font-size="4.2" font-family="sans-serif">cầu cao phòng thủ (bài 02) — cao, chậm, mua thời gian</text>
+  <path d="M108,24 Q70,10 10,46" stroke="${LM}" stroke-width="1.4" fill="none"/>
+  <text x="62" y="16" fill="${LM}" font-size="4.4" font-family="sans-serif">PUNCH CLEAR — phẳng, nhanh</text>
+  <circle cx="108" cy="24" r="2.6" fill="${W}"/>
+  <text x="108" y="19" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">tiếp xúc sớm hơn 15cm</text>
+  <line x1="34" y1="26" x2="34" y2="21" stroke="${LM}" stroke-width="1"/>
+  <text x="20" y="40" fill="${LM}" font-size="4.2" font-family="sans-serif">chỉ cao hơn 30–50cm</text>
+  <rect x="0" y="48" width="14" height="2.5" fill="${LM}" opacity=".5"/>
+  <text x="7" y="57" fill="${LM}" font-size="4" text-anchor="middle" font-family="sans-serif">1m cuối</text>`}),
+
+line:()=>({vb:'-2 -10 138 78',cap:'Đường chéo dài hơn đường thẳng khoảng 15% · mặc định 70% thẳng, 30% chéo có lý do',
+ svg:courtBase()+
+  `<path d="M120,13 L14,13" stroke="${LM}" stroke-width="1.5"/>
+   <path d="M14,13 l5.5,-2.2 l-.3,4.4 z" fill="${LM}"/>
+   <text x="67" y="9" fill="${LM}" font-size="4.4" text-anchor="middle" font-family="sans-serif">THẲNG — ngắn hơn, tới nhanh hơn, hồi vị gần hơn</text>
+   <path d="M120,13 L14,48" stroke="${SH}" stroke-width="1.2" stroke-dasharray="3 2"/>
+   <path d="M14,48 l5.8,-1.3 l-1.5,4.2 z" fill="${SH}"/>
+   <text x="70" y="42" fill="${SH}" font-size="4.4" text-anchor="middle" font-family="sans-serif">CHÉO — dài hơn ~15%, bạn phải hồi vị xa hơn</text>
+   <circle cx="121" cy="13" r="2.8" fill="${W}"/>
+   <text x="67" y="66" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">Chỉ đánh chéo khi: đối thủ đã lệch · bạn có thừa thời gian · cần đổi nhịp</text>`}),
+
+tall:()=>({vb:'-2 -10 138 76',cap:'Đấu người cao: kéo họ xuống thấp ở lưới, chỉ lift khi họ đã áp sát',
+ svg:courtBase()+
+  `<rect x="47.2" y="4.6" width="19.8" height="51.8" fill="${LM}" opacity=".22"/>
+   <text x="57" y="34" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">VÙNG BẠN THẮNG</text>
+   <text x="57" y="40" fill="${L}" font-size="3.9" text-anchor="middle" font-family="sans-serif">drop + ôm lưới</text>
+   <rect x="0" y="4.6" width="26" height="51.8" fill="${SH}" opacity=".16"/>
+   <text x="13" y="30" fill="${SH}" font-size="4.2" text-anchor="middle" font-family="sans-serif">KHÔNG lift</text>
+   <text x="13" y="36" fill="${SH}" font-size="4.2" text-anchor="middle" font-family="sans-serif">vào đây</text>
+   <path d="M100,30.5 Q80,18 56,14" stroke="${LM}" stroke-width="1.2" fill="none"/>
+   <path d="M100,30.5 Q80,44 56,48" stroke="${LM}" stroke-width="1.2" fill="none"/>
+   <circle cx="101" cy="30.5" r="2.8" fill="${W}"/>
+   <path d="M100,30.5 L74,30.5" stroke="${W}" stroke-width="1.2" stroke-dasharray="2 1.6"/>
+   <text x="86" y="27" fill="${W}" font-size="3.9" text-anchor="middle" font-family="sans-serif">drive ngang hông</text>
+   <text x="67" y="-4" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">Người cao mạnh ở trên cao và ở xa — đưa trận đấu xuống thấp và vào gần</text>
+   <text x="67" y="66" fill="${LM}" font-size="4.2" text-anchor="middle" font-family="sans-serif">Chỉ lift khi họ đã bị kéo áp sát lưới, và phải lift thật cao thật sâu</text>`}),
+
+serve:()=>({vb:'-4 -8 142 60',cap:'Giao cầu thấp: đỉnh cầu ngay trên băng lưới, rơi trong 15cm sau vạch giao cầu ngắn',
+ svg:`<line x1="0" y1="48" x2="134" y2="48" stroke="${L}" stroke-width="1"/>
+  <line x1="67" y1="48" x2="67" y2="32.5" stroke="${W}" stroke-width="1.4"/>
+  <line x1="62" y1="32.5" x2="72" y2="32.5" stroke="${W}" stroke-width="2.4"/>
+  <text x="67" y="28" fill="${W}" font-size="4" text-anchor="middle" font-family="sans-serif">băng lưới</text>
+  <line x1="47.2" y1="48" x2="47.2" y2="42" stroke="${LM}" stroke-width="1.2"/>
+  <text x="42" y="56" fill="${LM}" font-size="4" text-anchor="middle" font-family="sans-serif">vạch giao cầu ngắn</text>
+  <rect x="41.2" y="46.5" width="6" height="2.5" fill="${LM}" opacity=".55"/>
+  <path d="M96,40 Q80,31 67,32.5 Q56,34 44,48" stroke="${LM}" stroke-width="1.4" fill="none"/>
+  <circle cx="96" cy="40" r="2.4" fill="${W}"/>
+  <line x1="102" y1="48" x2="102" y2="40" stroke="${SH}" stroke-width="1"/>
+  <line x1="99" y1="40" x2="105" y2="40" stroke="${SH}" stroke-width="1.4"/>
+  <text x="108" y="38" fill="${SH}" font-size="4.2" font-family="sans-serif">tối đa 1,15m</text>
+  <text x="108" y="44" fill="${L}" font-size="4" font-family="sans-serif">luật BWF</text>
+  <path d="M96,40 Q76,22 40,44" stroke="${SH}" stroke-width="1" fill="none" stroke-dasharray="2.5 2"/>
+  <text x="66" y="16" fill="${SH}" font-size="4.2" text-anchor="middle" font-family="sans-serif">✕ giao bồng = bị tạt chết ngay</text>
+  <text x="10" y="20" fill="${L}" font-size="4.2" font-family="sans-serif">đích: trong 15cm</text>
+  <text x="10" y="26" fill="${L}" font-size="4.2" font-family="sans-serif">sau vạch</text>`})
+};
+function diagram(key){
+  if(!key||!DIA[key])return '';
+  const d=DIA[key]();
+  return `<div class="dia"><svg viewBox="${d.vb}" xmlns="http://www.w3.org/2000/svg">${d.svg}</svg><div class="diacap">${d.cap}</div></div>`;
+}
+/* ================= RENDER ================= */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const tk=q=>'https://www.tiktok.com/search?q='+encodeURIComponent(q);
+const ALL=[...A,...B,...D,...E,...C];
+const NUM={};ALL.forEach((x,i)=>NUM[x.id]=String(i+1).padStart(2,'0'));
+$('#stEx').textContent=ALL.length;
+$('#stKw').textContent=ALL.reduce((s,x)=>s+x.kw.vi.length+x.kw.en.length,0);
+$('#stDia').textContent=[...new Set(ALL.map(x=>x.dia).filter(Boolean))].length;
+
+/* Truy vấn riêng cho footage Momota. Nhóm C không có vì là bài thể lực. */
+const MOMO={
+ A1:'Kento Momota grip technique slow motion',
+ A2:'Kento Momota deception slow motion analysis',
+ A3:'Kento Momota forearm pronation racket head speed slow motion',
+ A4:'Kento Momota net shot slow motion',
+ A5:'Kento Momota backhand slow motion',
+ B1:'Kento Momota split step footwork analysis',
+ B2:'Kento Momota footwork analysis slow motion',
+ B3:'Kento Momota smash standing technique slow motion',
+ B4:'Kento Momota lunge net footwork slow motion',
+ B5:'Kento Momota full match movement analysis',
+ B6:'Kento Momota transitional step recovery footwork analysis',
+ D1:'Kento Momota defence analysis slow motion',
+ D2:'Kento Momota body defence block slow motion',
+ D3:'Kento Momota drive flat exchange slow motion',
+ D4:'Kento Momota defence to attack transition analysis',
+ E1:'Kento Momota lift lob to corners tactic analysis',
+ E2:'Kento Momota punch clear slow motion',
+ E3:'Kento Momota straight shot tactics analysis',
+ E4:'Momota vs Axelsen tactical analysis',
+ E5:'Kento Momota serve slow motion'
+};
+
+/* hero art */
+$('#heroArt').innerHTML=`<svg viewBox="-3 -10 140 82" xmlns="http://www.w3.org/2000/svg">
+${courtBase()}
+<path d="M97,30.5 Q76,6 20,13" stroke="${W}" stroke-width="1" fill="none"/>
+<path d="M97,30.5 Q76,55 20,48" stroke="${W}" stroke-width="1" fill="none" opacity=".55"/>
+<path d="M97,30.5 Q80,24 56,15" stroke="${LM}" stroke-width="1" fill="none" stroke-dasharray="2 1.6"/>
+<path d="M97,30.5 Q80,37 56,46" stroke="${LM}" stroke-width="1" fill="none" stroke-dasharray="2 1.6"/>
+<circle cx="97" cy="30.5" r="3.2" fill="${W}"/>
+<text x="97" y="24" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">BẠN</text>
+<text x="20" y="66" fill="${L}" font-size="4.4" font-family="sans-serif">Điều 4 góc sâu — kéo giãn đối thủ</text>
+</svg>`;
+
+function exRow(x){
+  const kws=[...x.kw.vi.map(k=>['VN',k,'']),...x.kw.en.map(k=>['EN',k,'e'])];
+  const copy=[...x.kw.vi,...x.kw.en].join('\n').replace(/"/g,'&quot;');
+  return `<div class="ex" data-id="${x.id}">
+  <div class="exh">
+    <div class="num">(${NUM[x.id]})</div>
+    <div class="ext"><h3>${x.t}</h3><div class="sub"><i>${x.jp}</i> · ${x.en}</div></div>
+    <div class="tick">✓</div>
+    <div class="arw">→</div>
+  </div>
+  <div class="exb">
+    <div class="blk"><div class="blab">Học từ Momota điểm gì</div><p>${x.goal}</p></div>
+    ${diagram(x.dia)}
+    <div class="blk"><div class="blab">Hướng dẫn từng bước</div><ol class="st2">${x.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
+      ${x.note?`<div class="callout"><b>Điều chỉnh cho 1m64 · 32 tuổi —</b> ${x.note}</div>`:''}
+      ${x.warn?`<div class="callout warn"><b>Cảnh báo chấn thương —</b> ${x.warn}</div>`:''}
+    </div>
+    <div class="blk"><div class="blab">Khối lượng tập luyện</div>
+      <div class="vol">${x.vol.map(v=>`<div class="vc"><span>${v[0]}</span><b>${v[1]}</b></div>`).join('')}</div>
+      ${x.vnote?`<div class="vnote">${x.vnote}</div>`:''}
+    </div>
+    <div class="blk"><div class="blab">Video</div>
+      <div data-saved="${x.id}"></div>
+      <div class="vidrow">
+        ${MOMO[x.id]?`<a class="vbtn" href="${yt(MOMO[x.id])}" target="_blank" rel="noopener"><span>Xem Momota làm<small>Footage trận đấu &amp; phân tích chậm</small></span><span class="ic">↗</span></a>`:''}
+        <a class="vbtn alt" href="${yt(x.kw.en[0])}" target="_blank" rel="noopener"><span>Học cách làm<small>Video hướng dẫn kỹ thuật</small></span><span class="ic">↗</span></a>
+      </div>
+      ${MOMO[x.id]?'':`<div class="vnote">Bài nền tảng thể lực — không có footage Momota tương ứng, chỉ dùng video hướng dẫn.</div>`}
+      <div class="vsave">
+        <div class="vt">Tìm được video ưng ý? Dán link YouTube vào đây — app sẽ lưu lại trên máy bạn và nhúng sẵn cho những lần sau, không phải tìm lại.</div>
+        <div class="vform">
+          <input type="text" inputmode="url" placeholder="https://www.youtube.com/watch?v=..." data-vin="${x.id}">
+          <button data-vsave="${x.id}">Lưu</button>
+        </div>
+        <div class="verr" data-verr="${x.id}">Chưa nhận ra link YouTube. Dán dạng youtube.com/watch?v=… hoặc youtu.be/…</div>
+      </div>
+      <details class="kwd"><summary>Tất cả ${kws.length} từ khoá tìm kiếm (VN + EN)</summary>
+        <div class="kwl">${kws.map(k=>`<a class="kwi" href="${yt(k[1])}" target="_blank" rel="noopener"><span class="tg ${k[2]}">${k[0]}</span>${k[1]}<span class="go">↗</span></a>`).join('')}</div>
+        <div class="kwact">
+          <button class="mb solid" data-copy="${copy}">Copy tất cả từ khoá</button>
+          <a class="mb" href="${tk(x.kw.en[0])}" target="_blank" rel="noopener">Tìm trên TikTok ↗</a>
+        </div>
+      </details>
+    </div>
+    <div class="mark"><input type="checkbox" id="ck-${x.id}" data-ck="${x.id}"><label for="ck-${x.id}">Đã tập thuần thục bài này</label></div>
+  </div></div>`;
+}
+
+const BODY={
+ A:()=>A.map(exRow).join(''),
+ B:()=>B.map(exRow).join(''),
+ C:()=>C.map(exRow).join(''),
+ D:()=>D.map(exRow).join(''),
+ E:()=>E.map(exRow).join(''),
+ SCH:()=>{
+  const wk=(arr)=>arr.map(d=>`<div class="wk ${d.type}">
+   <div class="wkd"><b>${d.d}</b><span>${d.k}</span></div>
+   <div class="wkb"><h4>${d.h}</h4><p>${d.p}</p>
+   <div class="chips">${d.tags.map(t=>`<span class="chip ${t[1]}">${t[0]}</span>`).join('')}</div></div></div>`).join('');
+  return `<div class="blab" style="margin:6px 0 12px">Tuần 1 — Xây nền kỹ thuật</div>`+wk(SCHEDULE)
+   +`<div class="blab" style="margin:30px 0 12px">Tuần 2 — Thêm phòng thủ và chiến thuật</div>`+wk(SCHEDULE2)
+   +`<div class="callout" style="margin-top:18px"><b>Nguyên tắc vàng —</b> Nếu buổi sân rơi vào ngày khác, giữ nguyên thứ tự: luôn có ít nhất một ngày nghỉ hoàn toàn giữa hai buổi sân, và buổi khô nặng nhất (bài 23 gối và háng) không đặt ngay trước buổi sân.</div>`
+   +`<div class="callout warn"><b>25 bài không có nghĩa là tập cả 25 mỗi tuần.</b> Mỗi buổi khô chỉ 4–5 bài, mỗi buổi sân 3–4 bài. Các bài chiến thuật (18, 19, 15) không tốn thời gian tập vì chúng là thay đổi trong quyết định, áp dụng ngay trong lúc đánh.</div>`;},
+ RULE:()=>RULES.map(r=>`<div class="rl"><div class="wl">${r.w}</div><h4>${r.t}</h4><p>${r.d}</p>
+   <div class="why"><b>Vì sao:</b> ${r.why}</div></div>`).join('')
+  +`<div class="callout warn"><b>Chấp nhận thua trong 2 tuần đầu.</b> Bỏ bật nhảy đập sẽ làm bạn mất điểm ăn ngay và có cảm giác yếu đi. Đây là dấu hiệu ĐÚNG — bạn đang buộc mình tìm điểm ăn bằng vị trí và nhịp độ thay vì bằng lực. Nếu tuần 1 bạn vẫn thắng dễ, nghĩa là bạn chưa thực sự bỏ thói quen cũ.</div>`,
+ KPI:()=>KPIS.map((k,i)=>`<div class="kp"><div class="kpn">(${String(i+1).padStart(2,'0')})</div>
+   <div class="kpb"><h4>${k.t}</h4><p>${k.m}</p><div class="goal">Mục tiêu: ${k.g}</div></div></div>`).join('')
+  +`<div class="callout" style="margin-top:18px"><b>Cách quay video tự đánh giá —</b> đặt điện thoại trên chân ba chân hoặc dựa vào túi vợt, chiều cao ngang ngực, góc chéo 45° từ phía trước bên tay thuận. Quay slow-motion 120fps nếu máy hỗ trợ. Xem lại bằng cách tua từng khung hình ở thời điểm vợt ở sau lưng.</div>`,
+ ROAD:()=>ROAD.map((r,i)=>`<div class="ph ${r.now?'now':''}"><div class="phn">(${String(i+1).padStart(2,'0')})</div>
+   <div class="phb"><div class="wl">${r.w}${r.now?' · Đang mở':''}</div><h4>${r.t}</h4><p>${r.d}</p>
+   <div class="sh1">${r.jp}</div></div></div>`).join('')
+};
+
+$('#nav').innerHTML=SECTIONS.map((s,i)=>`<button class="nb ${i===0?'on':''}" data-s="${s.id}">${s.nav}</button>`).join('');
+SECTIONS.forEach(s=>{
+  $('#s-'+s.id).innerHTML=`<div class="sh"><h2><span class="shjp">${s.jp}</span>${s.h2}</h2><div class="shp">${s.p}</div></div>`+BODY[s.list]();
+});
+
+/* ---- interactions ---- */
+document.addEventListener('click',e=>{
+  const h=e.target.closest('.exh');
+  if(h&&!e.target.closest('.mark')){h.parentElement.classList.toggle('open');return;}
+  const fac=e.target.closest('.vfac');
+  if(fac&&!fac.classList.contains('playing')){
+    const v=fac.getAttribute('data-play');
+    fac.classList.add('playing');
+    fac.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${v}?autoplay=1&rel=0" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>`;
+    return;}
+  const sv=e.target.closest('[data-vsave]');
+  if(sv){saveVid(sv.getAttribute('data-vsave'));return;}
+  const dl=e.target.closest('[data-vdel]');
+  if(dl){const id=dl.getAttribute('data-vdel');store.set('mv-'+id,'');renderSaved(id);return;}
+  const cp=e.target.closest('[data-copy]');
+  if(cp){const t=cp.getAttribute('data-copy');
+    const ok=()=>{const o=cp.textContent;cp.textContent='Đã copy ✓';setTimeout(()=>cp.textContent=o,1600);};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok).catch(()=>fb(t,ok));
+    else fb(t,ok);}
+});
+function fb(t,cb){const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';
+  document.body.appendChild(a);a.select();try{document.execCommand('copy');cb();}catch(e){}a.remove();}
+
+$$('.nb').forEach(b=>b.addEventListener('click',()=>{
+  $$('.nb').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  $$('section').forEach(s=>s.classList.remove('on'));
+  $('#s-'+b.dataset.s).classList.add('on');
+  const n=document.querySelector('nav');
+  window.scrollTo({top:n.offsetTop-1,behavior:'smooth'});
+}));
+
+$('#startBtn').addEventListener('click',()=>{
+  const f=$('#s-a .ex');if(f){f.classList.add('open');
+  window.scrollTo({top:f.offsetTop-70,behavior:'smooth'});}
+});
+
+/* ---- storage ---- */
+const mem={};
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},
+  set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}};
+$('#dots').innerHTML=ALL.map(()=>'<i class="dot"></i>').join('');
+const DOTS=$$('.dot'),CK=$$('[data-ck]');
+CK.forEach((c,i)=>{
+  if(store.get('mc-'+c.dataset.ck)==='1'){c.checked=true;c.closest('.ex').classList.add('done')}
+  c.addEventListener('change',()=>{store.set('mc-'+c.dataset.ck,c.checked?'1':'0');
+    c.closest('.ex').classList.toggle('done',c.checked);prog()});
+});
+/* ---- video người dùng tự lưu ---- */
+function parseYT(u){
+  u=(u||'').trim();
+  const m=u.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);
+  if(m)return m[1];
+  if(/^[A-Za-z0-9_-]{11}$/.test(u))return u;
+  return null;
+}
+function renderSaved(id){
+  const box=document.querySelector('[data-saved="'+id+'"]');if(!box)return;
+  const v=store.get('mv-'+id);
+  if(!v){box.innerHTML='';return;}
+  box.innerHTML='<div class="vfac" data-play="'+v+'" style="background-image:url(https://i.ytimg.com/vi/'+v+'/hqdefault.jpg)"></div>'
+   +'<div class="vmeta"><span>Video bạn đã lưu</span><a href="https://www.youtube.com/watch?v='+v+'" target="_blank" rel="noopener">mở trên YouTube ↗</a>'
+   +'<button data-vdel="'+id+'">Xoá</button></div>';
+}
+function saveVid(id){
+  const inp=document.querySelector('[data-vin="'+id+'"]');
+  const err=document.querySelector('[data-verr="'+id+'"]');
+  const v=parseYT(inp?inp.value:'');
+  if(!v){if(err)err.classList.add('on');return;}
+  if(err)err.classList.remove('on');
+  store.set('mv-'+id,v);inp.value='';renderSaved(id);
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&e.target&&e.target.hasAttribute&&e.target.hasAttribute('data-vin')){
+    e.preventDefault();saveVid(e.target.getAttribute('data-vin'));}
+});
+ALL.forEach(x=>renderSaved(x.id));
+
+function prog(){const n=CK.filter(c=>c.checked).length;
+  DOTS.forEach((d,i)=>d.classList.toggle('on',i<n));
+  $('#pcount').textContent=n+' / '+CK.length;}
+prog();
+
+/* ---- timer ---- */
+let iv=null,left=40,rest=false,work=40,brk=45,run=false;
+const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+function draw(){$('#clock').textContent=fmt(left);
+  $('#clock').classList.toggle('rest',rest);
+  $('#tlab').textContent=rest?'Nghỉ giữa hiệp':'Đang tập';
+  $('#tsub').textContent=run?(rest?'Thả lỏng, thở sâu':'Giữ chất lượng kỹ thuật'):'Bấm bắt đầu';}
+function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();
+  o.connect(g);g.connect(c.destination);o.frequency.value=rest?620:900;g.gain.setValueAtTime(.16,c.currentTime);
+  g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.34);o.start();o.stop(c.currentTime+.35)}catch(e){}}
+function mode(){const v=$('#tmode').value.split(',');work=+v[0];brk=+v[1]}
+$('#tmode').addEventListener('change',()=>{mode();if(!run){rest=false;left=work;draw()}});
+mode();left=work;draw();
+$('#tgo').addEventListener('click',()=>{
+  if(run){clearInterval(iv);run=false;$('#tgo').textContent='Tiếp';draw();return}
+  run=true;$('#tgo').textContent='Dừng';draw();
+  iv=setInterval(()=>{left--;if(left<=0){beep();rest=!rest;left=rest?brk:work}draw()},1000);});
+$('#trs').addEventListener('click',()=>{clearInterval(iv);run=false;rest=false;left=work;$('#tgo').textContent='Bắt đầu';draw()});
+</script>
+<script>
+/* Service worker: cho phép mở app offline ngoài sân. Chỉ chạy khi phục vụ qua https (GitHub Pages). */
+if('serviceWorker' in navigator && location.protocol==='https:'){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>
