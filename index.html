@@ -169,6 +169,31 @@ ol.st2 li::before{content:"(" counter(c,decimal-leading-zero) ")";flex:0 0 auto;
 .dlr{display:flex;gap:10px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.92)}
 .dls{flex:0 0 auto;width:11px;height:11px;border-radius:3px;margin-top:4px}
 
+/* ---------- COMPARE (sơ đồ ↔ ảnh thật) ---------- */
+.cmp{position:relative;margin-top:6px;border-radius:12px;overflow:hidden;background:var(--teal);
+  aspect-ratio:4/3;max-height:380px;touch-action:none;-webkit-user-select:none;user-select:none}
+.cmp-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.cmp-dia{position:absolute;inset:0;background:var(--teal);display:flex;align-items:center;justify-content:center;padding:10px}
+.cmp-dia svg{width:100%;height:100%}
+.cmp-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px);pointer-events:none}
+.cmp-knob{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;
+  background:#fff;color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;
+  box-shadow:0 2px 9px rgba(0,0,0,.4);cursor:ew-resize}
+.cmp-tag{position:absolute;top:8px;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 8px;border-radius:100px;background:rgba(0,0,0,.45);color:#fff}
+.cmp-tag.l{left:8px}.cmp-tag.r{right:8px}
+.cmp-empty{position:absolute;left:0;right:0;bottom:9px;text-align:center;font-size:11.5px;color:rgba(255,255,255,.72)}
+.cmp:not(.has) .cmp-handle,.cmp:not(.has) .cmp-tag{display:none}
+.cmp.has .cmp-empty{display:none}
+.cmp.has{cursor:ew-resize}
+.picnote{font-size:12.8px;color:var(--gray);margin-top:10px;line-height:1.55}.picnote b{color:var(--teal);font-weight:700}
+.picform{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.picform input[data-purl]{flex:1 1 150px;min-width:0;font-family:inherit;font-size:12.5px;padding:10px 11px;
+  border:1px solid var(--line2);border-radius:9px;background:#fff;color:var(--ink)}
+.picform input[data-purl]:focus{outline:none;border-color:var(--teal2)}
+.picup{font-family:inherit;font-size:12.5px;font-weight:700;padding:10px 15px;border-radius:9px;background:var(--teal);color:#fff;cursor:pointer;white-space:nowrap}
+.picdel{font-family:inherit;font-size:12px;background:none;border:none;color:var(--gray2);text-decoration:underline;cursor:pointer}
+
 .kwl{margin-top:2px}
 .kwi{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid var(--line);
   color:var(--ink);text-decoration:none;font-size:14px}
@@ -1274,6 +1299,39 @@ function diagram(key){
   const leg=d.legend?`<div class="dialeg">${d.legend.map(r=>`<div class="dlr"><span class="dls" style="background:${r.c||'#4FBFAE'}"></span><span>${r.t}</span></div>`).join('')}</div>`:'';
   return `<div class="dia"><svg viewBox="${d.vb}" xmlns="http://www.w3.org/2000/svg">${d.svg}</svg>${leg}<div class="diacap">${d.cap}</div></div>`;
 }
+function diaSVG(key){if(!key||!DIA[key])return '';const d=DIA[key]();return `<svg viewBox="${d.vb}" xmlns="http://www.w3.org/2000/svg">${d.svg}</svg>`;}
+
+/* Thanh trượt so sánh sơ đồ ↔ ảnh thật — chỉ cho các bài kỹ thuật tay/chân.
+   Mỗi mục: t = tên động tác, see = góc nhìn HLV (ảnh đúng cần thấy gì), q = từ khoá tìm ảnh. */
+const TECHPIC={
+ A1:{t:'Grip trung tính',see:'Cận bàn tay cầm vợt — thấy rõ chữ V giữa ngón cái và ngón trỏ nằm trên cạnh vát, các ngón nắm lỏng.',q:'badminton neutral grip hand close up'},
+ A3:{t:'Xoay cẳng tay',see:'Cận cẳng tay và vợt — lòng bàn tay lật từ ngửa sang sấp, cổ tay giữ thẳng, không bẻ lên xuống.',q:'badminton forearm pronation technique demonstration'},
+ A4:{t:'Ôm lưới',see:'Chụp ngang lưới — tay duỗi gần thẳng, điểm tiếp xúc cao hơn mép lưới, bước lunge nông, mặt vợt mở.',q:'badminton net shot lunge technique side view'},
+ B1:{t:'Split-step',see:'Khoảnh khắc nhún — hai chân hơi rời sàn, tiếp đất bằng ức bàn chân, gối chùng, thân đổ nhẹ về trước.',q:'badminton split step footwork ready position'},
+ B3:{t:'Đánh cuối sân xoay hông',see:'Nghiêng người ở cuối sân — chân sau xoay ra ngoài, hông và vai mở, chân chạm đất (không bật nhảy), thân ngả như cây cung.',q:'badminton around the head forehand standing technique'},
+ B4:{t:'Lunge',see:'Chụp nghiêng — gót chạm đất trước, gối trước gập khoảng 90–100° và không vượt mũi chân, thân thẳng, ngực hướng lên.',q:'badminton lunge technique footwork net'},
+ D2:{t:'Đỡ đập vào người',see:'Chính diện — xoay vai tạo không gian, vợt đưa ra trước thân dùng thumb grip, không lùi người.',q:'badminton body defense block technique'}
+};
+const gimg=q=>'https://www.google.com/search?udm=2&q='+encodeURIComponent(q);
+function techpic(id,diakey){
+  const t=TECHPIC[id];if(!t)return '';
+  return `<div class="blk"><div class="blab">Ảnh thật đối chiếu · góc nhìn HLV</div>
+   <div class="cmp" data-cmp="${id}">
+     <img class="cmp-photo" alt="Ảnh thật động tác ${t.t}" hidden>
+     <div class="cmp-dia">${diaSVG(diakey)}</div>
+     <span class="cmp-tag l">Sơ đồ</span><span class="cmp-tag r">Ảnh thật</span>
+     <div class="cmp-handle"><div class="cmp-knob">⇄</div></div>
+     <div class="cmp-empty">Chưa có ảnh — gắn ảnh thật rồi kéo để so sánh</div>
+   </div>
+   <div class="picnote"><b>Ảnh đúng cần thấy —</b> ${t.see}</div>
+   <div class="picform">
+     <input type="text" inputmode="url" placeholder="Dán link ảnh rồi Enter (hiện khi có mạng)" data-purl="${id}">
+     <label class="picup">Tải ảnh từ máy<input type="file" accept="image/*" data-pfile="${id}" hidden></label>
+     <a class="mb" href="${gimg(t.q)}" target="_blank" rel="noopener">Tìm ảnh đúng động tác ↗</a>
+     <button class="picdel" data-pdel="${id}" hidden>Xoá ảnh</button>
+   </div>
+  </div>`;
+}
 /* ================= RENDER ================= */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
@@ -1335,6 +1393,7 @@ function exRow(x){
   <div class="exb">
     <div class="blk"><div class="blab">Học từ Momota điểm gì</div><p>${x.goal}</p></div>
     ${diagram(x.dia)}
+    ${techpic(x.id,x.dia)}
     <div class="blk"><div class="blab">Hướng dẫn từng bước</div><ol class="st2">${x.steps.map(s=>`<li>${s}</li>`).join('')}</ol>
       ${x.note?`<div class="callout"><b>Điều chỉnh cho 1m64 · 32 tuổi —</b> ${x.note}</div>`:''}
       ${x.warn?`<div class="callout warn"><b>Cảnh báo chấn thương —</b> ${x.warn}</div>`:''}
@@ -1503,6 +1562,57 @@ document.addEventListener('keydown',e=>{
     e.preventDefault();saveVid(e.target.getAttribute('data-vin'));}
 });
 ALL.forEach(x=>renderSaved(x.id));
+
+/* ---- ảnh thật ↔ sơ đồ: thanh trượt so sánh ---- */
+function setCmp(cmp,pct){
+  pct=Math.max(0,Math.min(100,pct));
+  const dia=cmp.querySelector('.cmp-dia'),h=cmp.querySelector('.cmp-handle');
+  dia.style.clipPath='inset(0 '+(100-pct)+'% 0 0)';
+  h.style.left=pct+'%';
+}
+function renderPhoto(id){
+  const cmp=document.querySelector('[data-cmp="'+id+'"]');if(!cmp)return;
+  const img=cmp.querySelector('.cmp-photo'),del=document.querySelector('[data-pdel="'+id+'"]');
+  const v=store.get('mp-'+id);
+  if(v){img.src=v;img.hidden=false;cmp.classList.add('has');if(del)del.hidden=false;setCmp(cmp,50);}
+  else{img.removeAttribute('src');img.hidden=true;cmp.classList.remove('has');if(del)del.hidden=true;
+    cmp.querySelector('.cmp-dia').style.clipPath='none';}
+}
+(function(){
+  let drag=null;
+  const move=e=>{if(!drag)return;const r=drag.getBoundingClientRect();setCmp(drag,(e.clientX-r.left)/r.width*100);};
+  document.addEventListener('pointerdown',e=>{const c=e.target.closest('.cmp.has');if(!c)return;drag=c;move(e);});
+  document.addEventListener('pointermove',move);
+  document.addEventListener('pointerup',()=>{drag=null;});
+})();
+function resizeImg(file,cb){
+  const fr=new FileReader();
+  fr.onload=()=>{const im=new Image();im.onload=()=>{
+    const max=820;let w=im.width,h=im.height;
+    if(w>max||h>max){if(w>=h){h=Math.round(h*max/w);w=max;}else{w=Math.round(w*max/h);h=max;}}
+    const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+    cv.getContext('2d').drawImage(im,0,0,w,h);
+    try{cb(cv.toDataURL('image/jpeg',0.7));}catch(err){cb(null);}};
+    im.onerror=()=>cb(null);im.src=fr.result;};
+  fr.onerror=()=>cb(null);fr.readAsDataURL(file);
+}
+document.addEventListener('change',e=>{
+  const f=e.target.closest('[data-pfile]');if(!f||!f.files||!f.files[0])return;
+  const id=f.getAttribute('data-pfile');
+  resizeImg(f.files[0],d=>{if(d){store.set('mp-'+id,d);renderPhoto(id);}f.value='';});
+});
+document.addEventListener('keydown',e=>{
+  const el=e.target;
+  if(e.key==='Enter'&&el&&el.hasAttribute&&el.hasAttribute('data-purl')){
+    e.preventDefault();const id=el.getAttribute('data-purl'),u=(el.value||'').trim();
+    if(/^https?:\/\//i.test(u)){store.set('mp-'+id,u);el.value='';renderPhoto(id);}
+  }
+});
+document.addEventListener('click',e=>{
+  const d=e.target.closest('[data-pdel]');
+  if(d){store.set('mp-'+d.getAttribute('data-pdel'),'');renderPhoto(d.getAttribute('data-pdel'));}
+});
+ALL.forEach(x=>{if(TECHPIC[x.id])renderPhoto(x.id);});
 
 function prog(){const n=CK.filter(c=>c.checked).length;
   DOTS.forEach((d,i)=>d.classList.toggle('on',i<n));
