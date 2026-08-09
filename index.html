@@ -165,6 +165,9 @@ ol.st2 li::before{content:"(" counter(c,decimal-leading-zero) ")";flex:0 0 auto;
 .dia{margin-top:13px;background:var(--teal);border-radius:12px;padding:14px}
 .dia svg{display:block;width:100%;height:auto}
 .diacap{font-size:11.5px;color:rgba(169,224,213,.85);margin-top:9px;text-align:center;letter-spacing:.02em}
+.dialeg{margin-top:13px;display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid rgba(169,224,213,.22)}
+.dlr{display:flex;gap:10px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.92)}
+.dls{flex:0 0 auto;width:11px;height:11px;border-radius:3px;margin-top:4px}
 
 .kwl{margin-top:2px}
 .kwi{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid var(--line);
@@ -953,7 +956,7 @@ court6:()=>({vb:'-2 -8 138 74',cap:'Sáu điểm di chuyển trên nửa sân c�
   dot(P6.base,W,3.4)+lab(P6.base,'BASE',0,-5.5)+
   lab(P6.na,'1',0,-4)+lab(P6.nb,'2',0,7)+lab(P6.ma,'3',0,-3.5)+lab(P6.mb,'4',0,7.5)+lab(P6.ra,'5',0,-4)+lab(P6.rb,'6',0,7)}),
 
-court4:()=>({vb:'-2 -8 138 74',cap:'Bốn góc sâu cần điều tới — mục tiêu kéo giãn đối thủ theo trục dọc',
+court4:()=>({vb:'-2 -8 138 74',cap:'Bốn góc cần điều tới: 2 góc sâu + 2 góc lưới — kéo giãn đối thủ theo trục dọc',
  svg:courtBase()+
   `<rect x="7.6" y="4.6" width="18" height="24" fill="${LM}" opacity=".22"/>
    <rect x="7.6" y="32.4" width="18" height="24" fill="${LM}" opacity=".22"/>
@@ -981,7 +984,12 @@ side:()=>({vb:'-4 -6 142 62',cap:'Ba đường cầu từ CÙNG một điểm ch
   <text x="52" y="42" fill="${LM}" font-size="4.2" font-family="sans-serif">BỎ NHỎ</text>
   <text x="40" y="30" fill="${SH}" font-size="4.2" font-family="sans-serif">HALF-SMASH</text>`}),
 
-grip:()=>({vb:'0 0 134 74',cap:'Mặt cắt cán vợt · chữ V nằm trên cạnh vát 2 = grip thuận · xoay 45° sang thumb grip',
+grip:()=>({vb:'6 2 68 70',cap:'Mặt cắt cán vợt nhìn từ đuôi cán · 8 cạnh vát được đánh số',
+ legend:[
+  {c:LM,t:'Chữ V (giữa ngón cái và trỏ) nằm trên cạnh vát số 2 = grip thuận tay'},
+  {c:W,t:'Xoay cán 45° sang cạnh rộng = thumb grip (trái tay)'},
+  {c:L,t:'Chỉ cán vợt xoay trong lòng bàn tay — cổ tay và cánh tay KHÔNG di chuyển'}
+ ],
  svg:(()=>{let s='';const cx=40,cy=37,r=20;
   let pts=[];for(let i=0;i<8;i++){const a=(i*45-22.5)*Math.PI/180;pts.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]);}
   s+=`<polygon points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="${L}" stroke-width="1"/>`;
@@ -990,84 +998,86 @@ grip:()=>({vb:'0 0 134 74',cap:'Mặt cắt cán vợt · chữ V nằm trên c�
   const a2=45*Math.PI/180;
   s+=`<line x1="${cx}" y1="${cy}" x2="${(cx+r*Math.cos(a2)).toFixed(1)}" y2="${(cy+r*Math.sin(a2)).toFixed(1)}" stroke="${LM}" stroke-width="1.6"/>`;
   s+=`<circle cx="${(cx+r*Math.cos(a2)).toFixed(1)}" cy="${(cy+r*Math.sin(a2)).toFixed(1)}" r="2.4" fill="${LM}"/>`;
-  const a3=0;
   s+=`<line x1="${cx}" y1="${cy}" x2="${cx+r}" y2="${cy}" stroke="${W}" stroke-width="1.2" stroke-dasharray="2 1.5"/>`;
   s+=`<path d="M${(cx+13).toFixed(1)},${cy} A13,13 0 0 0 ${(cx+13*Math.cos(a2)).toFixed(1)},${(cy+13*Math.sin(a2)).toFixed(1)}" fill="none" stroke="${W}" stroke-width=".8"/>`;
-  s+=`<text x="${cx+17}" y="${cy+11}" fill="${W}" font-size="4.2" font-family="sans-serif">45°</text>`;
-  s+=`<circle cx="85" cy="20" r="2.4" fill="${LM}"/><text x="92" y="21.5" fill="${W}" font-size="5" font-family="sans-serif">Chữ V — grip thuận (cạnh 2)</text>`;
-  s+=`<line x1="82.6" y1="35" x2="87.4" y2="35" stroke="${W}" stroke-width="1.2" stroke-dasharray="2 1.5"/><text x="92" y="36.5" fill="${W}" font-size="5" font-family="sans-serif">Thumb grip — trái tay</text>`;
-  s+=`<text x="85" y="52" fill="${L}" font-size="4.6" font-family="sans-serif">Chỉ cán vợt xoay trong lòng bàn tay.</text>`;
-  s+=`<text x="85" y="60" fill="${L}" font-size="4.6" font-family="sans-serif">Cổ tay và cánh tay KHÔNG di chuyển.</text>`;
+  s+=`<text x="${cx+16}" y="${cy+11}" fill="${W}" font-size="4.6" font-family="sans-serif">45°</text>`;
   return s;})()}),
 
-pron:()=>({vb:'0 0 134 66',cap:'Xoay cẳng tay 180° · cổ tay giữ thẳng · pha sấp nhanh, pha ngửa chậm 2 giây',
- svg:`<line x1="14" y1="52" x2="60" y2="52" stroke="${L}" stroke-width="1.6"/>
-  <text x="37" y="59" fill="${L}" font-size="4.4" text-anchor="middle" font-family="sans-serif">cẳng tay cố định</text>
+pron:()=>({vb:'8 2 102 62',cap:'Xoay cẳng tay: mặt vợt lật từ cạnh (ngửa) sang úp (sấp)',
+ legend:[
+  {c:LM,t:'Pha xoay sang SẤP làm nhanh (sinh lực); pha xoay về NGỬA làm chậm 2 giây (xây gân)'},
+  {c:SH,t:'✕ KHÔNG bẻ cổ tay lên xuống — chỉ xoay quanh trục cẳng tay, biên độ tới ~180°'}
+ ],
+ svg:`<line x1="16" y1="52" x2="60" y2="52" stroke="${L}" stroke-width="1.6"/>
+  <text x="38" y="59" fill="${L}" font-size="4.4" text-anchor="middle" font-family="sans-serif">cẳng tay cố định</text>
   <circle cx="60" cy="52" r="2.6" fill="${W}"/>
   <line x1="60" y1="52" x2="60" y2="18" stroke="${W}" stroke-width="1.3"/>
   <ellipse cx="60" cy="14" rx="3" ry="6" fill="none" stroke="${W}" stroke-width="1.1"/>
-  <text x="60" y="8" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">NGỬA</text>
+  <text x="60" y="8" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">NGỬA</text>
   <line x1="60" y1="52" x2="94" y2="34" stroke="${LM}" stroke-width="1.3"/>
   <ellipse cx="97" cy="32" rx="6" ry="3" fill="none" stroke="${LM}" stroke-width="1.1"/>
-  <text x="103" y="26" fill="${LM}" font-size="4.2" font-family="sans-serif">SẤP</text>
+  <text x="100" y="26" fill="${LM}" font-size="4.4" font-family="sans-serif">SẤP</text>
   <path d="M60,28 A24,24 0 0 1 79.5,39" fill="none" stroke="${W}" stroke-width=".8" stroke-dasharray="2 1.6"/>
-  <text x="82" y="22" fill="${W}" font-size="4.4" font-family="sans-serif">180°</text>
-  <text x="14" y="14" fill="${SH}" font-size="4.6" font-family="sans-serif">✕ KHÔNG bẻ cổ tay lên xuống</text>
-  <text x="14" y="22" fill="${L}" font-size="4.6" font-family="sans-serif">✓ Chỉ xoay quanh trục cẳng tay</text>`}),
+  <text x="80" y="24" fill="${W}" font-size="4.4" font-family="sans-serif">~180°</text>`}),
 
-net:()=>({vb:'0 0 134 66',cap:'Điểm tiếp xúc CAO hơn mép lưới · mặt vợt mở 45° · không backswing',
+net:()=>({vb:'22 4 102 60',cap:'Ôm lưới — điểm tiếp xúc CAO hơn mép lưới, mặt vợt mở 45°',
+ legend:[
+  {c:SH,t:'✕ Không kéo vợt về sau (không backswing)'},
+  {c:L,t:'✓ Chỉ đẩy nhẹ bằng ngón trỏ — cảm giác như đỡ quả trứng'}
+ ],
  svg:`<line x1="0" y1="56" x2="134" y2="56" stroke="${L}" stroke-width="1"/>
   <line x1="52" y1="56" x2="52" y2="20" stroke="${W}" stroke-width="1.4"/>
   <line x1="48" y1="20" x2="56" y2="20" stroke="${W}" stroke-width="2.2"/>
-  <text x="52" y="14" fill="${L}" font-size="4.2" text-anchor="middle" font-family="sans-serif">mép lưới</text>
-  <line x1="52" y1="20" x2="134" y2="20" stroke="${L}" stroke-width=".5" stroke-dasharray="2 2"/>
+  <text x="34" y="24" fill="${L}" font-size="4.4" text-anchor="middle" font-family="sans-serif">mép lưới</text>
+  <line x1="40" y1="22" x2="49" y2="20" stroke="${L}" stroke-width=".6"/>
+  <line x1="52" y1="20" x2="124" y2="20" stroke="${L}" stroke-width=".5" stroke-dasharray="2 2"/>
   <line x1="88" y1="42" x2="68" y2="16" stroke="${W}" stroke-width="1.3"/>
   <ellipse cx="65" cy="12" rx="6.5" ry="4" transform="rotate(-38 65 12)" fill="none" stroke="${W}" stroke-width="1.2"/>
   <circle cx="58" cy="15" r="2.4" fill="${LM}"/>
-  <text x="70" y="50" fill="${W}" font-size="4.4" font-family="sans-serif">tay duỗi gần thẳng</text>
+  <text x="66" y="50" fill="${W}" font-size="4.4" font-family="sans-serif">tay duỗi gần thẳng</text>
   <path d="M64,22 L58,17" stroke="${LM}" stroke-width="1" stroke-dasharray="1.5 1.2"/>
   <path d="M88,42 L100,52" stroke="${L}" stroke-width="1.3"/>
   <path d="M100,52 L118,56" stroke="${L}" stroke-width="1.3"/>
   <path d="M100,52 L92,56" stroke="${L}" stroke-width="1.3"/>
   <path d="M104,46 A9,9 0 0 1 96,56" fill="none" stroke="${LM}" stroke-width=".8"/>
-  <text x="108" y="46" fill="${LM}" font-size="4.2" font-family="sans-serif">90–100°</text>
-  <text x="4" y="30" fill="${SH}" font-size="4.4" font-family="sans-serif">✕ không kéo vợt</text>
-  <text x="4" y="37" fill="${SH}" font-size="4.4" font-family="sans-serif">   về sau</text>
-  <text x="4" y="48" fill="${L}" font-size="4.4" font-family="sans-serif">✓ chỉ đẩy bằng</text>
-  <text x="4" y="54" fill="${L}" font-size="4.4" font-family="sans-serif">   ngón trỏ</text>`}),
+  <text x="106" y="46" fill="${LM}" font-size="4.2" font-family="sans-serif">90–100°</text>`}),
 
-split:()=>({vb:'0 0 134 60',cap:'Rời sàn 2–3cm · tiếp đất bằng ức bàn chân · gần như không có tiếng động',
+split:()=>({vb:'20 26 96 38',cap:'Bước bật tách — nhún nhẹ, tiếp đất bằng ức bàn chân',
+ legend:[
+  {c:LM,t:'Nhún đúng khi vợt đối thủ SẮP chạm cầu — rời sàn chỉ 2–3cm, không hơn'},
+  {c:LM,t:'Tiếp đất bằng ức bàn chân (vùng vàng), gần như không có tiếng động'}
+ ],
  svg:`<line x1="0" y1="46" x2="134" y2="46" stroke="${L}" stroke-width="1"/>
-  <ellipse cx="34" cy="42" rx="5" ry="9" fill="none" stroke="${W}" stroke-width="1.2"/>
-  <ellipse cx="52" cy="42" rx="5" ry="9" fill="none" stroke="${W}" stroke-width="1.2"/>
-  <ellipse cx="34" cy="37" rx="4.4" ry="4" fill="${LM}" opacity=".5"/>
-  <ellipse cx="52" cy="37" rx="4.4" ry="4" fill="${LM}" opacity=".5"/>
-  <text x="43" y="58" fill="${L}" font-size="4.4" text-anchor="middle" font-family="sans-serif">vùng vàng = ức bàn chân tiếp đất</text>
-  <path d="M76,42 Q80,32 84,42" fill="none" stroke="${LM}" stroke-width="1.2"/>
-  <line x1="72" y1="42" x2="88" y2="42" stroke="${L}" stroke-width=".6" stroke-dasharray="2 1.5"/>
-  <line x1="72" y1="36" x2="88" y2="36" stroke="${L}" stroke-width=".6" stroke-dasharray="2 1.5"/>
-  <line x1="92" y1="36" x2="92" y2="42" stroke="${W}" stroke-width="1"/>
-  <text x="96" y="41" fill="${W}" font-size="4.6" font-family="sans-serif">2–3 cm — không hơn</text>
-  <text x="76" y="24" fill="${W}" font-size="4.6" font-family="sans-serif">Nhún khi vợt đối thủ</text>
-  <text x="76" y="30" fill="${W}" font-size="4.6" font-family="sans-serif">SẮP chạm cầu</text>`}),
+  <ellipse cx="40" cy="42" rx="5" ry="9" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <ellipse cx="58" cy="42" rx="5" ry="9" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <ellipse cx="40" cy="37" rx="4.4" ry="4" fill="${LM}" opacity=".5"/>
+  <ellipse cx="58" cy="37" rx="4.4" ry="4" fill="${LM}" opacity=".5"/>
+  <path d="M82,42 Q86,32 90,42" fill="none" stroke="${LM}" stroke-width="1.2"/>
+  <line x1="78" y1="42" x2="94" y2="42" stroke="${L}" stroke-width=".6" stroke-dasharray="2 1.5"/>
+  <line x1="78" y1="36" x2="94" y2="36" stroke="${L}" stroke-width=".6" stroke-dasharray="2 1.5"/>
+  <line x1="98" y1="36" x2="98" y2="42" stroke="${W}" stroke-width="1"/>
+  <text x="102" y="41" fill="${W}" font-size="4.8" font-family="sans-serif">2–3cm</text>`}),
 
-rot:()=>({vb:'0 0 134 66',cap:'Nhìn từ trên · bàn chân sau xoay 90° · lực đi từ chân → hông → thân → vai → cẳng tay',
+rot:()=>({vb:'24 10 70 54',cap:'Tư thế đánh cuối sân nhìn từ trên — chân chạm đất, không bật nhảy',
+ legend:[
+  {c:L,t:'Chuỗi lực từ dưới lên: 1. đạp chân sau → 2. hông xoay → 3. thân & vai → 4. cẳng tay xoay'},
+  {c:SH,t:'✕ Không bật nhảy — không có pha tiếp đất một chân từ trên cao'}
+ ],
  svg:`<ellipse cx="44" cy="44" rx="5" ry="9" transform="rotate(90 44 44)" fill="none" stroke="${LM}" stroke-width="1.3"/>
   <text x="44" y="58" fill="${LM}" font-size="4.4" text-anchor="middle" font-family="sans-serif">chân sau xoay 90°</text>
-  <ellipse cx="72" cy="28" rx="5" ry="9" transform="rotate(-20 72 28)" fill="none" stroke="${W}" stroke-width="1.2"/>
-  <text x="76" y="18" fill="${W}" font-size="4.4" font-family="sans-serif">chân trước</text>
-  <line x1="44" y1="44" x2="72" y2="28" stroke="${L}" stroke-width=".7" stroke-dasharray="2 1.5"/>
-  <path d="M52,40 A22,22 0 0 1 74,40" fill="none" stroke="${W}" stroke-width="1.1"/>
-  <path d="M74,40 l-3.5,-3 l4.5,-.6 z" fill="${W}"/>
-  <text x="60" y="34" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">xoay hông</text>
-  <text x="96" y="26" fill="${L}" font-size="4.6" font-family="sans-serif">1. đạp chân sau</text>
-  <text x="96" y="34" fill="${L}" font-size="4.6" font-family="sans-serif">2. hông xoay</text>
-  <text x="96" y="42" fill="${L}" font-size="4.6" font-family="sans-serif">3. thân &amp; vai</text>
-  <text x="96" y="50" fill="${LM}" font-size="4.6" font-family="sans-serif">4. cẳng tay xoay</text>
-  <text x="8" y="14" fill="${SH}" font-size="4.6" font-family="sans-serif">✕ Không bật nhảy — không có pha</text>
-  <text x="8" y="21" fill="${SH}" font-size="4.6" font-family="sans-serif">   tiếp đất một chân từ trên cao</text>`}),
+  <ellipse cx="74" cy="26" rx="5" ry="9" transform="rotate(-20 74 26)" fill="none" stroke="${W}" stroke-width="1.2"/>
+  <text x="74" y="18" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">chân trước</text>
+  <line x1="44" y1="44" x2="74" y2="26" stroke="${L}" stroke-width=".7" stroke-dasharray="2 1.5"/>
+  <path d="M52,40 A22,22 0 0 1 74,38" fill="none" stroke="${W}" stroke-width="1.1"/>
+  <path d="M74,38 l-3.7,-2.6 l4.4,-1 z" fill="${W}"/>
+  <text x="54" y="20" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">xoay hông</text>`}),
 
-lunge:()=>({vb:'0 0 134 66',cap:'Gót chạm trước rồi lăn ra ức bàn chân · gối không vượt mũi chân · đẩy về bằng gót và mông',
+lunge:()=>({vb:'24 4 84 62',cap:'Lunge nông có kiểm soát — gót chạm trước, gối không vượt mũi chân',
+ legend:[
+  {c:L,t:'Thân thẳng, ngực hướng lên; gót chạm đất trước rồi lăn ra ức bàn chân'},
+  {c:SH,t:'Gối trước gập 90–100°, không vượt quá mũi chân (vạch đỏ)'},
+  {c:LM,t:'Đẩy về bằng gót và mông, không đẩy bằng mũi chân'}
+ ],
  svg:`<line x1="0" y1="54" x2="134" y2="54" stroke="${L}" stroke-width="1"/>
   <line x1="46" y1="54" x2="46" y2="26" stroke="${W}" stroke-width="1.4"/>
   <line x1="46" y1="26" x2="52" y2="16" stroke="${W}" stroke-width="1.4"/>
@@ -1078,17 +1088,16 @@ lunge:()=>({vb:'0 0 134 66',cap:'Gót chạm trước rồi lăn ra ức bàn ch
   <line x1="80" y1="54" x2="92" y2="54" stroke="${LM}" stroke-width="2.2"/>
   <line x1="46" y1="54" x2="34" y2="54" stroke="${L}" stroke-width="2"/>
   <path d="M74,50 A9,9 0 0 0 66,45" fill="none" stroke="${LM}" stroke-width=".9"/>
-  <text x="86" y="40" fill="${LM}" font-size="4.6" font-family="sans-serif">90–100°</text>
-  <line x1="82" y1="42" x2="82" y2="56" stroke="${SH}" stroke-width=".6" stroke-dasharray="1.5 1.5"/>
-  <text x="88" y="50" fill="${SH}" font-size="4.2" font-family="sans-serif">gối không</text>
-  <text x="88" y="56" fill="${SH}" font-size="4.2" font-family="sans-serif">vượt mũi chân</text>
-  <path d="M60,60 L40,60" stroke="${LM}" stroke-width="1.1"/>
-  <path d="M40,60 l4,-2.2 l0,4.4 z" fill="${LM}"/>
-  <text x="62" y="62" fill="${LM}" font-size="4.4" font-family="sans-serif">đẩy về bằng gót + mông</text>
-  <text x="8" y="20" fill="${L}" font-size="4.6" font-family="sans-serif">Thân thẳng,</text>
-  <text x="8" y="27" fill="${L}" font-size="4.6" font-family="sans-serif">ngực hướng lên</text>`})
+  <text x="90" y="40" fill="${LM}" font-size="4.6" font-family="sans-serif">90–100°</text>
+  <line x1="82" y1="40" x2="82" y2="56" stroke="${SH}" stroke-width=".7" stroke-dasharray="1.5 1.5"/>
+  <path d="M58,62 L38,62" stroke="${LM}" stroke-width="1.2"/>
+  <path d="M38,62 l4,-2.2 l0,4.4 z" fill="${LM}"/>`})
 ,
-recover:()=>({vb:'-2 -8 138 74',cap:'Hồi vị: về base TRƯỚC khi đối thủ chạm cầu · base dịch theo cú bạn vừa đánh',
+recover:()=>({vb:'-2 -8 138 74',cap:'Hồi vị — về base TRƯỚC khi đối thủ chạm cầu',
+ legend:[
+  {c:LM,t:'Về đến base trước khi đối thủ chạm cầu — dưới 1,0s với góc lưới, dưới 1,3s với góc sau'},
+  {c:W,t:'Base không cố định: dịch ±0,5m theo cú bạn vừa đánh'}
+ ],
  svg:courtBase()+
   ['na','nb','ra','rb'].map(k=>`<path d="M${P6[k][0]},${P6[k][1]} L${P6.base[0]},${P6.base[1]}" stroke="${LM}" stroke-width="1" fill="none"/>`).join('')+
   ['na','nb','ra','rb'].map(k=>{const dx=P6.base[0]-P6[k][0],dy=P6.base[1]-P6[k][1],l=Math.hypot(dx,dy);
@@ -1097,49 +1106,55 @@ recover:()=>({vb:'-2 -8 138 74',cap:'Hồi vị: về base TRƯỚC khi đối t
   ['na','nb','ra','rb'].map(k=>dot(P6[k],W,2.2)).join('')+
   `<circle cx="${P6.base[0]}" cy="${P6.base[1]}" r="7" fill="none" stroke="${W}" stroke-width=".7" stroke-dasharray="2 1.6"/>`+
   dot(P6.base,W,3.2)+lab(P6.base,'BASE',0,-9)+
-  `<text x="76" y="9" fill="${LM}" font-size="4.2" font-family="sans-serif">&lt; 1,0s</text>
-   <text x="118" y="9" fill="${LM}" font-size="4.2" font-family="sans-serif">&lt; 1,3s</text>
-   <line x1="97" y1="37.5" x2="97" y2="43" stroke="${W}" stroke-width=".6"/>
-   <text x="97" y="47" fill="${W}" font-size="3.9" text-anchor="middle" font-family="sans-serif">base dịch ±0,5m theo cú vừa đánh</text>`}),
+  `<text x="74" y="9" fill="${LM}" font-size="4.4" font-family="sans-serif">góc lưới &lt; 1,0s</text>
+   <text x="134" y="9" fill="${LM}" font-size="4.4" text-anchor="end" font-family="sans-serif">góc sau &lt; 1,3s</text>`}),
 
-defense:()=>({vb:'-4 -6 142 62',cap:'Ba lựa chọn từ CÙNG một tư thế thủ · mặc định của Momota là chặn ngắn',
+defense:()=>({vb:'-4 -6 142 62',cap:'Ba lựa chọn đỡ đập từ CÙNG một tư thế thủ',
+ legend:[
+  {c:LM,t:'a. Chặn ngắn (mặc định của Momota) — để cầu dội rơi sát lưới, buộc đối thủ lao lên'},
+  {c:W,t:'b. Đẩy sâu — nâng mặt vợt đưa cầu về góc sau đối thủ'},
+  {c:L,t:'c. Đôi công — mặt vợt dựng, đẩy phẳng qua hông đối thủ'}
+ ],
  svg:`<line x1="0" y1="50" x2="134" y2="50" stroke="${L}" stroke-width="1"/>
   <line x1="52" y1="50" x2="52" y2="34.5" stroke="${W}" stroke-width="1.4"/>
   <path d="M14,4 L96,34" stroke="${SH}" stroke-width="1.2" stroke-dasharray="3 2"/>
   <path d="M96,34 l-6,-.4 l3.4,-4.4 z" fill="${SH}"/>
-  <text x="24" y="12" fill="${SH}" font-size="4.4" font-family="sans-serif">cú đập tới</text>
+  <text x="22" y="12" fill="${SH}" font-size="4.4" font-family="sans-serif">cú đập tới</text>
   <circle cx="103" cy="36" r="2.6" fill="${W}"/>
   <line x1="103" y1="38" x2="101" y2="50" stroke="${W}" stroke-width="1.2"/>
   <line x1="101" y1="50" x2="94" y2="50" stroke="${W}" stroke-width="1.6"/>
   <line x1="101" y1="50" x2="110" y2="50" stroke="${W}" stroke-width="1.6"/>
-  <text x="112" y="30" fill="${L}" font-size="4.2" font-family="sans-serif">gối chùng 30°</text>
-  <path d="M99,34 Q76,30 44,47" stroke="${LM}" stroke-width="1.2" fill="none"/>
-  <text x="60" y="30" fill="${LM}" font-size="4.4" font-family="sans-serif">a. CHẶN NGẮN ← mặc định</text>
-  <path d="M99,34 Q58,-2 8,46" stroke="${W}" stroke-width="1.1" fill="none"/>
-  <text x="12" y="22" fill="${W}" font-size="4.4" font-family="sans-serif">b. ĐẨY SÂU</text>
-  <path d="M99,34 L30,41" stroke="${L}" stroke-width="1.1" fill="none"/>
-  <text x="30" y="46" fill="${L}" font-size="4.4" font-family="sans-serif">c. ĐÔI CÔNG</text>`}),
+  <text x="104" y="30" fill="${L}" font-size="4.2" font-family="sans-serif">gối chùng 30°</text>
+  <path d="M99,34 Q76,30 44,47" stroke="${LM}" stroke-width="1.4" fill="none"/>
+  <text x="40" y="45" fill="${LM}" font-size="5.4" font-weight="700" font-family="sans-serif">a</text>
+  <path d="M99,34 Q58,-2 8,46" stroke="${W}" stroke-width="1.2" fill="none"/>
+  <text x="10" y="40" fill="${W}" font-size="5.4" font-weight="700" font-family="sans-serif">b</text>
+  <path d="M99,34 L30,41" stroke="${L}" stroke-width="1.2" fill="none"/>
+  <text x="30" y="37" fill="${L}" font-size="5.4" font-weight="700" font-family="sans-serif">c</text>`}),
 
-body:()=>({vb:'0 0 134 68',cap:'Ba vùng cầu đập vào người · xoay hông tạo không gian, tuyệt đối không lùi',
+body:()=>({vb:'20 6 60 56',cap:'Ba vùng cầu đập vào người (nhìn từ trước)',
+ legend:[
+  {c:LM,t:'1. Vai trái — phổ biến nhất: xoay vai phải ra trước, dùng thumb grip'},
+  {c:LM,t:'2. Vai phải: hạ cùi chỏ, đưa vợt ra ngoài hông phải'},
+  {c:SH,t:'3. Giữa bụng — khó nhất: xoay hông trái 30°, đưa vợt xuống thấp'},
+  {c:SH,t:'✕ Tuyệt đối KHÔNG lùi — xoay hông để tạo không gian đánh'}
+ ],
  svg:`<circle cx="52" cy="16" r="7" fill="none" stroke="${W}" stroke-width="1.2"/>
   <path d="M40,28 L64,28 L62,54 L42,54 z" fill="none" stroke="${W}" stroke-width="1.2"/>
   <line x1="40" y1="30" x2="26" y2="44" stroke="${W}" stroke-width="1.1"/>
   <line x1="64" y1="30" x2="78" y2="40" stroke="${W}" stroke-width="1.1"/>
-  <circle cx="34" cy="32" r="6" fill="${LM}" opacity=".3"/>
-  <circle cx="70" cy="32" r="6" fill="${LM}" opacity=".3"/>
-  <circle cx="52" cy="42" r="7" fill="${SH}" opacity=".3"/>
-  <text x="34" y="33.5" fill="${W}" font-size="4.6" text-anchor="middle" font-family="sans-serif">1</text>
-  <text x="70" y="33.5" fill="${W}" font-size="4.6" text-anchor="middle" font-family="sans-serif">2</text>
-  <text x="52" y="43.5" fill="${W}" font-size="4.6" text-anchor="middle" font-family="sans-serif">3</text>
-  <text x="88" y="18" fill="${LM}" font-size="4.8" font-family="sans-serif">1. Vai trái — phổ biến nhất</text>
-  <text x="92" y="25" fill="${L}" font-size="4.4" font-family="sans-serif">xoay vai phải ra trước, thumb grip</text>
-  <text x="88" y="36" fill="${LM}" font-size="4.8" font-family="sans-serif">2. Vai phải</text>
-  <text x="92" y="43" fill="${L}" font-size="4.4" font-family="sans-serif">hạ cùi chỏ, vợt ra ngoài hông</text>
-  <text x="88" y="54" fill="${SH}" font-size="4.8" font-family="sans-serif">3. Giữa bụng — khó nhất</text>
-  <text x="92" y="61" fill="${L}" font-size="4.4" font-family="sans-serif">xoay hông trái 30°, vợt xuống thấp</text>
-  <text x="14" y="62" fill="${SH}" font-size="4.4" font-family="sans-serif">✕ KHÔNG lùi</text>`}),
+  <circle cx="34" cy="32" r="6.5" fill="${LM}" opacity=".32"/>
+  <circle cx="70" cy="32" r="6.5" fill="${LM}" opacity=".32"/>
+  <circle cx="52" cy="42" r="7" fill="${SH}" opacity=".32"/>
+  <text x="34" y="33.6" fill="${W}" font-size="5" text-anchor="middle" font-family="sans-serif">1</text>
+  <text x="70" y="33.6" fill="${W}" font-size="5" text-anchor="middle" font-family="sans-serif">2</text>
+  <text x="52" y="43.6" fill="${W}" font-size="5" text-anchor="middle" font-family="sans-serif">3</text>`}),
 
-drive:()=>({vb:'-4 -6 142 58',cap:'Drive: điểm tiếp xúc ngang vai, phía trước thân · cầu sượt mép lưới 10–20cm',
+drive:()=>({vb:'-4 -6 142 56',cap:'Drive — điểm tiếp xúc ngang vai, phía trước thân',
+ legend:[
+  {c:LM,t:'Điểm tiếp xúc ngang vai, phía TRƯỚC thân; cầu đi phẳng sượt mép lưới 10–20cm, vung chỉ 20–30cm'},
+  {c:SH,t:'✕ Phải đánh dưới vai nghĩa là đã bị ép — chuyển ngay sang chặn ngắn'}
+ ],
  svg:`<line x1="0" y1="48" x2="134" y2="48" stroke="${L}" stroke-width="1"/>
   <line x1="67" y1="48" x2="67" y2="32.5" stroke="${W}" stroke-width="1.4"/>
   <line x1="63" y1="32.5" x2="71" y2="32.5" stroke="${W}" stroke-width="2"/>
@@ -1150,9 +1165,7 @@ drive:()=>({vb:'-4 -6 142 58',cap:'Drive: điểm tiếp xúc ngang vai, phía t
   <line x1="67" y1="30" x2="67" y2="32.5" stroke="${LM}" stroke-width=".8"/>
   <text x="46" y="24" fill="${LM}" font-size="4.2" font-family="sans-serif">sượt mép lưới 10–20cm</text>
   <path d="M100,32 Q84,42 62,46" stroke="${SH}" stroke-width="1" fill="none" stroke-dasharray="2.5 2"/>
-  <text x="72" y="53" fill="${SH}" font-size="4.2" font-family="sans-serif">✕ đánh dưới vai = đã bị ép, chuyển sang chặn ngắn</text>
-  <text x="106" y="38" fill="${L}" font-size="4.2" font-family="sans-serif">vung</text>
-  <text x="106" y="44" fill="${L}" font-size="4.2" font-family="sans-serif">20–30cm</text>`}),
+  <text x="58" y="46" fill="${SH}" font-size="5.4" font-weight="700" font-family="sans-serif">✕</text>`}),
 
 trans:()=>({vb:'-2 -8 138 74',cap:'Vòng lặp Momota: chặn ngắn → họ lên lưới → họ buộc phải nâng → bạn tấn công ở cú 3',
  svg:courtBase()+
@@ -1169,51 +1182,64 @@ trans:()=>({vb:'-2 -8 138 74',cap:'Vòng lặp Momota: chặn ngắn → họ l�
    <path d="M122,28 Q86,44 22,50" stroke="${SH}" stroke-width="1.2" fill="none"/>
    <text x="76" y="52" fill="${SH}" font-size="4.4" text-anchor="middle" font-family="sans-serif">cú 3 mới ăn điểm — không đập ở cú 1</text>`}),
 
-lift4:()=>({vb:'-2 -12 138 78',cap:'Lift tấn công: cầu rơi trong 50cm quanh vạch cuối, buộc đối thủ lùi ra SAU vạch',
+lift4:()=>({vb:'-2 -8 138 74',cap:'Lift tấn công — cầu rơi trong 50cm quanh vạch cuối',
+ legend:[
+  {c:LM,t:'Nâng cầu rơi trong vùng 50cm quanh vạch cuối, ưu tiên vào góc trái tay đối thủ'},
+  {c:SH,t:'Đối thủ buộc phải lùi ra SAU vạch → cú đập trả về mất lực và mất góc cắm'}
+ ],
  svg:courtBase()+
   `<rect x="0" y="4.6" width="12" height="51.8" fill="${LM}" opacity=".26"/>
+   <line x1="-2" y1="4.6" x2="-2" y2="56.4" stroke="${SH}" stroke-width="1.4" stroke-dasharray="3 2"/>
    <path d="M56,20 Q34,-6 8,14" stroke="${LM}" stroke-width="1.3" fill="none"/>
    <path d="M56,42 Q34,68 8,48" stroke="${LM}" stroke-width="1.3" fill="none" opacity=".6"/>
    <circle cx="58" cy="21" r="2.6" fill="${W}"/>
-   <text x="66" y="18" fill="${W}" font-size="4.4" font-family="sans-serif">bạn ở lưới, tiếp xúc CAO</text>
-   <text x="6" y="34" fill="${LM}" font-size="4.2" font-family="sans-serif" transform="rotate(-90 6 34)">vùng đích 50cm</text>
-   <line x1="-2" y1="4.6" x2="-2" y2="56.4" stroke="${SH}" stroke-width="1.4" stroke-dasharray="3 2"/>
-   <text x="10" y="-4" fill="${SH}" font-size="4.4" font-family="sans-serif">đối thủ buộc phải lùi ra sau vạch → cú đập mất lực và mất góc cắm</text>
-   <text x="94" y="-4" fill="${W}" font-size="4.4" font-family="sans-serif">ưu tiên góc trái tay</text>`}),
+   <text x="64" y="18" fill="${W}" font-size="4.4" font-family="sans-serif">bạn ở lưới, tiếp xúc CAO</text>
+   <text x="6" y="34" fill="${LM}" font-size="4.2" font-family="sans-serif" transform="rotate(-90 6 34)">vùng đích 50cm</text>`}),
 
-punch:()=>({vb:'-4 -8 142 62',cap:'Punch clear phẳng và nhanh, chỉ vừa vượt tầm vợt đối thủ · so với cầu cao phòng thủ',
+punch:()=>({vb:'-4 -8 142 66',cap:'Punch clear so với cầu cao phòng thủ (đường nét đứt)',
+ legend:[
+  {c:LM,t:'Punch clear — phẳng, nhanh, chỉ cao hơn tầm vợt đối thủ 30–50cm rồi cắm vào 1m cuối sân'},
+  {c:L,t:'So với cầu cao phòng thủ (bài 02) — cao, chậm, dùng để mua thời gian'}
+ ],
  svg:`<line x1="0" y1="50" x2="134" y2="50" stroke="${L}" stroke-width="1"/>
   <line x1="67" y1="50" x2="67" y2="34.5" stroke="${W}" stroke-width="1.4"/>
   <line x1="34" y1="50" x2="34" y2="26" stroke="${L}" stroke-width=".8" stroke-dasharray="2 2"/>
   <line x1="30" y1="26" x2="38" y2="26" stroke="${L}" stroke-width="1.2"/>
   <text x="34" y="22" fill="${L}" font-size="4" text-anchor="middle" font-family="sans-serif">tầm với vợt</text>
   <path d="M108,24 Q62,-6 10,50" stroke="${L}" stroke-width="1" fill="none" stroke-dasharray="2.5 2"/>
-  <text x="60" y="-2" fill="${L}" font-size="4.2" font-family="sans-serif">cầu cao phòng thủ (bài 02) — cao, chậm, mua thời gian</text>
-  <path d="M108,24 Q70,10 10,46" stroke="${LM}" stroke-width="1.4" fill="none"/>
-  <text x="62" y="16" fill="${LM}" font-size="4.4" font-family="sans-serif">PUNCH CLEAR — phẳng, nhanh</text>
+  <path d="M108,24 Q70,10 10,46" stroke="${LM}" stroke-width="1.5" fill="none"/>
   <circle cx="108" cy="24" r="2.6" fill="${W}"/>
-  <text x="108" y="19" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">tiếp xúc sớm hơn 15cm</text>
+  <text x="106" y="18" fill="${W}" font-size="4.2" text-anchor="end" font-family="sans-serif">tiếp xúc sớm hơn 15cm</text>
   <line x1="34" y1="26" x2="34" y2="21" stroke="${LM}" stroke-width="1"/>
   <text x="20" y="40" fill="${LM}" font-size="4.2" font-family="sans-serif">chỉ cao hơn 30–50cm</text>
   <rect x="0" y="48" width="14" height="2.5" fill="${LM}" opacity=".5"/>
   <text x="7" y="57" fill="${LM}" font-size="4" text-anchor="middle" font-family="sans-serif">1m cuối</text>`}),
 
-line:()=>({vb:'-2 -10 138 78',cap:'Đường chéo dài hơn đường thẳng khoảng 15% · mặc định 70% thẳng, 30% chéo có lý do',
+line:()=>({vb:'-2 -8 138 72',cap:'Follow the line — mặc định đánh thẳng theo biên',
+ legend:[
+  {c:LM,t:'THẲNG (mặc định) — quãng ngắn hơn, cầu tới nhanh hơn, bạn hồi vị gần hơn'},
+  {c:SH,t:'CHÉO — dài hơn đường thẳng khoảng 15%, bạn phải hồi vị xa hơn'},
+  {c:W,t:'Chỉ đánh chéo khi: đối thủ đã lệch, bạn có thừa thời gian, hoặc cần đổi nhịp (tham chiếu 70% thẳng / 30% chéo)'}
+ ],
  svg:courtBase()+
   `<path d="M120,13 L14,13" stroke="${LM}" stroke-width="1.5"/>
    <path d="M14,13 l5.5,-2.2 l-.3,4.4 z" fill="${LM}"/>
-   <text x="67" y="9" fill="${LM}" font-size="4.4" text-anchor="middle" font-family="sans-serif">THẲNG — ngắn hơn, tới nhanh hơn, hồi vị gần hơn</text>
+   <text x="60" y="9" fill="${LM}" font-size="4.6" text-anchor="middle" font-family="sans-serif">THẲNG</text>
    <path d="M120,13 L14,48" stroke="${SH}" stroke-width="1.2" stroke-dasharray="3 2"/>
    <path d="M14,48 l5.8,-1.3 l-1.5,4.2 z" fill="${SH}"/>
-   <text x="70" y="42" fill="${SH}" font-size="4.4" text-anchor="middle" font-family="sans-serif">CHÉO — dài hơn ~15%, bạn phải hồi vị xa hơn</text>
-   <circle cx="121" cy="13" r="2.8" fill="${W}"/>
-   <text x="67" y="66" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">Chỉ đánh chéo khi: đối thủ đã lệch · bạn có thừa thời gian · cần đổi nhịp</text>`}),
+   <text x="44" y="34" fill="${SH}" font-size="4.6" text-anchor="middle" font-family="sans-serif">CHÉO</text>
+   <circle cx="121" cy="13" r="2.8" fill="${W}"/>`}),
 
-tall:()=>({vb:'-2 -10 138 76',cap:'Đấu người cao: kéo họ xuống thấp ở lưới, chỉ lift khi họ đã áp sát',
+tall:()=>({vb:'-2 -8 138 70',cap:'Đấu người cao — đưa trận đấu xuống thấp và vào gần',
+ legend:[
+  {c:LM,t:'Vùng bạn thắng: kéo người cao xuống thấp ở lưới bằng drop và ôm lưới'},
+  {c:SH,t:'KHÔNG lift khi họ ở giữa hoặc cuối sân — đó là dâng cầu cho họ đập'},
+  {c:W,t:'Chỉ lift khi họ đã bị kéo áp sát lưới, và phải lift thật cao thật sâu'}
+ ],
  svg:courtBase()+
   `<rect x="47.2" y="4.6" width="19.8" height="51.8" fill="${LM}" opacity=".22"/>
-   <text x="57" y="34" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">VÙNG BẠN THẮNG</text>
-   <text x="57" y="40" fill="${L}" font-size="3.9" text-anchor="middle" font-family="sans-serif">drop + ôm lưới</text>
+   <text x="57" y="33" fill="${W}" font-size="4.2" text-anchor="middle" font-family="sans-serif">VÙNG BẠN THẮNG</text>
+   <text x="57" y="39" fill="${L}" font-size="3.9" text-anchor="middle" font-family="sans-serif">drop + ôm lưới</text>
    <rect x="0" y="4.6" width="26" height="51.8" fill="${SH}" opacity=".16"/>
    <text x="13" y="30" fill="${SH}" font-size="4.2" text-anchor="middle" font-family="sans-serif">KHÔNG lift</text>
    <text x="13" y="36" fill="${SH}" font-size="4.2" text-anchor="middle" font-family="sans-serif">vào đây</text>
@@ -1221,11 +1247,9 @@ tall:()=>({vb:'-2 -10 138 76',cap:'Đấu người cao: kéo họ xuống thấp
    <path d="M100,30.5 Q80,44 56,48" stroke="${LM}" stroke-width="1.2" fill="none"/>
    <circle cx="101" cy="30.5" r="2.8" fill="${W}"/>
    <path d="M100,30.5 L74,30.5" stroke="${W}" stroke-width="1.2" stroke-dasharray="2 1.6"/>
-   <text x="86" y="27" fill="${W}" font-size="3.9" text-anchor="middle" font-family="sans-serif">drive ngang hông</text>
-   <text x="67" y="-4" fill="${W}" font-size="4.4" text-anchor="middle" font-family="sans-serif">Người cao mạnh ở trên cao và ở xa — đưa trận đấu xuống thấp và vào gần</text>
-   <text x="67" y="66" fill="${LM}" font-size="4.2" text-anchor="middle" font-family="sans-serif">Chỉ lift khi họ đã bị kéo áp sát lưới, và phải lift thật cao thật sâu</text>`}),
+   <text x="87" y="27" fill="${W}" font-size="3.9" text-anchor="middle" font-family="sans-serif">drive ngang hông</text>`}),
 
-serve:()=>({vb:'-4 -8 142 60',cap:'Giao cầu thấp: đỉnh cầu ngay trên băng lưới, rơi trong 15cm sau vạch giao cầu ngắn',
+serve:()=>({vb:'-4 -6 142 64',cap:'Giao cầu thấp: đỉnh cầu ngay trên băng lưới, rơi trong 15cm sau vạch giao cầu ngắn',
  svg:`<line x1="0" y1="48" x2="134" y2="48" stroke="${L}" stroke-width="1"/>
   <line x1="67" y1="48" x2="67" y2="32.5" stroke="${W}" stroke-width="1.4"/>
   <line x1="62" y1="32.5" x2="72" y2="32.5" stroke="${W}" stroke-width="2.4"/>
@@ -1247,7 +1271,8 @@ serve:()=>({vb:'-4 -8 142 60',cap:'Giao cầu thấp: đỉnh cầu ngay trên b
 function diagram(key){
   if(!key||!DIA[key])return '';
   const d=DIA[key]();
-  return `<div class="dia"><svg viewBox="${d.vb}" xmlns="http://www.w3.org/2000/svg">${d.svg}</svg><div class="diacap">${d.cap}</div></div>`;
+  const leg=d.legend?`<div class="dialeg">${d.legend.map(r=>`<div class="dlr"><span class="dls" style="background:${r.c||'#4FBFAE'}"></span><span>${r.t}</span></div>`).join('')}</div>`:'';
+  return `<div class="dia"><svg viewBox="${d.vb}" xmlns="http://www.w3.org/2000/svg">${d.svg}</svg>${leg}<div class="diacap">${d.cap}</div></div>`;
 }
 /* ================= RENDER ================= */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
