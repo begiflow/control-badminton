@@ -295,6 +295,30 @@ select.tsel option{color:#161616}
 .tb{font-family:inherit;font-size:12px;font-weight:700;padding:10px 16px;border-radius:100px;
   border:1px solid rgba(255,255,255,.3);background:none;color:#fff;cursor:pointer}
 .tb.go{background:#fff;color:var(--teal);border-color:#fff}
+
+/* ---------- GLOSSARY ---------- */
+.gbar{display:flex;gap:8px;align-items:center;position:sticky;top:44px;z-index:30;
+  background:var(--bg);padding:10px 0 8px}
+.gbar input{flex:1;min-width:0;font-family:inherit;font-size:15px;padding:13px 16px;
+  border:1px solid var(--line2);border-radius:100px;background:#fff;color:var(--ink)}
+.gbar input::-webkit-search-cancel-button{display:none}
+.gbar input:focus{outline:none;border-color:var(--teal2);box-shadow:0 0 0 3px rgba(79,191,174,.15)}
+.gbar button{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--line2);
+  background:#fff;color:var(--gray);font-size:13px;cursor:pointer}
+.gbar button:hover{border-color:var(--teal2);color:var(--teal2)}
+.ghint{font-size:12px;color:var(--gray2);margin:2px 0 20px;padding-left:4px}
+.ggrp{margin-bottom:24px}
+.ggh{font-size:10px;letter-spacing:.19em;text-transform:uppercase;color:var(--teal3);
+  font-weight:800;padding-bottom:8px;border-bottom:1px solid var(--line2)}
+.gi{padding:15px 0;border-top:1px solid var(--line)}
+.ggrp .gi:first-of-type{border-top:none}
+.git{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px}
+.git b{font-size:16px;font-weight:800;letter-spacing:-.02em}
+.git span{font-size:13px;color:var(--teal2);font-weight:600}
+.gid{font-size:14.2px;color:#3A3A3A;margin-top:6px}
+.giref{font-size:11.5px;color:var(--gray2);margin-top:8px;letter-spacing:.02em}
+.gnone{text-align:center;color:var(--gray);font-size:14px;padding:34px 16px}
+.gi[hidden],.ggrp[hidden],.gnone[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -343,6 +367,7 @@ select.tsel option{color:#161616}
   <section id="s-rule"></section>
   <section id="s-kpi"></section>
   <section id="s-road"></section>
+  <section id="s-glo"></section>
   <footer>
     <b>Giáo án cá nhân hoá</b> — hồ sơ 32 tuổi · 1m64 · 60kg · tập solo, 2 buổi sân/tuần.<br>
     Sơ đồ sân theo chuẩn BWF: 13,40 × 6,10 m · lưới cao 1,55 m ở cột và 1,524 m ở giữa · vạch giao cầu ngắn cách lưới 1,98 m · vạch đơn lùi vào 0,46 m mỗi bên.<br>
@@ -833,6 +858,51 @@ const ROAD=[
  d:'Chủ động đổi tempo trong rally, xây pattern 3 cú ăn điểm, quản lý thể lực theo set. Nghiệm thu bằng trận đấu quay video đầy đủ.'}
 ];
 
+/* ===== THUẬT NGỮ — tra nhanh ===== */
+const GLOSSARY=[
+ {g:'Cú đánh', items:[
+  {en:'Clear / Cầu cao', vi:'phông cầu', d:'Đánh cầu bay cao và sâu về cuối sân đối phương. Cầu cao phòng thủ dùng để mua thời gian; punch clear là biến thể tấn công quỹ đạo phẳng.', r:'A2 · E2'},
+  {en:'Drop', vi:'bỏ nhỏ', d:'Đánh nhẹ từ cuối sân cho cầu rơi nhanh sát lưới bên kia, dùng chung phom với cầu cao và đập để giấu ý đồ.', r:'A2'},
+  {en:'Smash', vi:'đập cầu', d:'Cú đánh mạnh từ trên cao cắm chéo xuống sân đối phương — cú tấn công chủ lực.', r:'B3'},
+  {en:'Half-smash', vi:'đập nhẹ nửa lực', d:'Đập chỉ khoảng 70% lực, mặt vợt cắt; dùng để MỞ RA pha cầu tiếp theo thay vì kết thúc ngay.', r:'B3'},
+  {en:'Net shot', vi:'ôm lưới', d:'Đánh cầu sát lưới cho rơi nhanh sang phần sân trước đối phương; từ cùng tư thế có thể ra ôm lưới, móc cầu hoặc tạt.', r:'A4'},
+  {en:'Drive', vi:'đôi công / tạt cầu', d:'Đánh cầu phẳng, nhanh, đi ngang sát trên lưới — bản lề chuyển giữa thủ và công.', r:'D3'},
+  {en:'Lift / Lob', vi:'nâng cầu', d:'Đưa cầu từ khu lưới bay cao lên cuối sân. Lift tấn công nâng thật cao và sâu vào đúng góc để vô hiệu hoá cú đập trả về.', r:'E1'},
+  {en:'Flick lift', vi:'nâng cầu nhanh', d:'Nâng cầu quỹ đạo phẳng và nhanh, giấu trong cùng tư thế ôm lưới để đối thủ không kịp đọc.', r:'E1'},
+  {en:'Punch clear', vi:'cầu cao tấn công', d:'Cầu cao quỹ đạo phẳng, đi nhanh, chỉ vừa vượt tầm vợt đối thủ rồi cắm xuống cuối sân.', r:'E2'},
+  {en:'Block', vi:'chặn ngắn', d:'Đỡ đập bằng mặt vợt mở, gần như không vung, để cầu dội lại rơi sát lưới — buộc đối thủ lao lên.', r:'D1'},
+  {en:'Serve', vi:'giao cầu', d:'Cú phát cầu mở đầu pha; giao cầu thấp đi sát băng lưới, rơi ngay sau vạch giao cầu ngắn.', r:'E5'}
+ ]},
+ {g:'Cầm vợt & tay', items:[
+  {en:'Grip', vi:'cách cầm vợt', d:'Kiểu nắm cán vợt, quyết định mặt vợt hướng ra sao khi chạm cầu.', r:'A1'},
+  {en:'Neutral grip', vi:'grip trung tính', d:'Vị trí cầm cơ bản — chữ V giữa ngón cái và trỏ trên cạnh vát số 2 — đánh được cả thuận lẫn trái tay mà không cần xoay vai.', r:'A1'},
+  {en:'Thumb grip', vi:'cầm vợt ngón cái', d:'Tì mặt phẳng ngón cái lên cạnh rộng của cán, dùng cho trái tay và phòng thủ.', r:'A5 · D2'},
+  {en:'Pronation', vi:'xoay sấp cẳng tay', d:'Xoay lòng bàn tay từ ngửa sang sấp — nguồn tạo tốc độ đầu vợt chính, thay cho vẩy cổ tay.', r:'A3'}
+ ]},
+ {g:'Di chuyển', items:[
+  {en:'Footwork', vi:'bộ chân', d:'Toàn bộ kỹ thuật di chuyển trên sân để đến kịp và đứng vững trước khi đánh.', r:'Nhóm B'},
+  {en:'Split-step', vi:'bước bật tách', d:'Nhún nhẹ hai chân đúng khoảnh khắc đối thủ SẮP chạm cầu, để xuất phát nhanh về mọi hướng.', r:'B1'},
+  {en:'Lunge', vi:'bước lao', d:'Bước dài chồm tới đón cầu, thường ở lưới; gót chạm đất trước, gối không vượt quá mũi chân.', r:'B4'},
+  {en:'Chassé', vi:'bước lướt', d:'Trượt hai chân không đổi chỗ nhau, giữ trọng tâm thấp và ổn định suốt quãng di chuyển.', r:'B2'},
+  {en:'Step-through', vi:'bước bắt chéo qua người', d:'Chân sau bước qua chân trước, biến quán tính cú đánh cuối sân thành bước đầu tiên quay về base.', r:'B3'},
+  {en:'Base', vi:'vị trí chờ cầu', d:'Vị trí trung tâm trở về giữa các pha cầu; base dịch nhẹ theo cú vừa đánh.', r:'B2 · B6'},
+  {en:'Recovery', vi:'hồi vị', d:'Quay về base ngay sau cú đánh — bắt đầu từ trong lúc đánh, không đứng nhìn cầu bay.', r:'B6'},
+  {en:'Shadow', vi:'tập chay', d:'Mô phỏng di chuyển và cú đánh không có cầu, để chuẩn hoá phom trước khi đưa cầu vào.', r:'A2 · B5'}
+ ]},
+ {g:'Chiến thuật', items:[
+  {en:'Deception', vi:'giấu cầu', d:'Che giấu hướng đánh bằng cách dùng cùng một phom tay cho nhiều đường cầu khác nhau.', r:'Nhóm A'},
+  {en:'Follow the line', vi:'đánh thẳng', d:'Mặc định trả cầu thẳng theo đường biên, chỉ đánh chéo khi có lý do rõ ràng — tiết kiệm quãng di chuyển.', r:'E3'},
+  {en:'Rally', vi:'loạt cầu / pha cầu', d:'Chuỗi các cú đánh qua lại liên tục từ giao cầu đến khi kết thúc điểm.', r:'—'},
+  {en:'Constraint-led', vi:'luật tự áp', d:'Tự đặt luật cấm khi đánh giao lưu để ép cơ thể tìm giải pháp mới — hiệu quả hơn drill lặp lại với người trưởng thành.', r:'Luật tự áp'}
+ ]},
+ {g:'Thể lực & phòng ngừa', items:[
+  {en:'Prehab', vi:'tập phòng ngừa', d:'Bài tập chủ động phòng chấn thương TRƯỚC khi nó xảy ra, khác với phục hồi sau chấn thương.', r:'Nhóm C'},
+  {en:'Mobility', vi:'linh hoạt khớp', d:'Biên độ vận động chủ động của khớp; thiếu mobility hông và cột sống ngực dễ gây đau lưng khi tập phom mới.', r:'C5'},
+  {en:'Proprioception', vi:'cảm thụ bản thể', d:'Khả năng cảm nhận vị trí cơ thể, giúp cổ chân tự chỉnh trong khoảng 40 mili giây để chống lật.', r:'C2'},
+  {en:'Eccentric', vi:'pha hạ chậm (co cơ ly tâm)', d:'Giai đoạn cơ dài ra trong khi vẫn chịu tải — pha xây gân quan trọng nhất, ví dụ hạ gót thật chậm.', r:'C1'}
+ ]}
+];
+
 const SECTIONS=[
 {id:'a',nav:'Phom tay kín',jp:'構え・秘手',h2:'Phom tay kín và nghệ thuật giấu cầu (deception)',
  p:'Triết lý Momota: <b>80% quãng đường vung vợt của mọi cú đánh phải giống hệt nhau</b>. Đối thủ chỉ biết bạn đánh gì ở 20cm cuối — lúc đó họ đã muộn nửa nhịp. Với sải tay ngắn, đây chính là vũ khí thay cho sức mạnh.',list:'A'},
@@ -851,7 +921,9 @@ const SECTIONS=[
 {id:'kpi',nav:'Nghiệm thu',jp:'検定',h2:'Nghiệm thu cuối tuần 2',
  p:'Đo được thì mới sửa được. Quay một clip điện thoại đặt ngang ngực, cách 3m, góc chéo 45° từ phía trước bên tay thuận, vào cuối tuần 2.',list:'KPI'},
 {id:'road',nav:'Lộ trình 8 tuần',jp:'全行程',h2:'Lộ trình 8 tuần',
- p:'Theo trình tự học nghề của Nhật: <b>守 → 破 → 離</b>. Giữ đúng khuôn mẫu trước, phá khuôn sau, rồi mới thành lối riêng. Giai đoạn 1 đang mở; các giai đoạn sau mở khoá tuần tự.',list:'ROAD'}
+ p:'Theo trình tự học nghề của Nhật: <b>守 → 破 → 離</b>. Giữ đúng khuôn mẫu trước, phá khuôn sau, rồi mới thành lối riêng. Giai đoạn 1 đang mở; các giai đoạn sau mở khoá tuần tự.',list:'ROAD'},
+{id:'glo',nav:'Thuật ngữ',jp:'用語集',h2:'Thuật ngữ — tra nhanh',
+ p:'Từ điển thuật ngữ chuyên môn dùng trong giáo án, kèm tên tiếng Việt và giải thích ngắn. Gõ vào ô tìm kiếm để lọc tức thì — <b>tiếng Anh, tiếng Việt, có dấu hay không dấu đều được</b>.',list:'GLO'}
 ];
 /* ===== SƠ ĐỒ SVG (kích thước thật BWF, đơn vị = decimet) ===== */
 const L='#A9E0D5',W='#FFFFFF',LM='#D9E64F',SH='#FF8A7A';
@@ -1181,6 +1253,8 @@ function diagram(key){
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
 const tk=q=>'https://www.tiktok.com/search?q='+encodeURIComponent(q);
+/* Bỏ dấu tiếng Việt để tra không dấu: "hồi vị" -> "hoi vi", "đập" -> "dap" */
+const gnorm=s=>(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
 const ALL=[...A,...B,...D,...E,...C];
 const NUM={};ALL.forEach((x,i)=>NUM[x.id]=String(i+1).padStart(2,'0'));
 $('#stEx').textContent=ALL.length;
@@ -1294,7 +1368,21 @@ const BODY={
   +`<div class="callout" style="margin-top:18px"><b>Cách quay video tự đánh giá —</b> đặt điện thoại trên chân ba chân hoặc dựa vào túi vợt, chiều cao ngang ngực, góc chéo 45° từ phía trước bên tay thuận. Quay slow-motion 120fps nếu máy hỗ trợ. Xem lại bằng cách tua từng khung hình ở thời điểm vợt ở sau lưng.</div>`,
  ROAD:()=>ROAD.map((r,i)=>`<div class="ph ${r.now?'now':''}"><div class="phn">(${String(i+1).padStart(2,'0')})</div>
    <div class="phb"><div class="wl">${r.w}${r.now?' · Đang mở':''}</div><h4>${r.t}</h4><p>${r.d}</p>
-   <div class="sh1">${r.jp}</div></div></div>`).join('')
+   <div class="sh1">${r.jp}</div></div></div>`).join(''),
+ GLO:()=>{
+  const n=GLOSSARY.reduce((s,gr)=>s+gr.items.length,0);
+  const groups=GLOSSARY.map(gr=>`<div class="ggrp">
+   <div class="ggh">${gr.g}</div>
+   ${gr.items.map(it=>`<div class="gi" data-t="${gnorm(it.en+' '+it.vi+' '+it.d)}">
+    <div class="git"><b>${it.en}</b><span>${it.vi}</span></div>
+    <div class="gid">${it.d}</div>
+    ${it.r&&it.r!=='—'?`<div class="giref">Bài liên quan: ${it.r}</div>`:''}
+   </div>`).join('')}
+  </div>`).join('');
+  return `<div class="gbar"><input id="gq" type="search" inputmode="search" autocomplete="off" placeholder="Gõ để tra nhanh — vd: lunge, hồi vị, giấu cầu…"><button id="gclr" type="button" aria-label="Xoá ô tìm">✕</button></div>
+   <div class="ghint">${n} thuật ngữ · gõ tiếng Anh hoặc tiếng Việt, không dấu cũng được</div>
+   <div id="glist">${groups}<div class="gnone" id="gnone" hidden>Không tìm thấy thuật ngữ khớp. Thử từ khoá khác.</div></div>`;
+ }
 };
 
 $('#nav').innerHTML=SECTIONS.map((s,i)=>`<button class="nb ${i===0?'on':''}" data-s="${s.id}">${s.nav}</button>`).join('');
@@ -1332,6 +1420,18 @@ $$('.nb').forEach(b=>b.addEventListener('click',()=>{
   const n=document.querySelector('nav');
   window.scrollTo({top:n.offsetTop-1,behavior:'smooth'});
 }));
+
+/* ---- tra nhanh thuật ngữ ---- */
+(function(){
+  const gq=$('#gq');if(!gq)return;
+  const items=$$('#glist .gi'),grps=$$('#glist .ggrp'),none=$('#gnone');
+  const run=()=>{const q=gnorm(gq.value.trim());let shown=0;
+    items.forEach(it=>{const m=!q||it.dataset.t.indexOf(q)>-1;it.hidden=!m;if(m)shown++;});
+    grps.forEach(g=>{g.hidden=![...g.querySelectorAll('.gi')].some(i=>!i.hidden);});
+    none.hidden=shown>0;};
+  gq.addEventListener('input',run);
+  $('#gclr').addEventListener('click',()=>{gq.value='';run();gq.focus();});
+})();
 
 $('#startBtn').addEventListener('click',()=>{
   const f=$('#s-a .ex');if(f){f.classList.add('open');
